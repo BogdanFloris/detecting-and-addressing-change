@@ -3,6 +3,7 @@ This class encloses different the constants contained in the constants library
 """
 import os
 import torch
+import utils
 from enum import Enum
 from pathlib import Path
 from transformers import BertModel, BertTokenizer, DistilBertModel, DistilBertTokenizer
@@ -37,7 +38,11 @@ class Transformer:
             the transformed text
         """
         input_ids = torch.tensor(
-            [self.tokenizer.encode(text, add_special_tokens=True, max_length=512)]
+            [
+                self.tokenizer.encode(
+                    text, add_special_tokens=True, max_length=utils.MAX_SEQ_LEN
+                )
+            ]
         )
         with torch.no_grad():
             last_hidden_states = self.model(input_ids)[0]
