@@ -114,7 +114,7 @@ class WOSStream(Stream):
 
 
 if __name__ == "__main__":
-    wos = WOSStream()
+    wos = WOSStream(transformer_model=TransformerModel.SCIBERT)
     wos.prepare_for_use()
     x, y, _ = wos.next_sample(8)
     print(x.shape)
