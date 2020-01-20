@@ -2,8 +2,7 @@
 This file contains streams classes that generate different drift_datasets
 over time. The streams are based on the sk-multiflow framework.
 """
-import torch
-import torch.nn.functional as f
+import torch.nn as nn
 from skmultiflow.data.base_stream import Stream
 from constants.transformers import Transformer, TransformerModel
 from streams.loaders import load_wos
@@ -69,20 +68,13 @@ class WOSStream(Stream):
                 # Transform to embeddings
                 self.current_sample_x[i] = self.transformer.transform(
                     self.current_sample_x[i]
-                )
+                ).squeeze()
 
                 # Save the sequence length
-                self.current_seq_lengths.append(self.current_sample_x[i].shape[1])
+                self.current_seq_lengths.append(self.current_sample_x[i].shape[0])
 
-                # Pad with zeros to 512
-                self.current_sample_x[i] = f.pad(
-                    self.current_sample_x[i],
-                    [0, 0, 0, 512 - self.current_seq_lengths[i]],
-                )
-
-            # Stack
-            self.current_sample_x = torch.stack(self.current_sample_x, dim=1)
-            self.current_sample_x = self.current_sample_x.squeeze()
+            # Pad and stack sequence
+            self.current_sample_x = nn.utils.rnn.pad_sequence(self.current_sample_x, batch_first=True)
 
             # Get the y target
             self.current_sample_y = self.y[
