@@ -45,4 +45,4 @@ def transform_wos(version=1, transformer_model=TransformerModel.BERT, hidden_sta
 
 
 if __name__ == "__main__":
-    transform_wos()
+    transform_wos(transformer_model=TransformerModel.SCIBERT)

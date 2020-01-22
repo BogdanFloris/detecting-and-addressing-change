@@ -14,6 +14,7 @@ from streams.loaders import load_wos
 PATH = os.path.join(Path(__file__).parents[1], "assets/datasets")
 TRANSFORMED_DATASETS = [
     os.path.join(PATH, "wos_v_1_transformed_BERT_hidden_0.pt"),
+    os.path.join(PATH, "wos_v_1_transformed_SCIBERT_hidden_0.pt")
 ]
 
 
@@ -30,8 +31,6 @@ class WOSStream(Stream):
         transformer_model (TransformerModel): the transformer model to use
         transform (bool): whether to transform the dataset while streaming,
             or use an already transformed dataset
-        dataset_idx (int): if transform is False, then this represents the index in the
-            TRANSFORMED_DATASETS list of the transformed dataset to use
     """
 
     def __init__(
@@ -39,7 +38,6 @@ class WOSStream(Stream):
         version=1,
         transformer_model=TransformerModel.BERT,
         transform=True,
-        dataset_idx=0,
     ):
         super().__init__()
         self.version = version
@@ -49,7 +47,13 @@ class WOSStream(Stream):
         self.no_classes = None
         self.current_seq_lengths = None
         self.transform = transform
-        self.dataset_idx = dataset_idx
+
+        if transformer_model == TransformerModel.BERT:
+            self.dataset_idx = 0
+        elif transformer_model == TransformerModel.SCIBERT:
+            self.dataset_idx = 1
+        else:
+            self.dataset_idx = 2
 
         if transform:
             self.transformer = Transformer(transformer_model)
