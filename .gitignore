@@ -107,4 +107,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# Datasets
+assets/datasets/wos_v_1_transformed_BERT_hidden_0.pt
+
 # End of https://www.gitignore.io/api/python

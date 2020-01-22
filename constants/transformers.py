@@ -28,11 +28,12 @@ class Transformer:
         self.tokenizer = tokenizer_class.from_pretrained(pretrained_weights)
         self.model = model_class.from_pretrained(pretrained_weights)
 
-    def transform(self, text):
+    def transform(self, text, hidden_state=0):
         """Transforms the given text using the initialized transformer
 
         Args:
             text (str): text to be transformed
+            hidden_state (int): which hidden state to return
 
         Returns:
             the transformed text
@@ -45,6 +46,6 @@ class Transformer:
             ]
         )
         with torch.no_grad():
-            last_hidden_states = self.model(input_ids)[0]
+            last_hidden_states = self.model(input_ids)[hidden_state]
 
         return last_hidden_states

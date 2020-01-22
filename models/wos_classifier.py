@@ -65,9 +65,7 @@ class LSTM(nn.Module):
         )
 
         # Initialize the linear layer
-        self.fc = nn.Linear(
-            in_features=self.hidden_size, out_features=self.no_classes,
-        )
+        self.fc = nn.Linear(in_features=self.hidden_size, out_features=self.no_classes)
 
     def forward(self, x, x_seq_lengths, hidden=None, cell=None):
         """ Forward pass
@@ -114,7 +112,11 @@ class LSTM(nn.Module):
         # Max over absolute value in the dimension
         _, abs_max_i = torch.max(t.abs(), dim=dim)
         # Convert indices into one hot vectors
-        one_hot = f.one_hot(abs_max_i, num_classes=t.size()[dim]).transpose(dim, -1).type(torch.float)
+        one_hot = (
+            f.one_hot(abs_max_i, num_classes=t.size()[dim])
+            .transpose(dim, -1)
+            .type(torch.float)
+        )
         # Multiply original with one hot to apply mask and then sum over the dimension
         return torch.mul(t, one_hot).sum(dim=dim)
 

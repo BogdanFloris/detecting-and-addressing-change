@@ -1,0 +1,1005 @@
+6523940 function calls (6485944 primitive calls) in 150.803 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        7    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:1009(_handle_fromlist)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:103(release)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:143(__init__)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:147(__enter__)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:151(__exit__)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:157(_get_module_lock)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:176(cb)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:211(_call_with_frames_removed)
+       22    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:222(_verbose_message)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:307(__init__)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:311(__enter__)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:318(__exit__)
+        4    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:321(<genexpr>)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:35(_new_module)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:369(__init__)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:403(cached)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:416(parent)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:424(has_location)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:504(_init_module_attrs)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:576(module_from_spec)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:58(__init__)
+        1    0.000    0.000    0.001    0.001 <frozen importlib._bootstrap>:663(_load_unlocked)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:719(find_spec)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:78(acquire)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:792(find_spec)
+        3    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:855(__enter__)
+        3    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:859(__exit__)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:882(_find_spec)
+        1    0.000    0.000    0.001    0.001 <frozen importlib._bootstrap>:948(_find_and_load_unlocked)
+        1    0.000    0.000    0.001    0.001 <frozen importlib._bootstrap>:978(_find_and_load)
+        5    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1203(_path_importer_cache)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1240(_get_spec)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1272(find_spec)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1351(_get_spec)
+        4    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1356(find_spec)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:271(cache_from_source)
+        4    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:36(_relax_case)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:369(_get_cached)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:401(_check_name_wrapper)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:438(_classify_pyc)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:471(_validate_timestamp_pyc)
+        3    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:51(_r_long)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:523(_compile_bytecode)
+       21    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:56(_path_join)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:574(spec_from_file_location)
+       21    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:58(<listcomp>)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:62(_path_split)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:719(create_module)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:722(exec_module)
+        6    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:74(_path_stat)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:793(get_code)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:84(_path_is_mode_type)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:884(__init__)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:909(get_filename)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:914(get_data)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:93(_path_isfile)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:951(path_stats)
+        1    0.069    0.069  150.803  150.803 <string>:1(<module>)
+        6    0.000    0.000    0.000    0.000 <string>:1(__new__)
+     5935    0.007    0.000    0.011    0.000 _VF.py:11(__getattr__)
+       10    0.000    0.000    0.000    0.000 __future__.py:18(get_overwrite_module_params_on_conversion)
+        6    0.000    0.000    0.000    0.000 __init__.py:1356(debug)
+        4    0.000    0.000    0.000    0.000 __init__.py:1368(info)
+        4    0.000    0.000    0.000    0.000 __init__.py:1600(getEffectiveLevel)
+       10    0.000    0.000    0.000    0.000 __init__.py:1614(isEnabledFor)
+        1    0.000    0.000    0.000    0.000 __init__.py:183(dumps)
+        5    0.000    0.000    0.000    0.000 __init__.py:20(_make_grads)
+        4    0.000    0.000    0.000    0.000 __init__.py:212(_acquireLock)
+        4    0.000    0.000    0.000    0.000 __init__.py:221(_releaseLock)
+        1    0.000    0.000    0.000    0.000 __init__.py:299(loads)
+     4000    0.004    0.000    0.007    0.000 __init__.py:31(__get__)
+        1    0.000    0.000    0.000    0.000 __init__.py:43(normalize_encoding)
+        5    0.000    0.000   87.142   17.428 __init__.py:44(backward)
+        1    0.000    0.000    0.000    0.000 __init__.py:71(search_function)
+        3    0.000    0.000    0.000    0.000 _collections.py:140(__init__)
+       42    0.000    0.000    0.000    0.000 _collections.py:155(__getitem__)
+       33    0.000    0.000    0.000    0.000 _collections.py:186(__iter__)
+       30    0.000    0.000    0.000    0.000 _collections.py:214(add)
+        3    0.000    0.000    0.000    0.000 _collections.py:230(extend)
+        6    0.000    0.000    0.000    0.000 _collections.py:46(__init__)
+        3    0.000    0.000    0.000    0.000 _collections.py:53(__getitem__)
+        3    0.000    0.000    0.000    0.000 _collections.py:60(__setitem__)
+        6    0.000    0.000    0.010    0.002 _collections.py:91(clear)
+       43    0.000    0.000    0.000    0.000 _collections_abc.py:392(__subclasshook__)
+        1    0.000    0.000    0.000    0.000 _collections_abc.py:406(__subclasshook__)
+       33    0.000    0.000    0.000    0.000 _collections_abc.py:657(get)
+       15    0.000    0.000    0.000    0.000 _collections_abc.py:664(__contains__)
+       24    0.000    0.000    0.000    0.000 _collections_abc.py:676(items)
+       24    0.000    0.000    0.000    0.000 _collections_abc.py:698(__init__)
+        3    0.000    0.000    0.000    0.000 _collections_abc.py:701(__len__)
+        1    0.000    0.000    0.000    0.000 _collections_abc.py:72(_check_methods)
+      420    0.000    0.000    0.002    0.000 _collections_abc.py:742(__iter__)
+       18    0.000    0.000    0.001    0.000 _collections_abc.py:824(update)
+       15    0.000    0.000    0.000    0.000 _internal_utils.py:14(to_native_string)
+        3    0.000    0.000    0.000    0.000 _internal_utils.py:30(unicode_is_ascii)
+       45    0.000    0.000    0.000    0.000 _policybase.py:281(_sanitize_header)
+       30    0.000    0.000    0.000    0.000 _policybase.py:293(header_source_parse)
+       45    0.000    0.000    0.000    0.000 _policybase.py:311(header_fetch_parse)
+        5    0.000    0.000    0.000    0.000 _reduction.py:6(get_enum)
+      207    0.000    0.000    0.002    0.000 _utils.py:128(_rebuild_tensor)
+      207    0.000    0.000    0.002    0.000 _utils.py:134(_rebuild_tensor_v2)
+      102    0.000    0.000    0.001    0.000 abc.py:137(__instancecheck__)
+    73/32    0.000    0.000    0.000    0.000 abc.py:141(__subclasscheck__)
+     1920    0.011    0.000    0.095    0.000 activation.py:1008(__init__)
+     1920    0.004    0.000    3.750    0.002 activation.py:1017(forward)
+      160    0.000    0.000    0.003    0.000 activation.py:294(forward)
+        1    0.000    0.000    0.000    0.000 adam.py:30(__init__)
+        5    0.012    0.002    0.035    0.007 adam.py:49(step)
+        6    0.000    0.000    0.000    0.000 adapters.py:113(__init__)
+        6    0.000    0.000    0.000    0.000 adapters.py:146(init_poolmanager)
+        3    0.000    0.000    0.000    0.000 adapters.py:203(cert_verify)
+        3    0.000    0.000    0.001    0.000 adapters.py:255(build_response)
+        3    0.000    0.000    0.002    0.001 adapters.py:292(get_connection)
+        6    0.000    0.000    0.010    0.002 adapters.py:319(close)
+        3    0.000    0.000    0.000    0.000 adapters.py:329(request_url)
+        3    0.000    0.000    0.000    0.000 adapters.py:358(add_headers)
+        3    0.000    0.000    1.203    0.401 adapters.py:394(send)
+        6    0.000    0.000    0.000    0.000 adapters.py:58(__init__)
+        3    0.000    0.000    1.242    0.414 api.py:16(request)
+        3    0.000    0.000    1.243    0.414 api.py:91(head)
+        1    0.000    0.000    0.000    0.000 base_stream.py:109(n_targets)
+        1    0.000    0.000    0.000    0.000 base_stream.py:130(target_values)
+        1    0.000    0.000    0.000    0.000 base_stream.py:151(feature_names)
+        1    0.000    0.000    0.000    0.000 base_stream.py:172(target_names)
+        1    0.000    0.000    0.000    0.000 base_stream.py:18(__init__)
+        1    0.000    0.000    0.000    0.000 base_stream.py:46(n_features)
+        1    0.000    0.000    0.000    0.000 base_stream.py:65(n_cat_features)
+        1    0.000    0.000    0.000    0.000 base_stream.py:87(n_num_features)
+        3    0.000    0.000    0.000    0.000 client.py:1017(_send_output)
+        3    0.000    0.000    0.000    0.000 client.py:1071(putrequest)
+        3    0.000    0.000    0.000    0.000 client.py:1196(_encode_request)
+        3    0.000    0.000    0.000    0.000 client.py:1200(_validate_path)
+       15    0.000    0.000    0.000    0.000 client.py:1208(putheader)
+        3    0.000    0.000    0.000    0.000 client.py:1236(endheaders)
+        3    0.000    0.000    0.001    0.000 client.py:1249(request)
+        3    0.000    0.000    0.001    0.000 client.py:1254(_send_request)
+       15    0.000    0.000    0.000    0.000 client.py:1256(<genexpr>)
+        3    0.000    0.000    0.319    0.106 client.py:1300(getresponse)
+        3    0.000    0.000    0.002    0.001 client.py:203(parse_headers)
+        3    0.000    0.000    0.000    0.000 client.py:236(__init__)
+        3    0.000    0.000    0.316    0.105 client.py:266(_read_status)
+        3    0.000    0.000    0.319    0.106 client.py:299(begin)
+        3    0.000    0.000    0.000    0.000 client.py:379(_check_close)
+        3    0.000    0.000    0.000    0.000 client.py:408(_close_conn)
+        6    0.000    0.000    0.000    0.000 client.py:413(close)
+        3    0.000    0.000    0.000    0.000 client.py:425(flush)
+       12    0.000    0.000    0.000    0.000 client.py:436(isclosed)
+        3    0.000    0.000    0.000    0.000 client.py:446(read)
+        3    0.000    0.000    0.000    0.000 client.py:805(_get_content_length)
+        3    0.000    0.000    0.000    0.000 client.py:837(__init__)
+        3    0.000    0.000    0.000    0.000 client.py:881(_get_hostport)
+        3    0.000    0.000    0.001    0.000 client.py:944(close)
+        3    0.000    0.000    0.000    0.000 client.py:958(send)
+       18    0.000    0.000    0.000    0.000 client.py:996(_output)
+        4    0.000    0.000    0.000    0.000 codecs.py:260(__init__)
+        4    0.000    0.000    0.000    0.000 codecs.py:309(__init__)
+     1011    0.001    0.000    0.003    0.000 codecs.py:319(decode)
+        1    0.000    0.000    0.000    0.000 codecs.py:94(__new__)
+        1    0.000    0.000    0.000    0.000 configuration_bert.py:85(__init__)
+        1    0.000    0.000    0.000    0.000 configuration_utils.py:188(<genexpr>)
+        1    0.000    0.000    0.001    0.001 configuration_utils.py:210(from_json_file)
+        1    0.000    0.000    0.000    0.000 configuration_utils.py:221(__repr__)
+        1    0.000    0.000    0.000    0.000 configuration_utils.py:224(to_dict)
+        1    0.000    0.000    0.000    0.000 configuration_utils.py:229(to_json_string)
+        1    0.000    0.000    0.000    0.000 configuration_utils.py:51(__init__)
+        1    0.000    0.000    0.000    0.000 configuration_utils.py:64(<dictcomp>)
+        3    0.000    0.000    0.000    0.000 configuration_utils.py:65(<genexpr>)
+        3    0.000    0.000    0.000    0.000 configuration_utils.py:67(<genexpr>)
+        1    0.000    0.000    0.407    0.407 configuration_utils.py:89(from_pretrained)
+        3    0.000    0.000    0.000    0.000 connection.py:101(__init__)
+        6    0.000    0.000    0.000    0.000 connection.py:114(host)
+        3    0.000    0.000    0.000    0.000 connection.py:133(host)
+        3    0.000    0.000    0.273    0.091 connection.py:143(_new_conn)
+        3    0.000    0.000    0.000    0.000 connection.py:228(__init__)
+        3    0.000    0.000    0.000    0.000 connection.py:301(set_cert)
+        3    0.000    0.000    0.273    0.091 connection.py:33(create_connection)
+        3    0.000    0.000    0.877    0.292 connection.py:332(connect)
+        3    0.000    0.000    0.000    0.000 connection.py:428(_match_hostname)
+        3    0.000    0.000    0.000    0.000 connection.py:89(_set_socket_options)
+        3    0.000    0.000    0.000    0.000 connection.py:97(allowed_gai_family)
+        3    0.000    0.000    0.000    0.000 connectionpool.py:1036(_normalize_host)
+        3    0.000    0.000    0.001    0.000 connectionpool.py:167(__init__)
+        3    0.000    0.000    0.000    0.000 connectionpool.py:237(_get_conn)
+        3    0.000    0.000    0.000    0.000 connectionpool.py:276(_put_conn)
+        3    0.000    0.000    0.000    0.000 connectionpool.py:304(_validate_conn)
+        6    0.000    0.000    0.000    0.000 connectionpool.py:314(_get_timeout)
+        3    0.000    0.000    1.198    0.399 connectionpool.py:351(_make_request)
+        3    0.009    0.003    0.010    0.003 connectionpool.py:455(close)
+        3    0.000    0.000    1.200    0.400 connectionpool.py:494(urlopen)
+        3    0.000    0.000    0.000    0.000 connectionpool.py:73(__init__)
+        3    0.000    0.000    0.001    0.000 connectionpool.py:873(__init__)
+        3    0.000    0.000    0.000    0.000 connectionpool.py:922(_prepare_conn)
+        3    0.000    0.000    0.000    0.000 connectionpool.py:950(_new_conn)
+        3    0.000    0.000    0.877    0.292 connectionpool.py:986(_validate_conn)
+        1    0.000    0.000    0.000    0.000 container.py:128(__init__)
+        1    0.000    0.000    0.000    0.000 container.py:163(__len__)
+      160    0.000    0.000    0.000    0.000 container.py:167(__iter__)
+        1    0.000    0.000    0.000    0.000 container.py:171(__iadd__)
+        1    0.000    0.000    0.000    0.000 container.py:200(extend)
+        6    0.000    0.000    0.000    0.000 contextlib.py:107(__enter__)
+        6    0.000    0.000    0.000    0.000 contextlib.py:116(__exit__)
+        6    0.000    0.000    0.000    0.000 contextlib.py:237(helper)
+        6    0.000    0.000    0.000    0.000 contextlib.py:81(__init__)
+       18    0.000    0.000    0.000    0.000 cookiejar.py:1210(vals_sorted_by_key)
+       18    0.000    0.000    0.000    0.000 cookiejar.py:1214(deepvalues)
+       12    0.000    0.000    0.000    0.000 cookiejar.py:1249(__init__)
+        3    0.000    0.000    0.000    0.000 cookiejar.py:1278(_cookies_for_request)
+        3    0.000    0.000    0.000    0.000 cookiejar.py:1285(_cookie_attrs)
+        3    0.000    0.000    0.000    0.000 cookiejar.py:1344(add_cookie_header)
+        6    0.000    0.000    0.000    0.000 cookiejar.py:1587(make_cookies)
+        6    0.000    0.000    0.000    0.000 cookiejar.py:1668(extract_cookies)
+        3    0.000    0.000    0.000    0.000 cookiejar.py:1722(clear_expired_cookies)
+       18    0.000    0.000    0.000    0.000 cookiejar.py:1741(__iter__)
+        9    0.000    0.000    0.000    0.000 cookiejar.py:43(_debug)
+       12    0.000    0.000    0.000    0.000 cookiejar.py:870(__init__)
+        6    0.000    0.000    0.000    0.000 cookies.py:104(__init__)
+       12    0.000    0.000    0.000    0.000 cookies.py:111(info)
+        6    0.000    0.000    0.001    0.000 cookies.py:118(extract_cookies_to_jar)
+        3    0.000    0.000    0.000    0.000 cookies.py:135(get_cookie_header)
+        6    0.000    0.000    0.000    0.000 cookies.py:348(update)
+        9    0.000    0.000    0.000    0.000 cookies.py:37(__init__)
+        9    0.000    0.000    0.000    0.000 cookies.py:508(cookiejar_from_dict)
+        9    0.000    0.000    0.000    0.000 cookies.py:521(<listcomp>)
+        6    0.000    0.000    0.000    0.000 cookies.py:529(merge_cookies)
+        3    0.000    0.000    0.000    0.000 cookies.py:81(get_new_headers)
+     55/1    0.000    0.000    0.000    0.000 copy.py:132(deepcopy)
+       51    0.000    0.000    0.000    0.000 copy.py:190(_deepcopy_atomic)
+      4/1    0.000    0.000    0.000    0.000 copy.py:236(_deepcopy_dict)
+        4    0.000    0.000    0.000    0.000 copy.py:252(_keep_alive)
+        1    0.000    0.000    0.000    0.000 decoder.py:332(decode)
+        1    0.000    0.000    0.000    0.000 decoder.py:343(raw_decode)
+     5920    0.012    0.000    0.070    0.000 dropout.py:53(forward)
+       37    0.000    0.000    0.001    0.000 dropout.py:8(__init__)
+        1    0.000    0.000    0.000    0.000 encoder.py:104(__init__)
+        1    0.000    0.000    0.000    0.000 encoder.py:182(encode)
+        1    0.000    0.000    0.000    0.000 encoder.py:204(iterencode)
+        4    0.000    0.000    0.000    0.000 encoder.py:223(floatstr)
+        1    0.000    0.000    0.000    0.000 encoder.py:259(_make_iterencode)
+  142/116    0.000    0.000    0.000    0.000 encoder.py:333(_iterencode_dict)
+       27    0.000    0.000    0.000    0.000 encoder.py:353(<lambda>)
+      116    0.000    0.000    0.000    0.000 encoder.py:413(_iterencode)
+       69    0.000    0.000    0.000    0.000 enum.py:284(__call__)
+       69    0.000    0.000    0.000    0.000 enum.py:526(__new__)
+       25    0.000    0.000    0.000    0.000 enum.py:623(name)
+        4    0.000    0.000    0.000    0.000 enum.py:628(value)
+        2    0.000    0.000    0.000    0.000 enum.py:793(_missing_)
+        2    0.000    0.000    0.000    0.000 enum.py:800(_create_pseudo_member_)
+       12    0.000    0.000    0.000    0.000 enum.py:830(__or__)
+       12    0.000    0.000    0.000    0.000 enum.py:836(__and__)
+        1    0.000    0.000    0.000    0.000 enum.py:855(_high_bit)
+        2    0.000    0.000    0.000    0.000 enum.py:872(_decompose)
+        2    0.000    0.000    0.000    0.000 enum.py:890(<listcomp>)
+        7    0.000    0.000    0.000    0.000 enum.py:901(<lambda>)
+        1    0.000    0.000    0.000    0.000 enum.py:907(_power_of_two)
+        3    0.000    0.000    0.000    0.000 feedparser.py:101(push)
+        6    0.000    0.000    0.000    0.000 feedparser.py:122(pushlines)
+        6    0.000    0.000    0.000    0.000 feedparser.py:125(__iter__)
+       39    0.000    0.000    0.000    0.000 feedparser.py:128(__next__)
+        3    0.000    0.000    0.000    0.000 feedparser.py:139(__init__)
+        3    0.000    0.000    0.001    0.000 feedparser.py:173(feed)
+        6    0.000    0.000    0.001    0.000 feedparser.py:178(_call_parse)
+        3    0.000    0.000    0.000    0.000 feedparser.py:184(close)
+        3    0.000    0.000    0.000    0.000 feedparser.py:197(_new_message)
+        3    0.000    0.000    0.000    0.000 feedparser.py:210(_pop_message)
+        6    0.000    0.000    0.001    0.000 feedparser.py:218(_parsegen)
+        3    0.000    0.000    0.000    0.000 feedparser.py:471(_parse_headers)
+        3    0.000    0.000    0.000    0.000 feedparser.py:53(__init__)
+        3    0.000    0.000    0.000    0.000 feedparser.py:70(close)
+       39    0.000    0.000    0.000    0.000 feedparser.py:78(readline)
+        3    0.000    0.000    0.000    0.000 file_utils.py:126(is_remote_url)
+        3    0.000    0.000    0.000    0.000 file_utils.py:138(url_to_filename)
+        3    0.000    0.000    1.243    0.414 file_utils.py:188(cached_path)
+        3    0.000    0.000    1.243    0.414 file_utils.py:299(get_from_cache)
+        3    0.000    0.000    0.000    0.000 fnmatch.py:19(fnmatch)
+        1    0.000    0.000    0.000    0.000 fnmatch.py:38(_compile_pattern)
+        3    0.000    0.000    0.000    0.000 fnmatch.py:64(fnmatchcase)
+        1    0.000    0.000    0.000    0.000 fnmatch.py:74(translate)
+     5736    0.042    0.000    1.021    0.000 formatting.py:7(clean_text)
+     1920    0.004    0.000    3.746    0.002 functional.py:1202(softmax)
+        5    0.000    0.000    0.000    0.000 functional.py:1297(log_softmax)
+    11685    1.052    0.000   27.090    0.002 functional.py:1355(linear)
+      480    0.001    0.000    0.078    0.000 functional.py:1406(embedding)
+     4000    0.014    0.000    1.322    0.000 functional.py:1689(layer_norm)
+        5    0.000    0.000    0.000    0.000 functional.py:1784(nll_loss)
+     5920    0.027    0.000    0.058    0.000 functional.py:788(dropout)
+       21    0.000    0.000    0.001    0.000 genericpath.py:16(exists)
+        1    0.000    0.000    0.000    0.000 genericpath.py:27(isfile)
+        3    0.000    0.000    0.000    0.000 genericpath.py:39(isdir)
+      380    0.001    0.000    0.001    0.000 grad_mode.py:137(__init__)
+      380    0.001    0.000    0.001    0.000 grad_mode.py:37(__enter__)
+      380    0.001    0.000    0.002    0.000 grad_mode.py:41(__exit__)
+        9    0.000    0.000    0.000    0.000 hooks.py:17(default_hooks)
+        9    0.000    0.000    0.000    0.000 hooks.py:18(<dictcomp>)
+        3    0.000    0.000    0.000    0.000 hooks.py:23(dispatch_hook)
+        9    0.000    0.000    0.000    0.000 idna.py:147(encode)
+        1    0.000    0.000    0.000    0.000 idna.py:300(getregentry)
+       82    0.000    0.000    0.012    0.000 init.py:12(_no_grad_uniform_)
+       25    0.000    0.000    0.000    0.000 init.py:123(ones_)
+       25    0.000    0.000    0.000    0.000 init.py:137(zeros_)
+        3    0.000    0.000    0.162    0.054 init.py:17(_no_grad_normal_)
+      148    0.000    0.000    0.001    0.000 init.py:202(_calculate_fan_in_and_fan_out)
+       25    0.000    0.000    0.000    0.000 init.py:22(_no_grad_fill_)
+       25    0.000    0.000    0.000    0.000 init.py:27(_no_grad_zero_)
+       74    0.000    0.000    0.000    0.000 init.py:273(_calculate_correct_fan)
+       74    0.000    0.000    0.532    0.007 init.py:283(kaiming_uniform_)
+       74    0.000    0.000    0.000    0.000 init.py:32(calculate_gain)
+       82    0.000    0.000    0.012    0.000 init.py:74(uniform_)
+        3    0.000    0.000    0.162    0.054 init.py:91(normal_)
+       74    0.001    0.000    0.539    0.007 linear.py:68(__init__)
+       74    0.001    0.000    0.534    0.007 linear.py:79(reset_parameters)
+    11685    0.044    0.000   27.144    0.002 linear.py:86(forward)
+        1    0.001    0.001    1.062    1.062 loaders.py:15(load_wos)
+        1    0.004    0.004    1.025    1.025 loaders.py:43(<listcomp>)
+        1    0.001    0.001    0.001    0.001 loaders.py:50(<listcomp>)
+        1    0.000    0.000    0.000    0.000 loss.py:18(__init__)
+        1    0.000    0.000    0.000    0.000 loss.py:198(__init__)
+        5    0.000    0.000    0.000    0.000 loss.py:203(forward)
+        1    0.000    0.000    0.000    0.000 loss.py:9(__init__)
+        6    0.000    0.000    0.000    0.000 message.py:120(__init__)
+        6    0.000    0.000    0.000    0.000 message.py:181(is_multipart)
+        3    0.000    0.000    0.000    0.000 message.py:213(get_payload)
+       12    0.000    0.000    0.000    0.000 message.py:29(_splitparam)
+        3    0.000    0.000    0.000    0.000 message.py:303(set_payload)
+        3    0.000    0.000    0.000    0.000 message.py:451(items)
+        3    0.000    0.000    0.000    0.000 message.py:459(<listcomp>)
+       27    0.000    0.000    0.000    0.000 message.py:462(get)
+       30    0.000    0.000    0.000    0.000 message.py:479(set_raw)
+       12    0.000    0.000    0.000    0.000 message.py:497(get_all)
+       12    0.000    0.000    0.000    0.000 message.py:564(get_content_type)
+        9    0.000    0.000    0.000    0.000 message.py:588(get_content_maintype)
+     1920    3.851    0.002   13.546    0.007 modeling_bert.py:127(gelu)
+        1    0.000    0.000    0.164    0.164 modeling_bert.py:160(__init__)
+      160    0.082    0.001    0.223    0.001 modeling_bert.py:171(forward)
+       12    0.000    0.000    0.136    0.011 modeling_bert.py:197(__init__)
+     5760    0.021    0.000    0.084    0.000 modeling_bert.py:215(transpose_for_scores)
+     1920    3.014    0.002   17.663    0.009 modeling_bert.py:220(forward)
+       12    0.000    0.000    0.046    0.004 modeling_bert.py:267(__init__)
+     1920    0.214    0.000    3.250    0.002 modeling_bert.py:273(forward)
+       12    0.000    0.000    0.183    0.015 modeling_bert.py:281(__init__)
+     1920    0.019    0.000   21.786    0.011 modeling_bert.py:310(forward)
+       12    0.000    0.000    0.180    0.015 modeling_bert.py:318(__init__)
+     1920    0.333    0.000   22.999    0.012 modeling_bert.py:326(forward)
+       12    0.000    0.000    0.180    0.015 modeling_bert.py:333(__init__)
+     1920    0.225    0.000    9.768    0.005 modeling_bert.py:339(forward)
+       12    0.000    0.000    0.544    0.045 modeling_bert.py:347(__init__)
+     1920    0.028    0.000   54.655    0.028 modeling_bert.py:356(forward)
+        1    0.000    0.000    0.544    0.544 modeling_bert.py:373(__init__)
+        1    0.000    0.000    0.544    0.544 modeling_bert.py:377(<listcomp>)
+      160    0.080    0.000   55.214    0.345 modeling_bert.py:379(forward)
+        1    0.000    0.000    0.004    0.004 modeling_bert.py:405(__init__)
+      160    0.004    0.000    0.033    0.000 modeling_bert.py:410(forward)
+      216    0.001    0.000    0.552    0.003 modeling_bert.py:496(_init_weights)
+        1    0.000    0.000    1.264    1.264 modeling_bert.py:615(__init__)
+      160    0.011    0.000   55.524    0.347 modeling_bert.py:639(forward)
+        2    0.000    0.000    0.000    0.000 modeling_utils.py:117(get_output_embeddings)
+        2    0.000    0.000    0.000    0.000 modeling_utils.py:123(tie_weights)
+        1    0.000    0.000    0.552    0.552 modeling_utils.py:216(init_weights)
+        1    0.000    0.000    2.456    2.456 modeling_utils.py:260(from_pretrained)
+    216/1    0.001    0.000    0.122    0.122 modeling_utils.py:461(load)
+        2    0.000    0.000    0.000    0.000 modeling_utils.py:472(<genexpr>)
+        1    0.000    0.000    0.000    0.000 modeling_utils.py:83(__init__)
+        3    0.000    0.000    0.000    0.000 models.py:175(register_hook)
+        3    0.000    0.000    0.000    0.000 models.py:184(<genexpr>)
+        3    0.000    0.000    0.000    0.000 models.py:226(__init__)
+        3    0.000    0.000    0.000    0.000 models.py:290(__init__)
+        3    0.000    0.000    0.001    0.000 models.py:307(prepare)
+        3    0.000    0.000    0.000    0.000 models.py:339(prepare_method)
+        3    0.000    0.000    0.001    0.000 models.py:355(prepare_url)
+        3    0.000    0.000    0.000    0.000 models.py:441(prepare_headers)
+        3    0.000    0.000    0.000    0.000 models.py:452(prepare_body)
+        3    0.000    0.000    0.000    0.000 models.py:521(prepare_content_length)
+        3    0.000    0.000    0.000    0.000 models.py:534(prepare_auth)
+        3    0.000    0.000    0.000    0.000 models.py:556(prepare_cookies)
+        3    0.000    0.000    0.000    0.000 models.py:576(prepare_hooks)
+        3    0.000    0.000    0.000    0.000 models.py:596(__init__)
+        3    0.000    0.000    0.000    0.000 models.py:61(path_url)
+        3    0.000    0.000    0.000    0.000 models.py:707(is_redirect)
+        3    0.000    0.000    0.000    0.000 models.py:729(iter_content)
+        3    0.000    0.000    0.001    0.000 models.py:746(generate)
+        3    0.000    0.000    0.001    0.000 models.py:815(content)
+        3    0.000    0.000    0.000    0.000 models.py:82(_encode_params)
+ 1454/650    0.002    0.000    0.002    0.000 module.py:1000(named_modules)
+    216/1    0.000    0.000    0.001    0.001 module.py:1038(train)
+        1    0.000    0.000    0.001    0.001 module.py:1058(eval)
+      209    0.000    0.000    0.001    0.000 module.py:136(register_parameter)
+       12    0.000    0.000    0.000    0.000 module.py:175(add_module)
+      3/1    0.000    0.000    0.000    0.000 module.py:199(_apply)
+       10    0.000    0.000    0.000    0.000 module.py:203(compute_should_use_set_data)
+    216/1    0.000    0.000    0.552    0.552 module.py:248(apply)
+        1    0.000    0.000    0.000    0.000 module.py:349(to)
+       10    0.000    0.000    0.000    0.000 module.py:422(convert)
+36340/170    1.571    0.000   57.576    0.339 module.py:522(__call__)
+    65225    0.072    0.000    0.072    0.000 module.py:562(__getattr__)
+    22235    0.048    0.000    0.064    0.000 module.py:578(__setattr__)
+      414    0.000    0.000    0.000    0.000 module.py:579(remove_from)
+     2140    0.019    0.000    0.086    0.000 module.py:69(__init__)
+      216    0.009    0.000    0.121    0.001 module.py:703(_load_from_state_dict)
+      216    0.000    0.000    0.000    0.000 module.py:740(<dictcomp>)
+      344    0.001    0.000    0.004    0.000 module.py:833(_named_members)
+      344    0.001    0.000    0.005    0.000 module.py:846(parameters)
+      344    0.000    0.000    0.004    0.000 module.py:870(named_parameters)
+      486    0.000    0.000    0.000    0.000 module.py:891(<lambda>)
+      867    0.000    0.000    0.001    0.000 module.py:944(children)
+      867    0.001    0.000    0.001    0.000 module.py:953(named_children)
+        1    0.000    0.000    0.000    0.000 module.py:98(register_buffer)
+        1    0.000    0.000    0.000    0.000 netrc.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 netrc.py:10(NetrcParseError)
+        1    0.000    0.000    0.000    0.000 netrc.py:22(netrc)
+       25    0.001    0.000    0.003    0.000 normalization.py:131(__init__)
+       25    0.000    0.000    0.001    0.000 normalization.py:146(reset_parameters)
+     4000    0.017    0.000    1.344    0.000 normalization.py:151(forward)
+        5    0.000    0.000    0.003    0.001 optimizer.py:159(zero_grad)
+        1    0.000    0.000    0.000    0.000 optimizer.py:176(add_param_group)
+        1    0.000    0.000    0.000    0.000 optimizer.py:32(__init__)
+      378    0.001    0.000    0.001    0.000 os.py:674(__getitem__)
+      360    0.000    0.000    0.001    0.000 os.py:697(__iter__)
+      378    0.000    0.000    0.000    0.000 os.py:752(encode)
+      708    0.000    0.000    0.000    0.000 os.py:756(decode)
+      209    0.000    0.000    0.001    0.000 parameter.py:23(__new__)
+        3    0.000    0.000    0.000    0.000 parse.py:1016(splitport)
+       81    0.000    0.000    0.000    0.000 parse.py:109(_coerce_args)
+        3    0.000    0.000    0.000    0.000 parse.py:146(username)
+       24    0.000    0.000    0.000    0.000 parse.py:154(hostname)
+        3    0.000    0.000    0.000    0.000 parse.py:178(_userinfo)
+       24    0.000    0.000    0.000    0.000 parse.py:190(_hostinfo)
+        3    0.000    0.000    0.000    0.000 parse.py:325(geturl)
+       33    0.000    0.000    0.001    0.000 parse.py:361(urlparse)
+        3    0.000    0.000    0.000    0.000 parse.py:386(_splitnetloc)
+        3    0.000    0.000    0.000    0.000 parse.py:394(_checknetloc)
+       36    0.000    0.000    0.000    0.000 parse.py:412(urlsplit)
+        6    0.000    0.000    0.000    0.000 parse.py:451(<genexpr>)
+        6    0.000    0.000    0.000    0.000 parse.py:469(urlunparse)
+        6    0.000    0.000    0.000    0.000 parse.py:480(urlunsplit)
+        3    0.000    0.000    0.000    0.000 parse.py:619(unquote)
+        3    0.000    0.000    0.000    0.000 parse.py:782(quote)
+        3    0.000    0.000    0.000    0.000 parse.py:853(quote_from_bytes)
+        3    0.000    0.000    0.000    0.000 parse.py:875(urlencode)
+       81    0.000    0.000    0.000    0.000 parse.py:98(_noop)
+        3    0.000    0.000    0.000    0.000 parser.py:17(__init__)
+        3    0.000    0.000    0.002    0.001 parser.py:41(parse)
+        3    0.000    0.000    0.002    0.001 parser.py:59(parsestr)
+        1    0.000    0.000    0.000    0.000 pathlib.py:683(_format_parsed_parts)
+        3    0.000    0.000    0.000    0.000 pathlib.py:700(__str__)
+        6    0.000    0.000    0.000    0.000 poolmanager.py:159(__init__)
+        3    0.000    0.000    0.010    0.003 poolmanager.py:162(<lambda>)
+        3    0.000    0.000    0.001    0.000 poolmanager.py:177(_new_pool)
+        6    0.000    0.000    0.010    0.002 poolmanager.py:204(clear)
+        3    0.000    0.000    0.001    0.000 poolmanager.py:213(connection_from_host)
+        3    0.000    0.000    0.001    0.000 poolmanager.py:236(connection_from_context)
+        3    0.000    0.000    0.001    0.000 poolmanager.py:249(connection_from_pool_key)
+        3    0.000    0.000    0.002    0.001 poolmanager.py:273(connection_from_url)
+        3    0.000    0.000    0.000    0.000 poolmanager.py:289(_merge_pool_kwargs)
+        3    0.000    0.000    0.000    0.000 poolmanager.py:68(_default_key_normalizer)
+        9    0.000    0.000    0.000    0.000 posixpath.py:232(expanduser)
+        1    0.000    0.000    0.000    0.000 posixpath.py:338(normpath)
+        1    0.000    0.000    0.000    0.000 posixpath.py:376(abspath)
+       12    0.000    0.000    0.000    0.000 posixpath.py:41(_get_sep)
+        6    0.000    0.000    0.000    0.000 posixpath.py:52(normcase)
+        1    0.000    0.000    0.000    0.000 posixpath.py:64(isabs)
+        5    0.000    0.000    0.000    0.000 posixpath.py:75(join)
+        3    0.000    0.000    0.000    0.000 queue.py:11(_init)
+       33    0.000    0.000    0.000    0.000 queue.py:121(put)
+       69    0.000    0.000    0.000    0.000 queue.py:14(_qsize)
+       36    0.000    0.000    0.000    0.000 queue.py:153(get)
+       33    0.000    0.000    0.000    0.000 queue.py:17(_put)
+       33    0.000    0.000    0.000    0.000 queue.py:20(_get)
+        3    0.000    0.000    0.000    0.000 queue.py:33(__init__)
+        6    0.000    0.000    0.000    0.000 re.py:170(match)
+      160    0.000    0.000    0.257    0.002 re.py:185(sub)
+    51626    0.011    0.000    0.047    0.000 re.py:232(compile)
+      806    0.001    0.000    0.002    0.000 re.py:252(escape)
+    51792    0.024    0.000    0.038    0.000 re.py:271(_compile)
+        1    0.000    0.000    0.000    0.000 re.py:297(_compile_repl)
+     5736    0.004    0.000    0.004    0.000 re.py:307(_subx)
+        6    0.000    0.000    0.002    0.000 request.py:2456(getproxies_environment)
+        3    0.000    0.000    0.015    0.005 request.py:2522(_proxy_bypass_macosx_sysconf)
+        6    0.000    0.000    0.000    0.000 request.py:2538(ip2num)
+        3    0.000    0.000    0.021    0.007 request.py:2585(proxy_bypass_macosx_sysconf)
+        3    0.000    0.000    0.001    0.000 request.py:2589(getproxies_macosx_sysconf)
+        3    0.000    0.000    0.022    0.007 request.py:2599(proxy_bypass)
+        3    0.000    0.000    0.002    0.001 request.py:2612(getproxies)
+        9    0.000    0.000    0.000    0.000 request.py:41(__init__)
+        3    0.000    0.000    0.000    0.000 request.py:90(set_file_position)
+        3    0.000    0.000    0.000    0.000 response.py:193(__init__)
+        6    0.000    0.000    0.000    0.000 response.py:249(<genexpr>)
+        3    0.000    0.000    0.000    0.000 response.py:273(release_conn)
+        3    0.000    0.000    0.000    0.000 response.py:304(_init_length)
+        3    0.000    0.000    0.000    0.000 response.py:330(<listcomp>)
+        3    0.000    0.000    0.000    0.000 response.py:356(_init_decoder)
+        3    0.000    0.000    0.000    0.000 response.py:38(assert_header_parsing)
+        6    0.000    0.000    0.000    0.000 response.py:412(_error_catcher)
+        3    0.000    0.000    0.001    0.000 response.py:469(read)
+        3    0.000    0.000    0.001    0.000 response.py:543(stream)
+        3    0.000    0.000    0.001    0.000 response.py:569(from_httplib)
+        3    0.000    0.000    0.000    0.000 response.py:605(getheader)
+        3    0.000    0.000    0.000    0.000 response.py:623(closed)
+        6    0.000    0.000    0.000    0.000 response.py:7(is_fp_closed)
+        6    0.000    0.000    0.000    0.000 retry.py:161(__init__)
+        6    0.000    0.000    0.000    0.000 retry.py:196(<listcomp>)
+        3    0.000    0.000    0.000    0.000 retry.py:317(_is_method_retryable)
+        3    0.000    0.000    0.000    0.000 retry.py:326(is_retry)
+        1    0.000    0.000    0.000    0.000 rnn.py:131(_apply)
+        1    0.000    0.000    0.000    0.000 rnn.py:137(<listcomp>)
+        5    0.000    0.000    0.000    0.000 rnn.py:140(to)
+        1    0.000    0.000    0.010    0.010 rnn.py:144(reset_parameters)
+        5    0.000    0.000    0.000    0.000 rnn.py:149(check_input)
+        5    0.000    0.000    0.000    0.000 rnn.py:161(get_expected_hidden_size)
+       10    0.000    0.000    0.000    0.000 rnn.py:173(check_hidden_size)
+        5    0.000    0.000    0.000    0.000 rnn.py:176(invert_permutation)
+       10    0.000    0.000    0.001    0.000 rnn.py:18(apply_permutation)
+        5    0.000    0.000    0.204    0.041 rnn.py:185(pack_padded_sequence)
+        5    0.000    0.000    0.085    0.017 rnn.py:237(pad_packed_sequence)
+        1    0.000    0.000    0.011    0.011 rnn.py:27(__init__)
+        5    0.019    0.004    0.111    0.022 rnn.py:288(pad_sequence)
+        5    0.000    0.000    0.000    0.000 rnn.py:329(<listcomp>)
+        1    0.000    0.000    0.011    0.011 rnn.py:503(__init__)
+        5    0.000    0.000    0.000    0.000 rnn.py:506(check_forward_args)
+        5    0.000    0.000    0.001    0.000 rnn.py:516(permute_hidden)
+        5    0.000    0.000    1.494    0.299 rnn.py:532(forward)
+       10    0.000    0.000    0.001    0.000 rnn.py:65(__new__)
+        2    0.000    0.000    0.000    0.000 rnn.py:81(<listcomp>)
+        1    0.000    0.000    0.000    0.000 rnn.py:88(<listcomp>)
+       29    0.000    0.000    0.000    0.000 rnn.py:92(__setattr__)
+        2    0.000    0.000    0.000    0.000 rnn.py:99(flatten_parameters)
+      206    0.000    0.000    0.000    0.000 serialization.py:100(_cpu_deserialize)
+      206    0.000    0.000    0.000    0.000 serialization.py:154(default_restore_location)
+        1    0.000    0.000    0.000    0.000 serialization.py:174(_is_path)
+        1    0.000    0.000    0.000    0.000 serialization.py:181(__init__)
+        1    0.000    0.000    0.000    0.000 serialization.py:184(__enter__)
+        1    0.000    0.000    0.000    0.000 serialization.py:192(__init__)
+        1    0.000    0.000    0.000    0.000 serialization.py:195(__exit__)
+        1    0.000    0.000    0.000    0.000 serialization.py:210(_open_file_like)
+        1    0.000    0.000    0.000    0.000 serialization.py:253(_is_compressed_file)
+        1    0.000    0.000    0.000    0.000 serialization.py:261(_should_read_directly)
+        1    0.000    0.000    0.000    0.000 serialization.py:277(_check_seekable)
+        1    0.000    0.000    0.259    0.259 serialization.py:448(load)
+        2    0.000    0.000    0.002    0.001 serialization.py:47(_is_zipfile)
+        1    0.000    0.000    0.257    0.257 serialization.py:549(_legacy_load)
+        1    0.000    0.000    0.000    0.000 serialization.py:595(legacy_load)
+      207    0.001    0.000    0.001    0.000 serialization.py:649(persistent_load)
+      414    0.000    0.000    0.000    0.000 serialization.py:716(_maybe_decode_ascii)
+        1    0.000    0.000    0.000    0.000 serialization.py:728(_get_restore_location)
+      206    0.000    0.000    0.000    0.000 serialization.py:736(restore_location)
+        3    0.000    0.000    0.000    0.000 sessions.py:143(resolve_redirects)
+        3    0.000    0.000    0.001    0.000 sessions.py:365(__init__)
+        3    0.000    0.000    0.000    0.000 sessions.py:420(__enter__)
+        3    0.000    0.000    0.010    0.003 sessions.py:423(__exit__)
+        3    0.000    0.000    0.003    0.001 sessions.py:426(prepare_request)
+        3    0.000    0.000    1.232    0.411 sessions.py:466(request)
+       21    0.000    0.000    0.001    0.000 sessions.py:49(merge_setting)
+        3    0.000    0.000    1.204    0.401 sessions.py:617(send)
+        3    0.000    0.000    0.000    0.000 sessions.py:668(<listcomp>)
+        3    0.000    0.000    0.024    0.008 sessions.py:690(merge_environment_settings)
+        3    0.000    0.000    0.000    0.000 sessions.py:719(get_adapter)
+        9    0.000    0.000    0.000    0.000 sessions.py:73(<listcomp>)
+        3    0.000    0.000    0.010    0.003 sessions.py:733(close)
+        6    0.000    0.000    0.000    0.000 sessions.py:738(mount)
+        6    0.000    0.000    0.000    0.000 sessions.py:744(<listcomp>)
+        3    0.000    0.000    0.000    0.000 sessions.py:80(merge_hooks)
+        3    0.000    0.000    0.000    0.000 sessions.py:97(get_redirect_target)
+        6    0.000    0.000    0.000    0.000 six.py:614(itervalues)
+       12    0.000    0.000    0.000    0.000 six.py:939(ensure_str)
+       27    0.000    0.000    0.000    0.000 six.py:959(ensure_text)
+        6    0.000    0.000    0.000    0.000 socket.py:139(__init__)
+        3    0.000    0.000    0.000    0.000 socket.py:221(makefile)
+        3    0.000    0.000    0.000    0.000 socket.py:406(_decref_socketios)
+        3    0.000    0.000    0.000    0.000 socket.py:412(_real_close)
+        3    0.000    0.000    0.001    0.000 socket.py:416(close)
+        3    0.000    0.000    0.000    0.000 socket.py:422(detach)
+        3    0.000    0.000    0.000    0.000 socket.py:432(family)
+        3    0.000    0.000    0.000    0.000 socket.py:438(type)
+        3    0.000    0.000    0.000    0.000 socket.py:563(__init__)
+        3    0.000    0.000    0.316    0.105 socket.py:575(readinto)
+        6    0.000    0.000    0.000    0.000 socket.py:614(readable)
+        3    0.000    0.000    0.000    0.000 socket.py:652(close)
+        3    0.000    0.000    0.003    0.001 socket.py:731(getaddrinfo)
+       12    0.000    0.000    0.000    0.000 socket.py:97(_intenum_converter)
+        3    0.000    0.000    0.163    0.054 sparse.py:105(reset_parameters)
+      480    0.001    0.000    0.080    0.000 sparse.py:111(forward)
+        3    0.000    0.000    0.163    0.054 sparse.py:80(__init__)
+       17    0.000    0.000    0.000    0.000 sre_compile.py:249(_compile_charset)
+       17    0.000    0.000    0.000    0.000 sre_compile.py:276(_optimize_charset)
+       29    0.000    0.000    0.000    0.000 sre_compile.py:423(_simple)
+        5    0.000    0.000    0.000    0.000 sre_compile.py:432(_generate_overlap_table)
+       24    0.000    0.000    0.000    0.000 sre_compile.py:453(_get_iscased)
+    17/12    0.000    0.000    0.000    0.000 sre_compile.py:461(_get_literal_prefix)
+        7    0.000    0.000    0.000    0.000 sre_compile.py:492(_get_charset_prefix)
+       12    0.000    0.000    0.000    0.000 sre_compile.py:536(_compile_info)
+       24    0.000    0.000    0.000    0.000 sre_compile.py:595(isstring)
+       12    0.000    0.000    0.001    0.000 sre_compile.py:598(_code)
+       19    0.000    0.000    0.000    0.000 sre_compile.py:65(_combine_flags)
+    63/12    0.000    0.000    0.001    0.000 sre_compile.py:71(_compile)
+       12    0.000    0.000    0.002    0.000 sre_compile.py:759(compile)
+       64    0.000    0.000    0.000    0.000 sre_parse.py:111(__init__)
+      137    0.000    0.000    0.000    0.000 sre_parse.py:160(__len__)
+        5    0.000    0.000    0.000    0.000 sre_parse.py:162(__delitem__)
+      427    0.000    0.000    0.000    0.000 sre_parse.py:164(__getitem__)
+       29    0.000    0.000    0.000    0.000 sre_parse.py:168(__setitem__)
+      132    0.000    0.000    0.000    0.000 sre_parse.py:172(append)
+    73/22    0.000    0.000    0.000    0.000 sre_parse.py:174(getwidth)
+       13    0.000    0.000    0.000    0.000 sre_parse.py:224(__init__)
+      216    0.000    0.000    0.000    0.000 sre_parse.py:233(__next)
+       97    0.000    0.000    0.000    0.000 sre_parse.py:249(match)
+      175    0.000    0.000    0.000    0.000 sre_parse.py:254(get)
+       71    0.000    0.000    0.000    0.000 sre_parse.py:286(tell)
+        1    0.000    0.000    0.000    0.000 sre_parse.py:295(_class_escape)
+       28    0.000    0.000    0.000    0.000 sre_parse.py:343(_escape)
+        6    0.000    0.000    0.000    0.000 sre_parse.py:408(_uniq)
+    24/12    0.000    0.000    0.001    0.000 sre_parse.py:411(_parse_sub)
+    31/13    0.000    0.000    0.001    0.000 sre_parse.py:469(_parse)
+       12    0.000    0.000    0.000    0.000 sre_parse.py:76(__init__)
+       44    0.000    0.000    0.000    0.000 sre_parse.py:81(groups)
+        1    0.000    0.000    0.000    0.000 sre_parse.py:837(_parse_flags)
+       10    0.000    0.000    0.000    0.000 sre_parse.py:84(opengroup)
+       12    0.000    0.000    0.000    0.000 sre_parse.py:897(fix_flags)
+       12    0.000    0.000    0.001    0.000 sre_parse.py:913(parse)
+        1    0.000    0.000    0.000    0.000 sre_parse.py:945(parse_template)
+        1    0.000    0.000    0.000    0.000 sre_parse.py:954(addgroup)
+       10    0.000    0.000    0.000    0.000 sre_parse.py:96(closegroup)
+        3    0.000    0.000    0.000    0.000 ssl.py:1023(sendall)
+        3    0.000    0.000    0.316    0.105 ssl.py:1060(recv_into)
+        3    0.001    0.000    0.001    0.000 ssl.py:1128(_real_close)
+        3    0.000    0.000    0.551    0.184 ssl.py:1132(do_handshake)
+        3    0.000    0.000    0.000    0.000 ssl.py:191(_dnsname_match)
+        3    0.000    0.000    0.000    0.000 ssl.py:240(_inet_paton)
+        3    0.000    0.000    0.000    0.000 ssl.py:287(match_hostname)
+        3    0.000    0.000    0.007    0.002 ssl.py:398(__new__)
+        3    0.000    0.000    0.000    0.000 ssl.py:402(_encode_hostname)
+        3    0.000    0.000    0.551    0.184 ssl.py:410(wrap_socket)
+        3    0.000    0.000    0.000    0.000 ssl.py:512(options)
+        3    0.000    0.000    0.000    0.000 ssl.py:516(options)
+        6    0.000    0.000    0.000    0.000 ssl.py:549(verify_mode)
+        6    0.000    0.000    0.000    0.000 ssl.py:557(verify_mode)
+        3    0.000    0.000    0.551    0.184 ssl.py:813(_create)
+       15    0.000    0.000    0.000    0.000 ssl.py:908(_checkClosed)
+        6    0.000    0.000    0.000    0.000 ssl.py:912(_check_connected)
+        3    0.000    0.000    0.316    0.105 ssl.py:920(read)
+        3    0.000    0.000    0.001    0.000 ssl.py:950(getpeercert)
+        3    0.000    0.000    0.000    0.000 ssl.py:996(send)
+        6    0.000    0.000    0.000    0.000 ssl_.py:181(resolve_cert_reqs)
+        3    0.000    0.000    0.000    0.000 ssl_.py:204(resolve_ssl_version)
+        3    0.000    0.000    0.009    0.003 ssl_.py:220(create_urllib3_context)
+        3    0.000    0.000    0.594    0.198 ssl_.py:296(ssl_wrap_socket)
+        3    0.000    0.000    0.000    0.000 ssl_.py:386(is_ipaddress)
+        5    0.000    0.000    0.000    0.000 stream_data.py:126(n_remaining_samples)
+        5    0.000    0.000    0.000    0.000 stream_data.py:134(has_more_samples)
+        1    0.000    0.000    2.928    2.928 stream_data.py:37(__init__)
+        1    0.000    0.000    1.062    1.062 stream_data.py:57(prepare_for_use)
+        1    0.000    0.000    0.000    0.000 stream_data.py:75(restart)
+        5    0.019    0.004   57.484   11.497 stream_data.py:83(next_sample)
+       15    0.000    0.000    0.001    0.000 structures.py:40(__init__)
+       66    0.000    0.000    0.000    0.000 structures.py:46(__setitem__)
+       57    0.000    0.000    0.000    0.000 structures.py:51(__getitem__)
+       15    0.000    0.000    0.000    0.000 structures.py:57(__iter__)
+       75    0.000    0.000    0.000    0.000 structures.py:58(<genexpr>)
+        6    0.000    0.000    0.000    0.000 structures.py:60(__len__)
+        1    0.000    0.000    0.000    0.000 tarfile.py:1026(frombuf)
+        1    0.000    0.000    0.000    0.000 tarfile.py:1089(fromtarfile)
+        1    0.000    0.000    0.000    0.000 tarfile.py:1413(__init__)
+        1    0.000    0.000    0.000    0.000 tarfile.py:1524(open)
+        1    0.000    0.000    0.000    0.000 tarfile.py:1615(taropen)
+        1    0.000    0.000    0.000    0.000 tarfile.py:164(nts)
+        1    0.000    0.000    0.000    0.000 tarfile.py:172(nti)
+        1    0.000    0.000    0.000    0.000 tarfile.py:2268(next)
+        1    0.000    0.000    0.000    0.000 tarfile.py:2355(_check)
+        5    0.000    0.000   87.142   17.428 tensor.py:167(backward)
+      160    0.000    0.000    0.004    0.000 tensor.py:393(__rsub__)
+      430    0.000    0.000    0.000    0.000 tensor.py:464(__hash__)
+        9    0.000    0.000    0.000    0.000 threading.py:216(__init__)
+       69    0.000    0.000    0.000    0.000 threading.py:240(__enter__)
+       69    0.000    0.000    0.000    0.000 threading.py:243(__exit__)
+       66    0.000    0.000    0.000    0.000 threading.py:255(_is_owned)
+       66    0.000    0.000    0.000    0.000 threading.py:335(notify)
+       18    0.000    0.000    0.000    0.000 threading.py:75(RLock)
+       36    0.000    0.000    0.000    0.000 timeout.py:109(_validate_timeout)
+        3    0.000    0.000    0.000    0.000 timeout.py:155(from_float)
+        6    0.000    0.000    0.000    0.000 timeout.py:171(clone)
+        3    0.000    0.000    0.000    0.000 timeout.py:185(start_connect)
+        9    0.000    0.000    0.000    0.000 timeout.py:210(connect_timeout)
+        3    0.000    0.000    0.000    0.000 timeout.py:228(read_timeout)
+       12    0.000    0.000    0.000    0.000 timeout.py:95(__init__)
+    39185    0.016    0.000    0.033    0.000 tokenization_bert.py:106(whitespace_tokenize)
+        1    0.005    0.005    0.036    0.036 tokenization_bert.py:135(__init__)
+        1    0.007    0.007    0.007    0.007 tokenization_bert.py:167(<listcomp>)
+      160    0.023    0.000    1.419    0.009 tokenization_bert.py:179(_tokenize)
+    47709    0.027    0.000    0.048    0.000 tokenization_bert.py:189(_convert_token_to_id)
+      320    0.001    0.000    0.003    0.000 tokenization_bert.py:202(build_inputs_with_special_tokens)
+      160    0.001    0.000    0.002    0.000 tokenization_bert.py:242(create_token_type_ids_from_sequences)
+        1    0.000    0.000    0.000    0.000 tokenization_bert.py:278(__init__)
+      160    0.036    0.000    1.211    0.008 tokenization_bert.py:298(tokenize)
+    30908    0.082    0.000    0.138    0.000 tokenization_bert.py:329(_run_strip_accents)
+    30908    0.138    0.000    0.393    0.000 tokenization_bert.py:340(_run_split_on_punc)
+    30908    0.012    0.000    0.019    0.000 tokenization_bert.py:360(<listcomp>)
+      160    0.091    0.001    0.178    0.001 tokenization_bert.py:362(_tokenize_chinese_chars)
+   212610    0.056    0.000    0.056    0.000 tokenization_bert.py:375(_is_chinese_char)
+      160    0.148    0.001    0.451    0.003 tokenization_bert.py:397(_clean_text)
+        1    0.000    0.000    0.000    0.000 tokenization_bert.py:414(__init__)
+    38865    0.118    0.000    0.179    0.000 tokenization_bert.py:419(tokenize)
+   212610    0.072    0.000    0.098    0.000 tokenization_bert.py:471(_is_whitespace)
+   212610    0.096    0.000    0.165    0.000 tokenization_bert.py:483(_is_control)
+   181862    0.124    0.000    0.199    0.000 tokenization_bert.py:495(_is_punctuation)
+        1    0.011    0.011    0.025    0.025 tokenization_bert.py:95(load_vocab)
+      480    0.000    0.000    0.000    0.000 tokenization_utils.py:104(sep_token)
+        6    0.001    0.000    0.001    0.000 tokenization_utils.py:1142(truncate_sequences)
+      480    0.000    0.000    0.000    0.000 tokenization_utils.py:118(cls_token)
+      320    0.001    0.000    0.003    0.000 tokenization_utils.py:1287(special_tokens_map)
+      320    0.002    0.000    0.006    0.000 tokenization_utils.py:1299(all_special_tokens)
+        1    0.000    0.000    0.000    0.000 tokenization_utils.py:147(unk_token)
+        1    0.000    0.000    0.000    0.000 tokenization_utils.py:151(sep_token)
+        1    0.000    0.000    0.000    0.000 tokenization_utils.py:155(pad_token)
+        1    0.000    0.000    0.000    0.000 tokenization_utils.py:159(cls_token)
+        1    0.000    0.000    0.000    0.000 tokenization_utils.py:163(mask_token)
+      480    0.000    0.000    0.001    0.000 tokenization_utils.py:186(sep_token_id)
+      480    0.000    0.000    0.002    0.000 tokenization_utils.py:201(cls_token_id)
+        1    0.000    0.000    0.000    0.000 tokenization_utils.py:216(__init__)
+        1    0.000    0.000    0.472    0.472 tokenization_utils.py:249(from_pretrained)
+        1    0.000    0.000    0.472    0.472 tokenization_utils.py:305(_from_pretrained)
+      160    0.000    0.000    0.002    0.000 tokenization_utils.py:561(num_added_tokens)
+      160    0.001    0.000    1.689    0.011 tokenization_utils.py:634(tokenize)
+      160    0.001    0.000    0.260    0.002 tokenization_utils.py:646(lowercase_text)
+      160    0.001    0.000    0.002    0.000 tokenization_utils.py:648(<listcomp>)
+   212610    0.102    0.000    0.169    0.000 tokenization_utils.py:653(<lambda>)
+      800    0.001    0.000    0.002    0.000 tokenization_utils.py:659(split_on_token)
+      160    0.003    0.000    1.424    0.009 tokenization_utils.py:677(split_on_tokens)
+      320    0.000    0.000    1.419    0.004 tokenization_utils.py:695(<genexpr>)
+     1120    0.016    0.000    0.086    0.000 tokenization_utils.py:712(convert_tokens_to_ids)
+    47709    0.017    0.000    0.065    0.000 tokenization_utils.py:727(_convert_token_to_id_with_added_voc)
+      160    0.001    0.000    1.783    0.011 tokenization_utils.py:738(encode)
+      160    0.001    0.000    1.782    0.011 tokenization_utils.py:794(encode_plus)
+      160    0.001    0.000    1.774    0.011 tokenization_utils.py:867(get_input_ids)
+    47710    0.008    0.000    0.008    0.000 tokenization_utils.py:97(unk_token)
+      160    0.001    0.000    0.007    0.000 tokenization_utils.py:979(prepare_for_model)
+        1    0.000    0.000    2.928    2.928 transformers.py:23(__init__)
+      160    0.003    0.000   57.352    0.358 transformers.py:31(transform)
+       29    0.000    0.000    0.000    0.000 types.py:164(__get__)
+       12    0.001    0.000    0.001    0.000 url.py:210(_encode_invalid_chars)
+        6    0.000    0.000    0.000    0.000 url.py:247(_remove_path_dot_segments)
+        9    0.000    0.000    0.000    0.000 url.py:277(_normalize_host)
+        9    0.000    0.000    0.000    0.000 url.py:300(<listcomp>)
+       27    0.000    0.000    0.000    0.000 url.py:305(_idna_encode)
+       27    0.000    0.000    0.000    0.000 url.py:306(<listcomp>)
+        3    0.000    0.000    0.000    0.000 url.py:323(_encode_target)
+        6    0.000    0.000    0.001    0.000 url.py:336(parse_url)
+       36    0.000    0.000    0.000    0.000 url.py:417(ensure_type)
+        6    0.000    0.000    0.000    0.000 url.py:91(__new__)
+        3    0.000    0.000    0.000    0.000 utils.py:107(super_len)
+        3    0.000    0.000    0.001    0.000 utils.py:168(get_netrc_auth)
+        3    0.000    0.000    0.000    0.000 utils.py:227(extract_zipped_paths)
+       21    0.000    0.000    0.000    0.000 utils.py:284(to_key_val_list)
+        3    0.000    0.000    0.000    0.000 utils.py:450(_parse_content_type_header)
+        3    0.000    0.000    0.000    0.000 utils.py:475(get_encoding_from_headers)
+       48    0.000    0.000    0.000    0.000 utils.py:51(_has_surrogates)
+        3    0.000    0.000    0.000    0.000 utils.py:514(iter_slices)
+        3    0.000    0.000    0.000    0.000 utils.py:565(unquote_unreserved)
+        3    0.000    0.000    0.000    0.000 utils.py:589(requote_uri)
+        6    0.000    0.000    0.000    0.000 utils.py:672(set_environ)
+        3    0.000    0.000    0.022    0.007 utils.py:694(should_bypass_proxies)
+        3    0.000    0.000    0.000    0.000 utils.py:702(<lambda>)
+        3    0.000    0.000    0.024    0.008 utils.py:755(get_environ_proxies)
+        6    0.000    0.000    0.000    0.000 utils.py:767(select_proxy)
+        3    0.000    0.000    0.000    0.000 utils.py:793(default_user_agent)
+        3    0.000    0.000    0.000    0.000 utils.py:802(default_headers)
+        3    0.000    0.000    0.000    0.000 utils.py:906(get_auth_from_url)
+       12    0.000    0.000    0.000    0.000 utils.py:927(check_header_validity)
+        5    0.021    0.004    0.202    0.040 wos_classifier.py:104(abs_max_pooling)
+        1    0.000    0.000    0.011    0.011 wos_classifier.py:44(__init__)
+        5    0.028    0.006    2.015    0.403 wos_classifier.py:70(forward)
+        1    0.053    0.053  150.734  150.734 wos_train.py:10(train_wos_batch)
+       64    0.007    0.000    0.007    0.000 {built-in method __new__ of type object at 0x10b0bcab0}
+      102    0.000    0.000    0.000    0.000 {built-in method _abc._abc_instancecheck}
+    73/32    0.000    0.000    0.000    0.000 {built-in method _abc._abc_subclasscheck}
+     1011    0.002    0.000    0.002    0.000 {built-in method _codecs.utf_8_decode}
+       10    0.000    0.000    0.000    0.000 {built-in method _has_compatible_shallow_copy_type}
+        6    0.000    0.000    0.000    0.000 {built-in method _hashlib.openssl_sha256}
+        1    0.000    0.000    0.000    0.000 {built-in method _imp._fix_co_filename}
+        5    0.000    0.000    0.000    0.000 {built-in method _imp.acquire_lock}
+        1    0.000    0.000    0.000    0.000 {built-in method _imp.is_builtin}
+        1    0.000    0.000    0.000    0.000 {built-in method _imp.is_frozen}
+        5    0.000    0.000    0.000    0.000 {built-in method _imp.release_lock}
+       30    0.000    0.000    0.000    0.000 {built-in method _json.encode_basestring_ascii}
+      209    0.001    0.000    0.001    0.000 {built-in method _make_subclass}
+        5    0.129    0.026    0.129    0.026 {built-in method _pack_padded_sequence}
+        5    0.039    0.008    0.039    0.008 {built-in method _pad_packed_sequence}
+        4    0.000    0.000    0.000    0.000 {built-in method _pickle.load}
+        3    0.001    0.000    0.001    0.000 {built-in method _scproxy._get_proxies}
+        3    0.006    0.002    0.006    0.002 {built-in method _scproxy._get_proxy_settings}
+        3    0.003    0.001    0.003    0.001 {built-in method _socket.getaddrinfo}
+        3    0.014    0.005    0.014    0.005 {built-in method _socket.gethostbyname}
+        3    0.000    0.000    0.000    0.000 {built-in method _socket.inet_aton}
+        3    0.000    0.000    0.000    0.000 {built-in method _socket.inet_pton}
+       12    0.000    0.000    0.000    0.000 {built-in method _sre.compile}
+        3    0.000    0.000    0.000    0.000 {built-in method _stat.S_ISDIR}
+        1    0.000    0.000    0.000    0.000 {built-in method _stat.S_ISREG}
+        5    0.000    0.000    0.000    0.000 {built-in method _thread.allocate_lock}
+        2    0.000    0.000    0.000    0.000 {built-in method _thread.get_ident}
+      165    0.022    0.000    0.022    0.000 {built-in method addmm}
+      165    0.002    0.000    0.002    0.000 {built-in method arange}
+        5    0.000    0.000    0.000    0.000 {built-in method as_tensor}
+        2    0.000    0.000    0.000    0.000 {built-in method builtins.__build_class__}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.__import__}
+        3    0.000    0.000    0.000    0.000 {built-in method builtins.all}
+       35    0.000    0.000    0.000    0.000 {built-in method builtins.any}
+      2/1    0.000    0.000  150.803  150.803 {built-in method builtins.exec}
+     8573    0.006    0.000    0.006    0.000 {built-in method builtins.getattr}
+      350    0.000    0.000    0.001    0.000 {built-in method builtins.hasattr}
+      497    0.000    0.000    0.000    0.000 {built-in method builtins.id}
+   103455    0.021    0.000    0.021    0.000 {built-in method builtins.isinstance}
+      166    0.000    0.000    0.000    0.000 {built-in method builtins.iter}
+424393/424324    0.040    0.000    0.040    0.000 {built-in method builtins.len}
+       19    0.000    0.000    0.000    0.000 {built-in method builtins.max}
+      159    0.000    0.000    0.000    0.000 {built-in method builtins.min}
+      174    0.000    0.000    0.004    0.000 {built-in method builtins.next}
+   607838    0.047    0.000    0.047    0.000 {built-in method builtins.ord}
+        6    0.000    0.000    0.000    0.000 {built-in method builtins.print}
+       13    0.000    0.000    0.000    0.000 {built-in method builtins.setattr}
+       21    0.000    0.000    0.000    0.000 {built-in method builtins.sorted}
+     5920    0.020    0.000    0.020    0.000 {built-in method dropout}
+      480    0.077    0.000    0.077    0.000 {built-in method embedding}
+        5    0.000    0.000    0.000    0.000 {built-in method empty_like}
+     1920    9.693    0.005    9.693    0.005 {built-in method erf}
+        3    0.000    0.000    0.000    0.000 {built-in method from_bytes}
+      160    0.000    0.000    0.000    0.000 {built-in method from_iterable}
+        5    0.000    0.000    0.000    0.000 {built-in method from_numpy}
+        6    0.000    0.000    0.000    0.000 {built-in method fromkeys}
+        5    0.001    0.000    0.001    0.000 {built-in method io.open}
+     4000    1.302    0.000    1.302    0.000 {built-in method layer_norm}
+        5    1.492    0.298    1.492    0.298 {built-in method lstm}
+        1    0.000    0.000    0.000    0.000 {built-in method marshal.loads}
+     4261    0.005    0.000    0.005    0.000 {built-in method math.sqrt}
+     3840    3.513    0.001    3.513    0.001 {built-in method matmul}
+        5    0.048    0.010    0.048    0.010 {built-in method max}
+        5    0.039    0.008    0.039    0.008 {built-in method mul}
+        1    0.001    0.001    0.001    0.001 {built-in method numpy.array}
+        5    0.000    0.000    0.000    0.000 {built-in method ones_like}
+      160    0.002    0.000    0.002    0.000 {built-in method ones}
+       26    0.000    0.000    0.000    0.000 {built-in method posix.fspath}
+       31    0.001    0.000    0.001    0.000 {built-in method posix.stat}
+      160    0.004    0.000    0.004    0.000 {built-in method rsub}
+        5    0.000    0.000    0.000    0.000 {built-in method sort}
+      160    0.002    0.000    0.002    0.000 {built-in method tanh}
+      372    0.006    0.000    0.006    0.000 {built-in method tensor}
+        3    0.000    0.000    0.000    0.000 {built-in method time.monotonic}
+       18    0.000    0.000    0.000    0.000 {built-in method time.time}
+        3    0.000    0.000    0.000    0.000 {built-in method today}
+     4000    0.003    0.000    0.003    0.000 {built-in method torch._C._get_cudnn_enabled}
+    36345    0.048    0.000    0.048    0.000 {built-in method torch._C._get_tracing_state}
+     2141    0.011    0.000    0.011    0.000 {built-in method torch._C._log_api_usage_once}
+        1    0.000    0.000    0.000    0.000 {built-in method torch._C._nn._parse_to}
+        5    0.000    0.000    0.000    0.000 {built-in method torch._C._nn.nll_loss}
+        5    0.027    0.005    0.027    0.005 {built-in method torch._C._nn.one_hot}
+      760    0.000    0.000    0.000    0.000 {built-in method torch._C.is_grad_enabled}
+      760    0.000    0.000    0.000    0.000 {built-in method torch._C.set_grad_enabled}
+   751780    0.113    0.000    0.113    0.000 {built-in method unicodedata.category}
+    30908    0.006    0.000    0.006    0.000 {built-in method unicodedata.normalize}
+       20    0.003    0.000    0.003    0.000 {built-in method zeros_like}
+      165    0.001    0.000    0.001    0.000 {built-in method zeros}
+        3    0.000    0.000    0.000    0.000 {function HTTPResponse.flush at 0x1258393b0}
+        9    0.000    0.000    0.000    0.000 {function SocketIO.close at 0x1148765f0}
+        3    0.000    0.000    0.000    0.000 {function socket.close at 0x114869c20}
+        3    0.000    0.000    0.000    0.000 {function socket.detach at 0x114869cb0}
+       69    0.000    0.000    0.000    0.000 {method '__enter__' of '_thread.lock' objects}
+       69    0.000    0.000    0.000    0.000 {method '__exit__' of '_thread.lock' objects}
+        3    0.000    0.000    0.000    0.000 {method '_checkClosed' of '_io._IOBase' objects}
+        3    0.000    0.000    0.000    0.000 {method '_checkReadable' of '_io._IOBase' objects}
+      206    0.251    0.001    0.251    0.001 {method '_set_from_file' of 'torch._C.FloatStorageBase' objects}
+        3    0.000    0.000    0.000    0.000 {method '_wrap_socket' of '_ssl._SSLContext' objects}
+        5    0.012    0.002    0.012    0.002 {method 'abs' of 'torch._C._TensorBase' objects}
+       16    0.000    0.000    0.000    0.000 {method 'acquire' of '_thread.RLock' objects}
+       66    0.000    0.000    0.000    0.000 {method 'acquire' of '_thread.lock' objects}
+     1098    0.000    0.000    0.000    0.000 {method 'add' of 'set' objects}
+      100    0.004    0.000    0.004    0.000 {method 'add_' of 'torch._C._TensorBase' objects}
+       50    0.003    0.000    0.003    0.000 {method 'addcdiv_' of 'torch._C._TensorBase' objects}
+       50    0.002    0.000    0.002    0.000 {method 'addcmul_' of 'torch._C._TensorBase' objects}
+       33    0.000    0.000    0.000    0.000 {method 'append' of 'collections.deque' objects}
+   962894    0.084    0.000    0.084    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'bit_length' of 'int' objects}
+        3    0.000    0.000    0.000    0.000 {method 'cast' of 'memoryview' objects}
+        6    0.000    0.000    0.000    0.000 {method 'clear' of 'collections.OrderedDict' objects}
+        4    0.000    0.000    0.000    0.000 {method 'close' of '_io.BufferedReader' objects}
+        3    0.270    0.090    0.270    0.090 {method 'connect' of '_socket.socket' objects}
+     1920    0.162    0.000    0.162    0.000 {method 'contiguous' of 'torch._C._TensorBase' objects}
+        1    0.000    0.000    0.000    0.000 {method 'copy' of 'collections.OrderedDict' objects}
+       12    0.000    0.000    0.000    0.000 {method 'copy' of 'dict' objects}
+      199    0.104    0.001    0.104    0.001 {method 'copy_' of 'torch._C._TensorBase' objects}
+       10    0.000    0.000    0.000    0.000 {method 'count' of 'bytes' objects}
+       15    0.000    0.000    0.000    0.000 {method 'count' of 'str' objects}
+        9    0.000    0.000    0.000    0.000 {method 'decode' of 'bytearray' objects}
+     1252    0.000    0.000    0.000    0.000 {method 'decode' of 'bytes' objects}
+       40    0.000    0.000    0.000    0.000 {method 'detach_' of 'torch._C._TensorBase' objects}
+    12311    0.007    0.000    0.007    0.000 {method 'dim' of 'torch._C._TensorBase' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        3    0.551    0.184    0.551    0.184 {method 'do_handshake' of '_ssl._SSLSocket' objects}
+  522/519    0.000    0.000    0.000    0.000 {method 'encode' of 'str' objects}
+        2    0.000    0.000    0.000    0.000 {method 'end' of 're.Match' objects}
+       18    0.000    0.000    0.000    0.000 {method 'endswith' of 'str' objects}
+      160    0.001    0.000    0.001    0.000 {method 'expand' of 'torch._C._TensorBase' objects}
+      525    0.000    0.000    0.000    0.000 {method 'extend' of 'bytearray' objects}
+        6    0.000    0.000    0.000    0.000 {method 'extend' of 'collections.deque' objects}
+    69796    0.008    0.000    0.008    0.000 {method 'extend' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'fileno' of '_io.BufferedReader' objects}
+        3    0.000    0.000    0.000    0.000 {method 'fileno' of '_socket.socket' objects}
+       56    0.092    0.002    0.092    0.002 {method 'fill_' of 'torch._C._TensorBase' objects}
+       23    0.000    0.000    0.000    0.000 {method 'find' of 'bytearray' objects}
+        1    0.000    0.000    0.000    0.000 {method 'find' of 'bytes' objects}
+       51    0.000    0.000    0.000    0.000 {method 'find' of 'str' objects}
+        9    0.000    0.000    0.000    0.000 {method 'findall' of 're.Pattern' objects}
+      264    0.000    0.000    0.000    0.000 {method 'format' of 'str' objects}
+       15    0.000    0.000    0.000    0.000 {method 'fullmatch' of 're.Pattern' objects}
+   162113    0.021    0.000    0.021    0.000 {method 'get' of 'dict' objects}
+        3    0.001    0.000    0.001    0.000 {method 'getpeercert' of '_ssl._SSLSocket' objects}
+        3    0.000    0.000    0.000    0.000 {method 'getpeername' of '_socket.socket' objects}
+        3    0.000    0.000    0.000    0.000 {method 'getsockopt' of '_socket.socket' objects}
+        9    0.000    0.000    0.000    0.000 {method 'gettimeout' of '_socket.socket' objects}
+        6    0.000    0.000    0.000    0.000 {method 'group' of 're.Match' objects}
+   425235    0.047    0.000    0.047    0.000 {method 'groups' of 're.Match' objects}
+        6    0.000    0.000    0.000    0.000 {method 'hexdigest' of '_hashlib.HASH' objects}
+       20    0.121    0.006    0.121    0.006 {method 'index_select' of 'torch._C._TensorBase' objects}
+       10    0.000    0.000    0.000    0.000 {method 'is_floating_point' of 'torch._C._TensorBase' objects}
+        4    0.000    0.000    0.000    0.000 {method 'isalnum' of 'str' objects}
+        3    0.000    0.000    0.000    0.000 {method 'isascii' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'isdisjoint' of 'set' objects}
+       10    0.000    0.000    0.000    0.000 {method 'item' of 'torch._C._TensorBase' objects}
+     1912    0.000    0.000    0.000    0.000 {method 'items' of 'collections.OrderedDict' objects}
+    51914    0.005    0.000    0.005    0.000 {method 'items' of 'dict' objects}
+       33    0.000    0.000    0.001    0.000 {method 'join' of 'bytes' objects}
+   151791    0.032    0.000    0.032    0.000 {method 'join' of 'str' objects}
+      218    0.000    0.000    0.000    0.000 {method 'keys' of 'collections.OrderedDict' objects}
+      187    0.000    0.000    0.000    0.000 {method 'keys' of 'dict' objects}
+        1    0.002    0.002    0.005    0.005 {method 'load' of '_pickle.Unpickler' objects}
+        3    0.042    0.014    0.042    0.014 {method 'load_verify_locations' of '_ssl._SSLContext' objects}
+        5    0.000    0.000    0.000    0.000 {method 'log_softmax' of 'torch._C._TensorBase' objects}
+   250243    0.030    0.000    0.030    0.000 {method 'lower' of 'str' objects}
+       33    0.000    0.000    0.000    0.000 {method 'lstrip' of 'str' objects}
+      101    0.000    0.000    0.000    0.000 {method 'match' of 're.Pattern' objects}
+    11520   25.908    0.002   25.908    0.002 {method 'matmul' of 'torch._C._TensorBase' objects}
+      100    0.006    0.000    0.006    0.000 {method 'mul_' of 'torch._C._TensorBase' objects}
+        5    0.000    0.000    0.000    0.000 {method 'new' of 'torch._C._TensorBase' objects}
+       79    0.712    0.009    0.712    0.009 {method 'normal_' of 'torch._C._TensorBase' objects}
+       10    0.000    0.000    0.000    0.000 {method 'numel' of 'torch._C._TensorBase' objects}
+       84    0.000    0.000    0.000    0.000 {method 'partition' of 'str' objects}
+     7680    0.043    0.000    0.043    0.000 {method 'permute' of 'torch._C._TensorBase' objects}
+       55    0.000    0.000    0.000    0.000 {method 'pop' of 'collections.OrderedDict' objects}
+       33    0.000    0.000    0.000    0.000 {method 'pop' of 'collections.deque' objects}
+       68    0.000    0.000    0.000    0.000 {method 'pop' of 'dict' objects}
+        3    0.000    0.000    0.000    0.000 {method 'pop' of 'list' objects}
+        3    0.000    0.000    0.000    0.000 {method 'pop' of 'set' objects}
+       33    0.000    0.000    0.000    0.000 {method 'popleft' of 'collections.deque' objects}
+        9    0.002    0.000    0.002    0.000 {method 'read' of '_io.BufferedReader' objects}
+        1    0.000    0.000    0.000    0.000 {method 'read' of '_io.FileIO' objects}
+        6    0.000    0.000    0.000    0.000 {method 'read' of '_io.StringIO' objects}
+        1    0.001    0.001    0.001    0.001 {method 'read' of '_io.TextIOWrapper' objects}
+        3    0.316    0.105    0.316    0.105 {method 'read' of '_ssl._SSLSocket' objects}
+       36    0.000    0.000    0.316    0.009 {method 'readline' of '_io.BufferedReader' objects}
+        9    0.040    0.004    0.043    0.005 {method 'readlines' of '_io._IOBase' objects}
+       16    0.000    0.000    0.000    0.000 {method 'release' of '_thread.RLock' objects}
+       53    0.000    0.000    0.000    0.000 {method 'replace' of 'str' objects}
+       37    0.000    0.000    0.000    0.000 {method 'rpartition' of 'str' objects}
+        3    0.000    0.000    0.000    0.000 {method 'rstrip' of 'bytes' objects}
+    36344    0.007    0.000    0.007    0.000 {method 'rstrip' of 'str' objects}
+        5   87.142   17.428   87.142   17.428 {method 'run_backward' of 'torch._C._EngineBase' objects}
+        5    0.000    0.000    0.000    0.000 {method 'scatter_' of 'torch._C._TensorBase' objects}
+       24    0.000    0.000    0.000    0.000 {method 'search' of 're.Pattern' objects}
+        6    0.000    0.000    0.000    0.000 {method 'seek' of '_io.BufferedReader' objects}
+       12    0.000    0.000    0.000    0.000 {method 'seek' of '_io.StringIO' objects}
+      207    0.000    0.000    0.000    0.000 {method 'set_' of 'torch._C._TensorBase' objects}
+        3    0.001    0.000    0.001    0.000 {method 'set_ciphers' of '_ssl._SSLContext' objects}
+       30    0.000    0.000    0.000    0.000 {method 'setdefault' of 'collections.OrderedDict' objects}
+       22    0.000    0.000    0.000    0.000 {method 'setdefault' of 'dict' objects}
+        3    0.000    0.000    0.000    0.000 {method 'setsockopt' of '_socket.socket' objects}
+       12    0.000    0.000    0.000    0.000 {method 'settimeout' of '_socket.socket' objects}
+     8656    0.009    0.000    0.009    0.000 {method 'size' of 'torch._C._TensorBase' objects}
+     1920    3.742    0.002    3.742    0.002 {method 'softmax' of 'torch._C._TensorBase' objects}
+        5    0.000    0.000    0.000    0.000 {method 'sort' of 'list' objects}
+        9    0.000    0.000    0.000    0.000 {method 'split' of 'bytes' objects}
+    41355    0.014    0.000    0.014    0.000 {method 'split' of 'str' objects}
+       50    0.005    0.000    0.005    0.000 {method 'sqrt' of 'torch._C._TensorBase' objects}
+      160    0.001    0.000    0.001    0.000 {method 'squeeze' of 'torch._C._TensorBase' objects}
+   432865    0.075    0.000    0.075    0.000 {method 'startswith' of 'str' objects}
+    45903    0.005    0.000    0.005    0.000 {method 'strip' of 'str' objects}
+    51784    1.002    0.000    1.176    0.000 {method 'sub' of 're.Pattern' objects}
+        5    0.006    0.001    0.006    0.001 {method 'sum' of 'torch._C._TensorBase' objects}
+    11685    0.102    0.000    0.102    0.000 {method 't' of 'torch._C._TensorBase' objects}
+      213    0.000    0.000    0.000    0.000 {method 'tell' of '_io.BufferedReader' objects}
+      195    0.001    0.000    0.001    0.000 {method 'to' of 'torch._C._TensorBase' objects}
+      806    0.001    0.000    0.001    0.000 {method 'translate' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'transpose' of 'numpy.ndarray' objects}
+     1925    0.011    0.000    0.011    0.000 {method 'transpose' of 'torch._C._TensorBase' objects}
+        6    0.000    0.000    0.000    0.000 {method 'truncate' of '_io.StringIO' objects}
+        5    0.048    0.010    0.048    0.010 {method 'type' of 'torch._C._TensorBase' objects}
+      156    0.541    0.003    0.541    0.003 {method 'uniform_' of 'torch._C._TensorBase' objects}
+      160    0.001    0.000    0.001    0.000 {method 'unsqueeze' of 'torch._C._TensorBase' objects}
+        6    0.000    0.000    0.000    0.000 {method 'update' of 'collections.OrderedDict' objects}
+        4    0.000    0.000    0.000    0.000 {method 'update' of 'dict' objects}
+       18    0.000    0.000    0.000    0.000 {method 'upper' of 'str' objects}
+    73083    0.016    0.000    0.016    0.000 {method 'values' of 'collections.OrderedDict' objects}
+      327    0.000    0.000    0.000    0.000 {method 'values' of 'dict' objects}
+     7680    0.043    0.000    0.043    0.000 {method 'view' of 'torch._C._TensorBase' objects}
+        3    0.000    0.000    0.000    0.000 {method 'write' of '_io.StringIO' objects}
+        3    0.000    0.000    0.000    0.000 {method 'write' of '_ssl._SSLSocket' objects}
+      163    0.003    0.000    0.003    0.000 {method 'zero_' of 'torch._C._TensorBase' objects}

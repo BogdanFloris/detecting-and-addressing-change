@@ -1,30 +1,63 @@
 """ Training methods for different models.
 """
+import os
 import torch
 import utils
+from pathlib import Path
 from torch import nn, optim
 from streams.stream_data import WOSStream
-from models.wos_classifier import LSTM, LSTMWrapper
+from models.wos_classifier import LSTM
 
 
-def train_wos_batch(epochs=1, lr=0.001, batch_size=utils.BATCH_SIZE, device="cpu"):
+PATH = os.path.join(Path(__file__).parents[1], "assets/models")
+if not os.path.isdir(PATH):
+    os.makedirs(PATH)
+
+
+def train_wos_batch(
+    epochs=1,
+    lr=0.001,
+    batch_size=utils.BATCH_SIZE,
+    transform=True,
+    print_every=10,
+    device="cpu",
+):
     """ Trains a model using batches of data.
 
     Args:
         epochs (int): number of epochs to go over the dataset
         lr (float): learning rate of the optimizer
         batch_size (int): the batch size
+        transform (bool): transform the dataset or not
+        print_every (int): print stats parameter
         device (string): the device to run the training on (cpu or gpu)
     """
-    stream = WOSStream()
+    # Prepare stream
+    stream = WOSStream(transform=transform)
     stream.prepare_for_use()
+
+    # Check for checkpoints and initialize
     model = LSTM(embedding_dim=utils.EMBEDDING_DIM, no_classes=stream.no_classes).to(
         device
     )
     optimizer = optim.Adam(model.parameters(), lr=lr)
+
+    model_name = "lstm-wos-ver-{}-batch".format(stream.version)
+    model_path = os.path.join(PATH, model_name)
+    epoch = 0
+    if not os.path.exists(os.path.join(model_path, "checkpoint.pt")):
+        print("Starting training...")
+        os.makedirs(model_path, exist_ok=True)
+    else:
+        print("Resuming training from checkpoint...")
+        checkpoint = torch.load(os.path.join(model_path, "checkpoint.pt"))
+        model.load_state_dict(checkpoint["model_state_dict"])
+        optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
+        epoch = checkpoint["epoch"]
+
     criterion = nn.NLLLoss()
 
-    for epoch in range(epochs):
+    for epoch in range(epoch, epochs):
         # Initialize the loss
         running_loss = 0
         # Start iterating over the dataset
@@ -54,15 +87,38 @@ def train_wos_batch(epochs=1, lr=0.001, batch_size=utils.BATCH_SIZE, device="cpu
 
             # Print statistics
             running_loss += loss.item()
-            print(i, loss.item())
-            if i % 10 == 9:
+            if i % print_every == print_every - 1:
                 # Print every 10 batches
-                print("[{}, {}] loss: {}".format(epoch + 1, i + 1, running_loss / 10))
+                print(
+                    "[{}/{} epochs, {}/{} batches] loss: {}".format(
+                        epoch + 1,
+                        epochs,
+                        i + 1,
+                        stream.n_samples // batch_size + 1,
+                        running_loss / print_every,
+                    )
+                )
                 running_loss = 0
+
+            # Increment i
             i += 1
 
+        # Save checkpoint
+        print("Saving checkpoint...")
+        torch.save(
+            {
+                "epoch": epoch,
+                "model_state_dict": model.state_dict(),
+                "optimizer_state_dict": optimizer.state_dict(),
+            },
+            os.path.join(model_path, "checkpoint.pt"),
+        )
         # Restart the stream
         stream.restart()
+
+    # Save model
+    print("Finished training. Saving model..")
+    torch.save(model, os.path.join(model_path, "model.pt"))
 
 
 def train_wos_stream():
@@ -75,4 +131,4 @@ def train_wos_stream():
 
 
 if __name__ == "__main__":
-    train_wos_batch()
+    train_wos_batch(epochs=0, transform=False)

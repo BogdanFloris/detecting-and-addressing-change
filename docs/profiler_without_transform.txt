@@ -1,0 +1,237 @@
+83622 function calls (83602 primitive calls) in 97.064 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:1009(_handle_fromlist)
+        1    0.544    0.544   97.064   97.064 <string>:1(<module>)
+       10    0.000    0.000    0.000    0.000 <string>:1(__new__)
+       15    0.000    0.000    0.000    0.000 _VF.py:11(__getattr__)
+       10    0.000    0.000    0.000    0.000 __future__.py:18(get_overwrite_module_params_on_conversion)
+        5    0.000    0.000    0.000    0.000 __init__.py:20(_make_grads)
+        1    0.000    0.000    0.000    0.000 __init__.py:43(normalize_encoding)
+        5    0.000    0.000   90.288   18.058 __init__.py:44(backward)
+        1    0.000    0.000    0.000    0.000 __init__.py:71(search_function)
+        5    0.000    0.000    0.000    0.000 _reduction.py:6(get_enum)
+     5736    0.006    0.000    0.040    0.000 _utils.py:128(_rebuild_tensor)
+     5736    0.005    0.000    0.045    0.000 _utils.py:134(_rebuild_tensor_v2)
+        1    0.000    0.000    0.000    0.000 abc.py:137(__instancecheck__)
+      3/1    0.000    0.000    0.000    0.000 abc.py:141(__subclasscheck__)
+        1    0.000    0.000    0.000    0.000 adam.py:30(__init__)
+        5    0.012    0.002    0.037    0.007 adam.py:49(step)
+        1    0.000    0.000    0.000    0.000 base_stream.py:109(n_targets)
+        1    0.000    0.000    0.000    0.000 base_stream.py:130(target_values)
+        1    0.000    0.000    0.000    0.000 base_stream.py:151(feature_names)
+        1    0.000    0.000    0.000    0.000 base_stream.py:172(target_names)
+        1    0.000    0.000    0.000    0.000 base_stream.py:18(__init__)
+        1    0.000    0.000    0.000    0.000 base_stream.py:46(n_features)
+        1    0.000    0.000    0.000    0.000 base_stream.py:65(n_cat_features)
+        1    0.000    0.000    0.000    0.000 base_stream.py:87(n_num_features)
+        1    0.000    0.000    0.000    0.000 codecs.py:94(__new__)
+        5    0.000    0.000    0.000    0.000 functional.py:1297(log_softmax)
+        5    0.000    0.000    0.000    0.000 functional.py:1355(linear)
+        5    0.000    0.000    0.000    0.000 functional.py:1784(nll_loss)
+       20    0.000    0.000    0.000    0.000 grad_mode.py:137(__init__)
+       20    0.000    0.000    0.000    0.000 grad_mode.py:37(__enter__)
+       20    0.000    0.000    0.000    0.000 grad_mode.py:41(__exit__)
+        9    0.000    0.000    0.012    0.001 init.py:12(_no_grad_uniform_)
+        2    0.000    0.000    0.000    0.000 init.py:202(_calculate_fan_in_and_fan_out)
+        1    0.000    0.000    0.000    0.000 init.py:273(_calculate_correct_fan)
+        1    0.000    0.000    0.000    0.000 init.py:283(kaiming_uniform_)
+        1    0.000    0.000    0.000    0.000 init.py:32(calculate_gain)
+        9    0.000    0.000    0.012    0.001 init.py:74(uniform_)
+        1    0.000    0.000    0.000    0.000 latin_1.py:41(getregentry)
+        1    0.000    0.000    0.000    0.000 linear.py:68(__init__)
+        1    0.000    0.000    0.000    0.000 linear.py:79(reset_parameters)
+        5    0.000    0.000    0.001    0.000 linear.py:86(forward)
+        1    0.000    0.000    0.000    0.000 loss.py:18(__init__)
+        1    0.000    0.000    0.000    0.000 loss.py:198(__init__)
+        5    0.000    0.000    0.000    0.000 loss.py:203(forward)
+        1    0.000    0.000    0.000    0.000 loss.py:9(__init__)
+    14/10    0.000    0.000    0.000    0.000 module.py:1000(named_modules)
+       10    0.000    0.000    0.000    0.000 module.py:136(register_parameter)
+      3/1    0.000    0.000    0.000    0.000 module.py:199(_apply)
+       10    0.000    0.000    0.000    0.000 module.py:203(compute_should_use_set_data)
+        1    0.000    0.000    0.000    0.000 module.py:349(to)
+       10    0.000    0.000    0.000    0.000 module.py:422(convert)
+    20/10    0.000    0.000    2.438    0.244 module.py:522(__call__)
+       74    0.000    0.000    0.000    0.000 module.py:562(__getattr__)
+       69    0.000    0.000    0.000    0.000 module.py:578(__setattr__)
+       12    0.000    0.000    0.000    0.000 module.py:579(remove_from)
+        4    0.000    0.000    0.000    0.000 module.py:69(__init__)
+       24    0.000    0.000    0.000    0.000 module.py:833(_named_members)
+       24    0.000    0.000    0.000    0.000 module.py:846(parameters)
+       24    0.000    0.000    0.000    0.000 module.py:870(named_parameters)
+        6    0.000    0.000    0.000    0.000 module.py:891(<lambda>)
+        5    0.000    0.000    0.000    0.000 module.py:944(children)
+        5    0.000    0.000    0.000    0.000 module.py:953(named_children)
+        1    0.000    0.000    0.000    0.000 module.py:98(register_buffer)
+        5    0.000    0.000    0.003    0.001 optimizer.py:159(zero_grad)
+        1    0.000    0.000    0.000    0.000 optimizer.py:176(add_param_group)
+        1    0.000    0.000    0.000    0.000 optimizer.py:32(__init__)
+       10    0.000    0.000    0.000    0.000 parameter.py:23(__new__)
+        1    0.000    0.000    0.000    0.000 posixpath.py:338(normpath)
+        1    0.000    0.000    0.000    0.000 posixpath.py:376(abspath)
+        2    0.000    0.000    0.000    0.000 posixpath.py:41(_get_sep)
+        1    0.000    0.000    0.000    0.000 posixpath.py:64(isabs)
+        1    0.000    0.000    0.000    0.000 posixpath.py:75(join)
+        1    0.000    0.000    0.000    0.000 rnn.py:131(_apply)
+        1    0.000    0.000    0.000    0.000 rnn.py:137(<listcomp>)
+        5    0.000    0.000    0.000    0.000 rnn.py:140(to)
+        1    0.000    0.000    0.013    0.013 rnn.py:144(reset_parameters)
+        5    0.000    0.000    0.000    0.000 rnn.py:149(check_input)
+        5    0.000    0.000    0.000    0.000 rnn.py:161(get_expected_hidden_size)
+       10    0.000    0.000    0.000    0.000 rnn.py:173(check_hidden_size)
+        5    0.000    0.000    0.000    0.000 rnn.py:176(invert_permutation)
+       10    0.000    0.000    0.002    0.000 rnn.py:18(apply_permutation)
+        5    0.000    0.000    0.261    0.052 rnn.py:185(pack_padded_sequence)
+        5    0.000    0.000    0.119    0.024 rnn.py:237(pad_packed_sequence)
+        1    0.000    0.000    0.013    0.013 rnn.py:27(__init__)
+        5    0.042    0.008    0.160    0.032 rnn.py:288(pad_sequence)
+        5    0.000    0.000    0.000    0.000 rnn.py:329(<listcomp>)
+        1    0.000    0.000    0.013    0.013 rnn.py:503(__init__)
+        5    0.000    0.000    0.000    0.000 rnn.py:506(check_forward_args)
+        5    0.000    0.000    0.002    0.000 rnn.py:516(permute_hidden)
+        5    0.000    0.000    1.799    0.360 rnn.py:532(forward)
+       10    0.000    0.000    0.001    0.000 rnn.py:65(__new__)
+        2    0.000    0.000    0.000    0.000 rnn.py:81(<listcomp>)
+        1    0.000    0.000    0.000    0.000 rnn.py:88(<listcomp>)
+       29    0.000    0.000    0.000    0.000 rnn.py:92(__setattr__)
+        2    0.000    0.000    0.000    0.000 rnn.py:99(flatten_parameters)
+     5736    0.001    0.000    0.001    0.000 serialization.py:100(_cpu_deserialize)
+     5736    0.004    0.000    0.005    0.000 serialization.py:154(default_restore_location)
+        1    0.000    0.000    0.000    0.000 serialization.py:174(_is_path)
+        1    0.000    0.000    0.000    0.000 serialization.py:181(__init__)
+        1    0.000    0.000    0.000    0.000 serialization.py:184(__enter__)
+        1    0.000    0.000    0.000    0.000 serialization.py:192(__init__)
+        1    0.000    0.000    0.000    0.000 serialization.py:195(__exit__)
+        1    0.000    0.000    0.000    0.000 serialization.py:210(_open_file_like)
+        1    0.000    0.000    0.000    0.000 serialization.py:253(_is_compressed_file)
+        1    0.000    0.000    0.000    0.000 serialization.py:261(_should_read_directly)
+        1    0.000    0.000    0.000    0.000 serialization.py:277(_check_seekable)
+        1    0.002    0.002    3.525    3.525 serialization.py:448(load)
+        2    0.000    0.000    0.001    0.000 serialization.py:47(_is_zipfile)
+        1    0.015    0.015    3.522    3.522 serialization.py:549(_legacy_load)
+        1    0.000    0.000    0.000    0.000 serialization.py:595(legacy_load)
+     5736    0.026    0.000    0.036    0.000 serialization.py:649(persistent_load)
+    11472    0.002    0.000    0.004    0.000 serialization.py:716(_maybe_decode_ascii)
+        1    0.000    0.000    0.000    0.000 serialization.py:728(_get_restore_location)
+        5    0.000    0.000    0.000    0.000 stream_data.py:126(n_remaining_samples)
+        5    0.000    0.000    0.000    0.000 stream_data.py:134(has_more_samples)
+        1    0.000    0.000    0.000    0.000 stream_data.py:37(__init__)
+        1    0.000    0.000    3.525    3.525 stream_data.py:57(prepare_for_use)
+        1    0.000    0.000    0.000    0.000 stream_data.py:75(restart)
+        5    0.000    0.000    0.161    0.032 stream_data.py:83(next_sample)
+        1    0.000    0.000    0.000    0.000 tarfile.py:1026(frombuf)
+        1    0.000    0.000    0.000    0.000 tarfile.py:1089(fromtarfile)
+        1    0.000    0.000    0.000    0.000 tarfile.py:1413(__init__)
+        1    0.000    0.000    0.000    0.000 tarfile.py:1524(open)
+        1    0.000    0.000    0.000    0.000 tarfile.py:1615(taropen)
+        1    0.000    0.000    0.000    0.000 tarfile.py:164(nts)
+        1    0.000    0.000    0.000    0.000 tarfile.py:172(nti)
+        1    0.000    0.000    0.000    0.000 tarfile.py:2268(next)
+        1    0.000    0.000    0.000    0.000 tarfile.py:2355(_check)
+        5    0.000    0.000   90.288   18.058 tensor.py:167(backward)
+      110    0.000    0.000    0.000    0.000 tensor.py:464(__hash__)
+        5    0.024    0.005    0.224    0.045 wos_classifier.py:104(abs_max_pooling)
+        1    0.000    0.000    0.013    0.013 wos_classifier.py:44(__init__)
+        5    0.033    0.007    2.437    0.487 wos_classifier.py:70(forward)
+        1    0.053    0.053   96.520   96.520 wos_train.py:10(train_wos_batch)
+       11    0.000    0.000    0.000    0.000 {built-in method __new__ of type object at 0x10b306ab0}
+        1    0.000    0.000    0.000    0.000 {built-in method _abc._abc_instancecheck}
+      3/1    0.000    0.000    0.000    0.000 {built-in method _abc._abc_subclasscheck}
+       10    0.000    0.000    0.000    0.000 {built-in method _has_compatible_shallow_copy_type}
+       10    0.000    0.000    0.000    0.000 {built-in method _make_subclass}
+        5    0.162    0.032    0.162    0.032 {built-in method _pack_padded_sequence}
+        5    0.059    0.012    0.059    0.012 {built-in method _pad_packed_sequence}
+        4    0.001    0.000    0.001    0.000 {built-in method _pickle.load}
+        5    0.000    0.000    0.000    0.000 {built-in method addmm}
+        5    0.000    0.000    0.000    0.000 {built-in method arange}
+        5    0.000    0.000    0.000    0.000 {built-in method as_tensor}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.__import__}
+        1    0.000    0.000   97.064   97.064 {built-in method builtins.exec}
+       32    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
+       43    0.000    0.000    0.000    0.000 {built-in method builtins.hasattr}
+      110    0.000    0.000    0.000    0.000 {built-in method builtins.id}
+    17404    0.003    0.000    0.003    0.000 {built-in method builtins.isinstance}
+       97    0.000    0.000    0.000    0.000 {built-in method builtins.len}
+        5    0.000    0.000    0.000    0.000 {built-in method builtins.max}
+        2    0.000    0.000    0.000    0.000 {built-in method builtins.next}
+       12    0.000    0.000    0.000    0.000 {built-in method builtins.ord}
+        6    0.000    0.000    0.000    0.000 {built-in method builtins.print}
+        8    0.000    0.000    0.000    0.000 {built-in method builtins.setattr}
+        5    0.000    0.000    0.000    0.000 {built-in method empty_like}
+        5    0.000    0.000    0.000    0.000 {built-in method from_numpy}
+        1    0.000    0.000    0.000    0.000 {built-in method io.open}
+        5    1.796    0.359    1.796    0.359 {built-in method lstm}
+       56    0.000    0.000    0.000    0.000 {built-in method math.sqrt}
+        5    0.048    0.010    0.048    0.010 {built-in method max}
+        5    0.056    0.011    0.056    0.011 {built-in method mul}
+        5    0.000    0.000    0.000    0.000 {built-in method ones_like}
+        4    0.000    0.000    0.000    0.000 {built-in method posix.fspath}
+        5    0.000    0.000    0.000    0.000 {built-in method sort}
+     5741    0.023    0.000    0.023    0.000 {built-in method tensor}
+       25    0.000    0.000    0.000    0.000 {built-in method torch._C._get_tracing_state}
+        5    0.000    0.000    0.000    0.000 {built-in method torch._C._log_api_usage_once}
+        1    0.000    0.000    0.000    0.000 {built-in method torch._C._nn._parse_to}
+        5    0.000    0.000    0.000    0.000 {built-in method torch._C._nn.nll_loss}
+        5    0.028    0.006    0.028    0.006 {built-in method torch._C._nn.one_hot}
+       40    0.000    0.000    0.000    0.000 {built-in method torch._C.is_grad_enabled}
+       40    0.000    0.000    0.000    0.000 {built-in method torch._C.set_grad_enabled}
+       20    0.003    0.000    0.003    0.000 {built-in method zeros_like}
+        5    0.000    0.000    0.000    0.000 {built-in method zeros}
+     5736    3.405    0.001    3.405    0.001 {method '_set_from_file' of 'torch._C.FloatStorageBase' objects}
+        5    0.015    0.003    0.015    0.003 {method 'abs' of 'torch._C._TensorBase' objects}
+       28    0.000    0.000    0.000    0.000 {method 'add' of 'set' objects}
+      100    0.005    0.000    0.005    0.000 {method 'add_' of 'torch._C._TensorBase' objects}
+       50    0.004    0.000    0.004    0.000 {method 'addcdiv_' of 'torch._C._TensorBase' objects}
+       50    0.002    0.000    0.002    0.000 {method 'addcmul_' of 'torch._C._TensorBase' objects}
+      191    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'close' of '_io.BufferedReader' objects}
+        1    0.000    0.000    0.000    0.000 {method 'count' of 'bytes' objects}
+        1    0.000    0.000    0.000    0.000 {method 'decode' of 'bytes' objects}
+       40    0.000    0.000    0.000    0.000 {method 'detach_' of 'torch._C._TensorBase' objects}
+       19    0.000    0.000    0.000    0.000 {method 'dim' of 'torch._C._TensorBase' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        2    0.000    0.000    0.000    0.000 {method 'extend' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'fileno' of '_io.BufferedReader' objects}
+        5    0.117    0.023    0.117    0.023 {method 'fill_' of 'torch._C._TensorBase' objects}
+        1    0.000    0.000    0.000    0.000 {method 'find' of 'bytes' objects}
+       37    0.000    0.000    0.000    0.000 {method 'format' of 'str' objects}
+      187    0.000    0.000    0.000    0.000 {method 'get' of 'dict' objects}
+       20    0.159    0.008    0.159    0.008 {method 'index_select' of 'torch._C._TensorBase' objects}
+       10    0.000    0.000    0.000    0.000 {method 'is_floating_point' of 'torch._C._TensorBase' objects}
+        6    0.000    0.000    0.000    0.000 {method 'isalnum' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'isdisjoint' of 'set' objects}
+       10    0.000    0.000    0.000    0.000 {method 'item' of 'torch._C._TensorBase' objects}
+       19    0.000    0.000    0.000    0.000 {method 'items' of 'collections.OrderedDict' objects}
+        1    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
+        2    0.000    0.000    0.000    0.000 {method 'join' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'keys' of 'dict' objects}
+        1    0.015    0.015    0.096    0.096 {method 'load' of '_pickle.Unpickler' objects}
+        5    0.000    0.000    0.000    0.000 {method 'log_softmax' of 'torch._C._TensorBase' objects}
+        1    0.000    0.000    0.000    0.000 {method 'lower' of 'str' objects}
+      100    0.006    0.000    0.006    0.000 {method 'mul_' of 'torch._C._TensorBase' objects}
+        5    0.000    0.000    0.000    0.000 {method 'new' of 'torch._C._TensorBase' objects}
+       10    0.000    0.000    0.000    0.000 {method 'numel' of 'torch._C._TensorBase' objects}
+        9    0.001    0.000    0.001    0.000 {method 'read' of '_io.BufferedReader' objects}
+        5   90.288   18.058   90.288   18.058 {method 'run_backward' of 'torch._C._EngineBase' objects}
+        5    0.000    0.000    0.000    0.000 {method 'scatter_' of 'torch._C._TensorBase' objects}
+        6    0.000    0.000    0.000    0.000 {method 'seek' of '_io.BufferedReader' objects}
+     5736    0.012    0.000    0.012    0.000 {method 'set_' of 'torch._C._TensorBase' objects}
+        5    0.000    0.000    0.000    0.000 {method 'setdefault' of 'dict' objects}
+      364    0.000    0.000    0.000    0.000 {method 'size' of 'torch._C._TensorBase' objects}
+        2    0.000    0.000    0.000    0.000 {method 'split' of 'str' objects}
+       50    0.005    0.000    0.005    0.000 {method 'sqrt' of 'torch._C._TensorBase' objects}
+      160    0.000    0.000    0.000    0.000 {method 'squeeze' of 'torch._C._TensorBase' objects}
+        4    0.000    0.000    0.000    0.000 {method 'startswith' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'strip' of 'str' objects}
+        5    0.006    0.001    0.006    0.001 {method 'sum' of 'torch._C._TensorBase' objects}
+        5    0.000    0.000    0.000    0.000 {method 't' of 'torch._C._TensorBase' objects}
+     5743    0.006    0.000    0.006    0.000 {method 'tell' of '_io.BufferedReader' objects}
+       35    0.000    0.000    0.000    0.000 {method 'to' of 'torch._C._TensorBase' objects}
+        5    0.000    0.000    0.000    0.000 {method 'transpose' of 'torch._C._TensorBase' objects}
+        5    0.047    0.009    0.047    0.009 {method 'type' of 'torch._C._TensorBase' objects}
+       10    0.012    0.001    0.012    0.001 {method 'uniform_' of 'torch._C._TensorBase' objects}
+       40    0.000    0.000    0.000    0.000 {method 'values' of 'collections.OrderedDict' objects}
+       40    0.003    0.000    0.003    0.000 {method 'zero_' of 'torch._C._TensorBase' objects}

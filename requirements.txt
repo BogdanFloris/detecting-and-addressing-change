@@ -3,9 +3,10 @@ torch==1.4.0
 transformers==2.3.0
 numpy==1.18.1
 scikit-multiflow==0.4.1
+tqdm==4.41.1
 
 # testing requirements
-pytest==5.3.2
+pytest==5.3.4
 flake8==3.7.9
 codecov==2.0.15
 pytest-cov==2.8.1

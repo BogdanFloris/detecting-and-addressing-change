@@ -2,10 +2,19 @@
 This file contains streams classes that generate different drift_datasets
 over time. The streams are based on the sk-multiflow framework.
 """
+import os
+import torch
 import torch.nn as nn
+from pathlib import Path
 from skmultiflow.data.base_stream import Stream
 from constants.transformers import Transformer, TransformerModel
 from streams.loaders import load_wos
+
+
+PATH = os.path.join(Path(__file__).parents[1], "assets/datasets")
+TRANSFORMED_DATASETS = [
+    os.path.join(PATH, "wos_v_1_transformed_BERT_hidden_0.pt"),
+]
 
 
 class WOSStream(Stream):
@@ -15,9 +24,23 @@ class WOSStream(Stream):
 
     When calling `next_sample` this class also transforms the text
     to contextualized embeddings based on the given transformer.
+
+    Args:
+        version (int): the version of the dataset (1, 2, 3)
+        transformer_model (TransformerModel): the transformer model to use
+        transform (bool): whether to transform the dataset while streaming,
+            or use an already transformed dataset
+        dataset_idx (int): if transform is False, then this represents the index in the
+            TRANSFORMED_DATASETS list of the transformed dataset to use
     """
 
-    def __init__(self, version=1, transformer_model=TransformerModel.BERT):
+    def __init__(
+        self,
+        version=1,
+        transformer_model=TransformerModel.BERT,
+        transform=True,
+        dataset_idx=0,
+    ):
         super().__init__()
         self.version = version
         self.X = None
@@ -25,14 +48,24 @@ class WOSStream(Stream):
         self.n_samples = None
         self.no_classes = None
         self.current_seq_lengths = None
+        self.transform = transform
+        self.dataset_idx = dataset_idx
 
-        self.transformer = Transformer(transformer_model)
+        if transform:
+            self.transformer = Transformer(transformer_model)
 
     def prepare_for_use(self):
         """Prepares the stream for use by initializing
         the X and y variables from the files.
         """
-        self.X, self.y, self.no_classes = load_wos(version=self.version)
+        if self.transform:
+            print("Preparing non-transformed dataset...")
+            self.X, self.y, self.no_classes = load_wos(version=self.version)
+        else:
+            print("Preparing transformed dataset...")
+            self.X, self.y, self.no_classes = torch.load(
+                TRANSFORMED_DATASETS[self.dataset_idx]
+            )
         self.n_samples = len(self.y)
         self.sample_idx = 0
         self.current_sample_x = None
@@ -66,15 +99,20 @@ class WOSStream(Stream):
             self.current_seq_lengths = []
             for i in range(len(self.current_sample_x)):
                 # Transform to embeddings
-                self.current_sample_x[i] = self.transformer.transform(
-                    self.current_sample_x[i]
-                ).squeeze()
+                if self.transform:
+                    self.current_sample_x[i] = self.transformer.transform(
+                        self.current_sample_x[i]
+                    )
+                # Squeeze tensor
+                self.current_sample_x[i] = self.current_sample_x[i].squeeze()
 
                 # Save the sequence length
                 self.current_seq_lengths.append(self.current_sample_x[i].shape[0])
 
             # Pad and stack sequence
-            self.current_sample_x = nn.utils.rnn.pad_sequence(self.current_sample_x, batch_first=True)
+            self.current_sample_x = nn.utils.rnn.pad_sequence(
+                self.current_sample_x, batch_first=True
+            )
 
             # Get the y target
             self.current_sample_y = self.y[
@@ -106,7 +144,7 @@ class WOSStream(Stream):
 
 
 if __name__ == "__main__":
-    wos = WOSStream(transformer_model=TransformerModel.SCIBERT)
+    wos = WOSStream(transformer_model=TransformerModel.SCIBERT, transform=False)
     wos.prepare_for_use()
     x, y, _ = wos.next_sample(8)
     print(x.shape)
