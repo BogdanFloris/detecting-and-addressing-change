@@ -45,7 +45,9 @@ def train_wos_batch(
     )
     optimizer = optim.Adam(model.parameters(), lr=lr)
 
-    model_name = "lstm-wos-{}-ver-{}-batch".format(transformer_model.name, stream.version)
+    model_name = "lstm-wos-{}-ver-{}-batch".format(
+        transformer_model.name, stream.version
+    )
     model_path = os.path.join(PATH, model_name)
     epoch = 0
     if not os.path.exists(os.path.join(model_path, "checkpoint.pt")):

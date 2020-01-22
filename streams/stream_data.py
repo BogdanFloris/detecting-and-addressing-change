@@ -14,7 +14,8 @@ from streams.loaders import load_wos
 PATH = os.path.join(Path(__file__).parents[1], "assets/datasets")
 TRANSFORMED_DATASETS = [
     os.path.join(PATH, "wos_v_1_transformed_BERT_hidden_0.pt"),
-    os.path.join(PATH, "wos_v_1_transformed_SCIBERT_hidden_0.pt")
+    os.path.join(PATH, "wos_v_1_transformed_SCIBERT_hidden_0.pt"),
+    os.path.join(PATH, "wos_v_1_transformed_DISTILBERT_hidden_0.pt"),
 ]
 
 
@@ -34,10 +35,7 @@ class WOSStream(Stream):
     """
 
     def __init__(
-        self,
-        version=1,
-        transformer_model=TransformerModel.BERT,
-        transform=True,
+        self, version=1, transformer_model=TransformerModel.BERT, transform=True,
     ):
         super().__init__()
         self.version = version
