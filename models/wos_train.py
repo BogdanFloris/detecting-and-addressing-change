@@ -15,6 +15,19 @@ if not os.path.isdir(PATH):
     os.makedirs(PATH)
 
 
+def accuracy(labels, predictions):
+    """ Computes the accuracy given the labels and predictions.
+
+    Args:
+        labels (tensor): the correct labels
+        predictions (tensor): the predictions of the model
+
+    Returns:
+        the accuracy
+    """
+    return (labels == predictions.argmax(dim=1)).type(torch.FloatTensor).mean()
+
+
 def train_wos_batch(
     epochs=1,
     lr=0.001,
@@ -22,6 +35,7 @@ def train_wos_batch(
     transform=True,
     transformer_model=TransformerModel.BERT,
     print_every=10,
+    load_checkpoint=False,
     device="cpu",
 ):
     """ Trains a model using batches of data.
@@ -33,6 +47,7 @@ def train_wos_batch(
         transform (bool): transform the dataset or not
         transformer_model (TransformerModel): the transformer model to use
         print_every (int): print stats parameter
+        load_checkpoint (bool): load a checkpoint or not
         device (string): the device to run the training on (cpu or gpu)
     """
     # Prepare stream
@@ -51,20 +66,24 @@ def train_wos_batch(
     model_path = os.path.join(PATH, model_name)
     epoch = 0
     if not os.path.exists(os.path.join(model_path, "checkpoint.pt")):
-        print("Starting training...")
+        print("Starting training from scratch...")
         os.makedirs(model_path, exist_ok=True)
-    else:
+    elif load_checkpoint:
         print("Resuming training from checkpoint...")
         checkpoint = torch.load(os.path.join(model_path, "checkpoint.pt"))
         model.load_state_dict(checkpoint["model_state_dict"])
         optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
         epoch = checkpoint["epoch"]
+    else:
+        print("Starting training from scratch...")
 
     criterion = nn.NLLLoss()
+    losses, accuracies = [], []
 
     for epoch in range(epoch, epochs):
         # Initialize the loss
         running_loss = 0
+        running_accuracy = 0
         # Start iterating over the dataset
         i = 0
         while stream.has_more_samples():
@@ -92,18 +111,23 @@ def train_wos_batch(
 
             # Print statistics
             running_loss += loss.item()
+            running_accuracy += accuracy(labels=y, predictions=predictions).item()
             if i % print_every == print_every - 1:
                 # Print every 10 batches
                 print(
-                    "[{}/{} epochs, {}/{} batches] loss: {}".format(
+                    "[{}/{} epochs, {}/{} batches] loss: {}, accuracy: {}".format(
                         epoch + 1,
                         epochs,
                         i + 1,
                         stream.n_samples // batch_size + 1,
                         running_loss / print_every,
+                        running_accuracy / print_every,
                     )
                 )
+                losses.append(running_loss / print_every)
+                accuracies.append(running_accuracy / print_every)
                 running_loss = 0
+                running_accuracy = 0
 
             # Increment i
             i += 1
@@ -125,6 +149,8 @@ def train_wos_batch(
     print("Finished training. Saving model..")
     torch.save(model, os.path.join(model_path, "model.pt"))
 
+    return losses, accuracies
+
 
 def train_wos_stream():
     """ Trains a model using a data stream.
@@ -136,4 +162,4 @@ def train_wos_stream():
 
 
 if __name__ == "__main__":
-    train_wos_batch(epochs=0, transform=False)
+    _ = train_wos_batch(epochs=1, transform=False)

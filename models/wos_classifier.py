@@ -9,7 +9,7 @@ from skmultiflow.core import BaseSKMObject, ClassifierMixin
 from streams.stream_data import WOSStream
 
 
-class LSTMWrapper(BaseSKMObject, ClassifierMixin):
+class LSTMStream(BaseSKMObject, ClassifierMixin):
     def __init__(
         self,
         embedding_dim,
