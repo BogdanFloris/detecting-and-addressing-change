@@ -14,6 +14,8 @@ class LSTMStream(BaseSKMObject, ClassifierMixin):
         self,
         embedding_dim,
         no_classes,
+        optimizer,
+        criterion,
         hidden_size=utils.HIDDEN_DIM,
         lstm_layers=utils.LSTM_LAYERS,
         device="cpu",
@@ -26,14 +28,80 @@ class LSTMStream(BaseSKMObject, ClassifierMixin):
             device=device,
         )
 
+        self.optimizer = optimizer
+        self.criterion = criterion
+        self.device = device
+
     def partial_fit(self, X, y, classes=None, sample_weight=None):
-        pass
+        """
+
+
+        Args:
+            X (tuple): a tuple containing the real X inputs and
+                the length of the sequence
+            y (list): a list of targets for the given samples
+            classes: not used in this implementation
+            sample_weight: not used in this implementation
+
+        Returns:
+            self
+        """
+        if type(X) is not tuple:
+            raise ValueError("X should be of type tuple")
+        # Unpack X and move it to device
+        x, x_seq_lengths = X
+        x = x.to(self.device)
+        y = torch.from_numpy(y).to(self.device)
+        x_seq_lengths = torch.tensor(x_seq_lengths).to(self.device)
+
+        # Zero the gradients
+        self.optimizer.zero_grad()
+
+        # Forward pass
+        predictions, _ = self.lstm(x, x_seq_lengths)
+
+        # Loss and backward pass
+        loss = self.criterion(predictions, y)
+        loss.backward()
+        self.optimizer.step()
+
+        return self
 
     def predict(self, X):
-        pass
+        """
+        Predicts the targets for the given X.
+
+        Args:
+            X (tuple): a tuple containing the real X inputs and
+                the length of the sequence
+
+        Returns:
+            the targets
+        """
+        proba = self.predict_proba(X)
+        return proba.argmax(dim=1)
 
     def predict_proba(self, X):
-        pass
+        """
+        Predicts the probabilities of all the possible targets for the given X.
+
+        Args:
+            X (tuple): a tuple containing the real X inputs and
+                the length of the sequence
+
+        Returns:
+            the probabilities of the targets
+        """
+        if type(X) is not tuple:
+            raise ValueError("X should be of type tuple")
+        # Unpack X
+        x, x_seq_lengths = X
+        with torch.no_grad():
+            # Put X to device
+            x = x.to(self.device)
+            # Get the probabilities from the LSTM
+            proba = self.lstm(x, x_seq_lengths)
+            return proba
 
 
 class LSTM(nn.Module):
