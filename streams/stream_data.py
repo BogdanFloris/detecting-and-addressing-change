@@ -10,6 +10,8 @@ from skmultiflow.data.base_stream import Stream
 from constants.transformers import Transformer, TransformerModel
 from streams.loaders import load_wos
 
+import utils
+
 
 PATH = os.path.join(Path(__file__).parents[1], "assets/datasets")
 TRANSFORMED_DATASETS = [
@@ -41,8 +43,9 @@ class WOSStream(Stream):
         self.version = version
         self.X = None
         self.y = None
-        self.n_samples = None
-        self.no_classes = None
+        self.name = "WOS-{}".format(transformer_model.name)
+        self.n_targets = 1
+        self.n_features = utils.EMBEDDING_DIM
         self.current_seq_lengths = None
         self.transform = transform
 
@@ -62,10 +65,10 @@ class WOSStream(Stream):
         """
         if self.transform:
             print("Preparing non-transformed dataset...")
-            self.X, self.y, self.no_classes = load_wos(version=self.version)
+            self.X, self.y, self.n_classes = load_wos(version=self.version)
         else:
             print("Preparing transformed dataset...")
-            self.X, self.y, self.no_classes = torch.load(
+            self.X, self.y, self.n_classes = torch.load(
                 TRANSFORMED_DATASETS[self.dataset_idx]
             )
         self.n_samples = len(self.y)
@@ -123,7 +126,7 @@ class WOSStream(Stream):
         except IndexError:
             self.current_sample_x = None
             self.current_sample_y = None
-        return self.current_sample_x, self.current_sample_y, self.current_seq_lengths
+        return (self.current_sample_x, self.current_seq_lengths), self.current_sample_y
 
     def n_remaining_samples(self):
         """Returns the number of samples left in the stream.
@@ -142,11 +145,11 @@ class WOSStream(Stream):
         return self.sample_idx < self.n_samples
 
     def get_no_classes(self):
-        return self.no_classes
+        return self.n_classes
 
 
 if __name__ == "__main__":
     wos = WOSStream(transformer_model=TransformerModel.SCIBERT, transform=False)
     wos.prepare_for_use()
-    x, y, _ = wos.next_sample(8)
-    print(x.shape)
+    x, y = wos.next_sample(8)
+    print(x[0].shape)

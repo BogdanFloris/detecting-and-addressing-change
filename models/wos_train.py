@@ -5,8 +5,9 @@ import torch
 import utils
 from pathlib import Path
 from torch import nn, optim
+from skmultiflow.evaluation import EvaluateHoldout
 from streams.stream_data import WOSStream
-from models.wos_classifier import LSTM
+from models.wos_classifier import LSTM, LSTMStream
 from constants.transformers import TransformerModel
 
 
@@ -55,7 +56,7 @@ def train_wos_batch(
     stream.prepare_for_use()
 
     # Check for checkpoints and initialize
-    model = LSTM(embedding_dim=utils.EMBEDDING_DIM, no_classes=stream.no_classes).to(
+    model = LSTM(embedding_dim=utils.EMBEDDING_DIM, no_classes=stream.n_classes).to(
         device
     )
     optimizer = optim.Adam(model.parameters(), lr=lr)
@@ -89,12 +90,13 @@ def train_wos_batch(
         while stream.has_more_samples():
             # Get the batch from the stream
             if stream.n_remaining_samples() < batch_size:
-                x, y, seq_lens = stream.next_sample(stream.n_remaining_samples())
+                x_, y = stream.next_sample(stream.n_remaining_samples())
             else:
-                x, y, seq_lens = stream.next_sample(batch_size)
+                x_, y = stream.next_sample(batch_size)
 
             # Move the batch to device
-            x.to(device)
+            x, seq_lens = x_
+            x = x.to(device)
             y = torch.from_numpy(y).to(device)
             seq_lens = torch.tensor(seq_lens).to(device)
 
@@ -102,7 +104,7 @@ def train_wos_batch(
             optimizer.zero_grad()
 
             # Forward pass
-            predictions, _ = model(x, seq_lens)
+            predictions, _ = model((x, seq_lens))
 
             # Loss and backward pass
             loss = criterion(predictions, y)
@@ -152,14 +154,43 @@ def train_wos_batch(
     return losses, accuracies
 
 
-def train_wos_stream():
+def train_wos_stream(
+    lr=0.001,
+    batch_size=utils.BATCH_SIZE,
+    transform=True,
+    transformer_model=TransformerModel.BERT,
+    eval_every=10 * utils.BATCH_SIZE,
+    device="cpu",
+):
     """ Trains a model using a data stream.
 
     Returns:
 
     """
-    pass
+    # Set the stream
+    stream = WOSStream(transformer_model=transformer_model, transform=transform)
+    stream.prepare_for_use()
+
+    # Set the model
+    model = LSTMStream(
+        embedding_dim=utils.EMBEDDING_DIM,
+        no_classes=stream.n_classes,
+        lr=lr,
+        device=device,
+    )
+
+    # Set the evaluator
+    evaluator = EvaluateHoldout(
+        n_wait=eval_every,
+        batch_size=batch_size,
+        metrics=["accuracy"],
+        dynamic_test_set=True,
+        test_size=batch_size,
+    )
+
+    evaluator.evaluate(stream=stream, model=model, model_names=["LSTM"])
 
 
 if __name__ == "__main__":
-    _ = train_wos_batch(epochs=1, transform=False)
+    # _ = train_wos_batch(epochs=1, transform=False)
+    train_wos_stream(transform=False)

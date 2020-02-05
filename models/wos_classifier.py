@@ -3,7 +3,7 @@ This module implements classifiers for the Web of Science dataset
 """
 import utils
 import torch
-from torch import nn
+from torch import nn, optim
 import torch.nn.functional as f
 from skmultiflow.core import BaseSKMObject, ClassifierMixin
 from streams.stream_data import WOSStream
@@ -14,8 +14,7 @@ class LSTMStream(BaseSKMObject, ClassifierMixin):
         self,
         embedding_dim,
         no_classes,
-        optimizer,
-        criterion,
+        lr=0.001,
         hidden_size=utils.HIDDEN_DIM,
         lstm_layers=utils.LSTM_LAYERS,
         device="cpu",
@@ -28,8 +27,8 @@ class LSTMStream(BaseSKMObject, ClassifierMixin):
             device=device,
         )
 
-        self.optimizer = optimizer
-        self.criterion = criterion
+        self.optimizer = optim.Adam(self.lstm.parameters(), lr=lr)
+        self.criterion = nn.NLLLoss().to(device)
         self.device = device
 
     def partial_fit(self, X, y, classes=None, sample_weight=None):
@@ -58,7 +57,7 @@ class LSTMStream(BaseSKMObject, ClassifierMixin):
         self.optimizer.zero_grad()
 
         # Forward pass
-        predictions, _ = self.lstm(x, x_seq_lengths)
+        predictions, _ = self.lstm((x, x_seq_lengths))
 
         # Loss and backward pass
         loss = self.criterion(predictions, y)
@@ -99,8 +98,9 @@ class LSTMStream(BaseSKMObject, ClassifierMixin):
         with torch.no_grad():
             # Put X to device
             x = x.to(self.device)
+            x_seq_lengths = torch.tensor(x_seq_lengths).to(self.device)
             # Get the probabilities from the LSTM
-            proba = self.lstm(x, x_seq_lengths)
+            proba, _ = self.lstm((x, x_seq_lengths))
             return proba
 
 
@@ -135,18 +135,23 @@ class LSTM(nn.Module):
         # Initialize the linear layer
         self.fc = nn.Linear(in_features=self.hidden_size, out_features=self.no_classes)
 
-    def forward(self, x, x_seq_lengths, hidden=None, cell=None):
+    def forward(self, X, hidden=None, cell=None):
         """ Forward pass
 
         Args:
-            x (tensor): shape (batch_size, seq_len, embedding_dim)
-            x_seq_lengths (list): list of sequence lengths for each tensor in the batch
+            X (tuple): tuple containing x, and x_seq_lengths
+                where x (tensor) is of shape (batch_size, seq_len, embedding_dim)
+                and x_seq_lengths is a list of sequence lengths for each tensor in the batch
             hidden (tensor): last hidden state
             cell (tensor): last cell state
 
         Returns:
             probabilities of each class
         """
+        # Unpack X
+        if type(X) is not tuple:
+            raise ValueError("X should be of type tuple.")
+        x, x_seq_lengths = X
         # Pack the input batch so that the padded zeros are not shown to the LSTM
         x = nn.utils.rnn.pack_padded_sequence(
             x, x_seq_lengths, batch_first=True, enforce_sorted=False
@@ -193,5 +198,5 @@ if __name__ == "__main__":
     stream_ = WOSStream()
     stream_.prepare_for_use()
     model_ = LSTM(utils.EMBEDDING_DIM, stream_.get_no_classes())
-    x_, y_, seq_lengths = stream_.next_sample(utils.BATCH_SIZE)
-    out, _ = model_.forward(x_, seq_lengths)
+    x_, y_ = stream_.next_sample(utils.BATCH_SIZE)
+    out, _ = model_.forward(x_)
