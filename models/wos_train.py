@@ -155,6 +155,7 @@ def train_wos_batch(
 
 
 def train_wos_stream(
+    epochs=1,
     lr=0.001,
     batch_size=utils.BATCH_SIZE,
     transform=True,
@@ -188,9 +189,10 @@ def train_wos_stream(
         test_size=batch_size,
     )
 
-    evaluator.evaluate(stream=stream, model=model, model_names=["LSTM"])
+    for _ in range(epochs):
+        evaluator.evaluate(stream=stream, model=model, model_names=["LSTM"])
 
 
 if __name__ == "__main__":
     # _ = train_wos_batch(epochs=1, transform=False)
-    train_wos_stream(transform=False)
+    train_wos_stream(epochs=1, transform=False)
