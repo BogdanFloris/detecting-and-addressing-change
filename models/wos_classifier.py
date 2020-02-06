@@ -18,14 +18,18 @@ class LSTMStream(BaseSKMObject, ClassifierMixin):
         hidden_size=utils.HIDDEN_DIM,
         lstm_layers=utils.LSTM_LAYERS,
         device="cpu",
+        lstm_model=None,
     ):
-        self.lstm = LSTM(
-            embedding_dim=embedding_dim,
-            no_classes=no_classes,
-            hidden_size=hidden_size,
-            lstm_layers=lstm_layers,
-            device=device,
-        )
+        if lstm_model is None:
+            self.lstm = LSTM(
+                embedding_dim=embedding_dim,
+                no_classes=no_classes,
+                hidden_size=hidden_size,
+                lstm_layers=lstm_layers,
+                device=device,
+            )
+        else:
+            self.lstm = lstm_model
 
         self.optimizer = optim.Adam(self.lstm.parameters(), lr=lr)
         self.criterion = nn.NLLLoss().to(device)

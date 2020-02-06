@@ -9,24 +9,12 @@ from skmultiflow.evaluation import EvaluateHoldout
 from streams.stream_data import WOSStream
 from models.wos_classifier import LSTM, LSTMStream
 from constants.transformers import TransformerModel
+from utils.metrics import accuracy
 
 
 PATH = os.path.join(Path(__file__).parents[1], "assets/models")
 if not os.path.isdir(PATH):
     os.makedirs(PATH)
-
-
-def accuracy(labels, predictions):
-    """ Computes the accuracy given the labels and predictions.
-
-    Args:
-        labels (tensor): the correct labels
-        predictions (tensor): the predictions of the model
-
-    Returns:
-        the accuracy
-    """
-    return (labels == predictions.argmax(dim=1)).type(torch.FloatTensor).mean()
 
 
 def train_wos_batch(
