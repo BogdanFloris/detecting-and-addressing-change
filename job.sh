@@ -22,4 +22,4 @@ cd "$TMPDIR"/detecting-and-addressing-change/
 RUN_NAME="$(date +%d_%m_%Y_%H_%M_%S)";
 python3 run.py >> "output_${RUN_NAME}.txt"
 
-rsync -a ./detecting-and-addresing-change/ "$HOME"/detecting-and-addressing-change/
+cp "output_${RUN_NAME}.txt" "$HOME"/detecting-and-addressing-change
