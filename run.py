@@ -9,4 +9,4 @@ if __name__ == "__main__":
         # drift_detection_different_embeddings(batch_size=32, device=device)
         train_wos_batch(epochs=5, device=device)
     except Exception as e:
-        print(e.with_traceback(e.__traceback__))
+        print(e)
