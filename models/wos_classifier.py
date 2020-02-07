@@ -7,22 +7,6 @@ from torch import nn, optim
 import torch.nn.functional as f
 from skmultiflow.core import BaseSKMObject, ClassifierMixin
 from streams.stream_data import WOSStream
-from torch.nn.utils.rnn import PackedSequence
-
-
-def hotfix_pack_padded_sequence(inp, lengths, batch_first=False, enforce_sorted=True):
-    lengths = torch.as_tensor(lengths, dtype=torch.int64)
-    lengths = lengths.cpu()
-    if enforce_sorted:
-        sorted_indices = None
-    else:
-        lengths, sorted_indices = torch.sort(lengths, descending=True)
-        sorted_indices = sorted_indices.to(inp.device)
-        batch_dim = 0 if batch_first else 1
-        inp = inp.index_select(batch_dim, sorted_indices)
-    data, batch_sizes = \
-        torch._C._VariableFunctions._pack_padded_sequence(inp, lengths, batch_first)
-    return PackedSequence(data, batch_sizes, sorted_indices)
 
 
 class LSTMStream(BaseSKMObject, ClassifierMixin):
@@ -173,7 +157,7 @@ class LSTM(nn.Module):
             raise ValueError("X should be of type tuple.")
         x, x_seq_lengths = X
         # Pack the input batch so that the padded zeros are not shown to the LSTM
-        x = hotfix_pack_padded_sequence(
+        x = nn.utils.rnn.pack_padded_sequence(
             x, x_seq_lengths, batch_first=True, enforce_sorted=False
         ).to(self.device)
 

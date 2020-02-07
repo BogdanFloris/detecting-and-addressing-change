@@ -44,9 +44,9 @@ def train_wos_batch(
     stream.prepare_for_use()
 
     # Check for checkpoints and initialize
-    model = LSTM(embedding_dim=utils.EMBEDDING_DIM, no_classes=stream.n_classes).to(
-        device
-    )
+    model = LSTM(
+        embedding_dim=utils.EMBEDDING_DIM, no_classes=stream.n_classes, device=device
+    ).to(device)
     optimizer = optim.Adam(model.parameters(), lr=lr)
 
     model_name = "lstm-wos-{}-ver-{}-batch".format(
