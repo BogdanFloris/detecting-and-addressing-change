@@ -157,7 +157,7 @@ def train_wos_stream(
 
     """
     # Set the stream
-    stream = WOSStream(transformer_model=transformer_model, transform=transform)
+    stream = WOSStream(transformer_model=transformer_model, transform=transform, device=device)
     stream.prepare_for_use()
 
     model_name = "lstm-wos-{}-ver-{}-batch".format(
@@ -190,5 +190,5 @@ def train_wos_stream(
 
 
 if __name__ == "__main__":
-    # _ = train_wos_batch(epochs=1, transform=False)
-    train_wos_stream(epochs=1, transform=False)
+    _ = train_wos_batch(epochs=1, transform=True, device='cpu')
+    # train_wos_stream(epochs=1, transform=False)

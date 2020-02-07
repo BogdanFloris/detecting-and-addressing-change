@@ -20,13 +20,14 @@ class TransformerModel(Enum):
 
 
 class Transformer:
-    def __init__(self, model: TransformerModel = TransformerModel.BERT):
+    def __init__(self, model: TransformerModel = TransformerModel.BERT, device='cpu'):
+        self.device = device
         # Unpack the tuple
         model_class, tokenizer_class, pretrained_weights = model.value
 
         # Initialize the model and the tokenizer
         self.tokenizer = tokenizer_class.from_pretrained(pretrained_weights)
-        self.model = model_class.from_pretrained(pretrained_weights)
+        self.model = model_class.from_pretrained(pretrained_weights).to(device)
 
     def transform(self, text, hidden_state=0):
         """Transforms the given text using the initialized transformer
@@ -44,7 +45,7 @@ class Transformer:
                     text, add_special_tokens=True, max_length=utils.MAX_SEQ_LEN
                 )
             ]
-        )
+        ).to(self.device)
         with torch.no_grad():
             last_hidden_states = self.model(input_ids)[hidden_state]
 

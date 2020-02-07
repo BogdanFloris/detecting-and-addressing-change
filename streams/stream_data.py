@@ -37,7 +37,7 @@ class WOSStream(Stream):
     """
 
     def __init__(
-        self, version=1, transformer_model=TransformerModel.BERT, transform=True,
+        self, version=1, transformer_model=TransformerModel.BERT, transform=True, device='cpu',
     ):
         super().__init__()
         self.version = version
@@ -57,7 +57,7 @@ class WOSStream(Stream):
             self.dataset_idx = 2
 
         if transform:
-            self.transformer = Transformer(transformer_model)
+            self.transformer = Transformer(transformer_model, device=device)
 
     def prepare_for_use(self):
         """Prepares the stream for use by initializing
