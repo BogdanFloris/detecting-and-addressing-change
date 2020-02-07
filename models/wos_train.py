@@ -160,6 +160,10 @@ def train_wos_stream(
     stream = WOSStream(transformer_model=transformer_model, transform=transform)
     stream.prepare_for_use()
 
+    model_name = "lstm-wos-{}-ver-{}-batch".format(
+        transformer_model.name, stream.version
+    )
+    model_path = os.path.join(PATH, model_name)
     # Set the model
     model = LSTMStream(
         embedding_dim=utils.EMBEDDING_DIM,
@@ -179,6 +183,10 @@ def train_wos_stream(
 
     for _ in range(epochs):
         evaluator.evaluate(stream=stream, model=model, model_names=["LSTM"])
+
+    # Save model
+    print("Finished training. Saving model..")
+    torch.save(model, os.path.join(model_path, "model.pt"))
 
 
 if __name__ == "__main__":
