@@ -108,6 +108,7 @@ dmypy.json
 .pyre/
 
 # Datasets
-assets/
+assets/datasets/
+assets/scibert_scivocab_uncased/
 
 # End of https://www.gitignore.io/api/python
