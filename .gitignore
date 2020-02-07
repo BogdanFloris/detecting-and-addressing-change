@@ -108,8 +108,6 @@ dmypy.json
 .pyre/
 
 # Datasets
-assets/datasets/wos_v_1_transformed_BERT_hidden_0.pt
-assets/datasets/wos_v_1_transformed_SCIBERT_hidden_0.pt
-assets/datasets/wos_v_1_transformed_DISTILBERT_hidden_0.pt
+assets/
 
 # End of https://www.gitignore.io/api/python
