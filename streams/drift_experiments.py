@@ -19,10 +19,10 @@ MODELS = [
 
 
 def drift_detection_gradual_noise(
-    model_idx=0, batch_size=1, max_std=0.1, warm_start=30, print_every=10, device="cpu"
+    model_idx=0, batch_size=1, max_std=0.1, warm_start=30, transform=True, print_every=10, device="cpu"
 ):
     # Initialize the stream
-    stream = WOSStream(transformer_model=TransformerModel.BERT)
+    stream = WOSStream(transformer_model=TransformerModel.BERT, transform=transform, device=device)
     stream.prepare_for_use()
 
     # Load the LSTM model
@@ -80,13 +80,13 @@ def drift_detection_gradual_noise(
 
 
 def drift_detection_different_embeddings(
-    model_idx=0, batch_size=1, print_every=10, device="cpu"
+    model_idx=0, batch_size=1, transform=True, print_every=10, device="cpu"
 ):
     # Initialize the stream that the model was trained on
-    stream_trained = WOSStream(transformer_model=TransformerModel.BERT)
+    stream_trained = WOSStream(transformer_model=TransformerModel.BERT, transform=transform, device=device)
     stream_trained.prepare_for_use()
     # Initialize the stream with other embeddings, to add drift
-    stream_untrained = WOSStream(transformer_model=TransformerModel.SCIBERT)
+    stream_untrained = WOSStream(transformer_model=TransformerModel.SCIBERT, transform=transform, device=device)
     stream_trained.prepare_for_use()
 
     # Load the LSTM model

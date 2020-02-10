@@ -40,7 +40,7 @@ def train_wos_batch(
         device (string): the device to run the training on (cpu or gpu)
     """
     # Prepare stream
-    stream = WOSStream(transformer_model=transformer_model, transform=transform)
+    stream = WOSStream(transformer_model=transformer_model, transform=transform, device=device)
     stream.prepare_for_use()
 
     # Check for checkpoints and initialize
