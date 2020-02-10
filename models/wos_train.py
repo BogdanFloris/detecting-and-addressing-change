@@ -5,9 +5,8 @@ import torch
 import utils
 from pathlib import Path
 from torch import nn, optim
-from skmultiflow.evaluation import EvaluateHoldout
 from streams.stream_data import WOSStream
-from models.wos_classifier import LSTM, LSTMStream
+from models.wos_classifier import LSTM
 from constants.transformers import TransformerModel
 from utils.metrics import accuracy
 
@@ -17,7 +16,7 @@ if not os.path.isdir(PATH):
     os.makedirs(PATH)
 
 
-def train_wos_batch(
+def train_wos_holdout(
     epochs=1,
     lr=0.001,
     batch_size=utils.BATCH_SIZE,
@@ -40,7 +39,9 @@ def train_wos_batch(
         device (string): the device to run the training on (cpu or gpu)
     """
     # Prepare stream
-    stream = WOSStream(transformer_model=transformer_model, transform=transform, device=device)
+    stream = WOSStream(
+        transformer_model=transformer_model, transform=transform, device=device
+    )
     stream.prepare_for_use()
 
     # Check for checkpoints and initialize
@@ -67,7 +68,7 @@ def train_wos_batch(
         print("Starting training from scratch...")
 
     criterion = nn.NLLLoss()
-    losses, accuracies = [], []
+    losses, train_accuracies, test_accuracies = [], [], []
 
     for epoch in range(epoch, epochs):
         # Initialize the loss
@@ -102,20 +103,33 @@ def train_wos_batch(
             # Print statistics
             running_loss += loss.item()
             running_accuracy += accuracy(labels=y, predictions=predictions).item()
-            if i % print_every == print_every - 1:
+            if i % print_every == print_every - 1 or not stream.has_more_samples():
+                # Evaluate the model on the test set
+                x_test_, y_test = stream.get_test_set()
+                x_test, seq_len_test = x_test_
+                x_test = x_test.to(device)
+                y_test = torch.from_numpy(y_test).to(device)
+                seq_len_test = torch.tensor(seq_len_test).to(device)
+
+                with torch.no_grad():
+                    test_pred, _ = model((x_test, seq_len_test))
+                    test_acc = accuracy(labels=y_test, predictions=test_pred).item()
+
                 # Print every 10 batches
                 print(
-                    "[{}/{} epochs, {}/{} batches] loss: {}, accuracy: {}".format(
+                    "[{}/{} epochs, {}/{} batches] train loss: {}, train accuracy: {}, test accuracy: {}".format(
                         epoch + 1,
                         epochs,
                         i + 1,
                         stream.n_samples // batch_size + 1,
                         running_loss / print_every,
                         running_accuracy / print_every,
+                        test_acc,
                     )
                 )
                 losses.append(running_loss / print_every)
-                accuracies.append(running_accuracy / print_every)
+                train_accuracies.append(running_accuracy / print_every)
+                test_accuracies.append(test_acc)
                 running_loss = 0
                 running_accuracy = 0
 
@@ -139,56 +153,8 @@ def train_wos_batch(
     print("Finished training. Saving model..")
     torch.save(model, os.path.join(model_path, "model.pt"))
 
-    return losses, accuracies
-
-
-def train_wos_stream(
-    epochs=1,
-    lr=0.001,
-    batch_size=utils.BATCH_SIZE,
-    transform=True,
-    transformer_model=TransformerModel.BERT,
-    eval_every=10 * utils.BATCH_SIZE,
-    device="cpu",
-):
-    """ Trains a model using a data stream.
-
-    Returns:
-
-    """
-    # Set the stream
-    stream = WOSStream(transformer_model=transformer_model, transform=transform, device=device)
-    stream.prepare_for_use()
-
-    model_name = "lstm-wos-{}-ver-{}-batch".format(
-        transformer_model.name, stream.version
-    )
-    model_path = os.path.join(PATH, model_name)
-    # Set the model
-    model = LSTMStream(
-        embedding_dim=utils.EMBEDDING_DIM,
-        no_classes=stream.n_classes,
-        lr=lr,
-        device=device,
-    )
-
-    # Set the evaluator
-    evaluator = EvaluateHoldout(
-        n_wait=eval_every,
-        batch_size=batch_size,
-        metrics=["accuracy"],
-        dynamic_test_set=True,
-        test_size=batch_size,
-    )
-
-    for _ in range(epochs):
-        evaluator.evaluate(stream=stream, model=model, model_names=["LSTM"])
-
-    # Save model
-    print("Finished training. Saving model..")
-    torch.save(model, os.path.join(model_path, "model.pt"))
+    return losses, train_accuracies, test_accuracies
 
 
 if __name__ == "__main__":
-    _ = train_wos_batch(epochs=1, transform=True, device='cpu')
-    # train_wos_stream(epochs=1, transform=False)
+    _ = train_wos_holdout(epochs=1, transform=False, print_every=1, device="cpu")
