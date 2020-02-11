@@ -115,6 +115,14 @@ def train_wos_holdout(
                     test_pred, _ = model((x_test, seq_len_test))
                     test_acc = accuracy(labels=y_test, predictions=test_pred).item()
 
+                denominator = (
+                    print_every
+                    if stream.has_more_samples()
+                    else (stream.n_samples // batch_size + 1) % print_every
+                )
+                train_loss = running_loss / denominator
+                train_acc = running_accuracy / denominator
+
                 # Print every 10 batches
                 print(
                     "[{}/{} epochs, {}/{} batches] train loss: {}, train accuracy: {}, test accuracy: {}".format(
@@ -122,13 +130,13 @@ def train_wos_holdout(
                         epochs,
                         i + 1,
                         stream.n_samples // batch_size + 1,
-                        running_loss / print_every,
-                        running_accuracy / print_every,
+                        train_loss,
+                        train_acc,
                         test_acc,
                     )
                 )
-                losses.append(running_loss / print_every)
-                train_accuracies.append(running_accuracy / print_every)
+                losses.append(train_loss)
+                train_accuracies.append(train_acc)
                 test_accuracies.append(test_acc)
                 running_loss = 0
                 running_accuracy = 0
@@ -151,7 +159,8 @@ def train_wos_holdout(
 
     # Save model
     print("Finished training. Saving model..")
-    torch.save(model, os.path.join(model_path, "model.pt"))
+    torch.save(model.state_dict(), os.path.join(model_path, "model.pt"))
+    print("Done!")
 
     return losses, train_accuracies, test_accuracies
 

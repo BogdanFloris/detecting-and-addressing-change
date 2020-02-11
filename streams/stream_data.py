@@ -36,6 +36,7 @@ class WOSStream(Stream):
         transform (bool): whether to transform the dataset while streaming,
             or use an already transformed dataset
         test_split (bool): whether to train test split the data or not
+        shuffle (bool): whether or not to shuffle the test set every time the stream is restarted
         device (str): cuda or cpu
     """
 
@@ -45,6 +46,7 @@ class WOSStream(Stream):
         transformer_model=TransformerModel.BERT,
         transform=True,
         test_split=True,
+        shuffle=False,
         device="cpu",
     ):
         super().__init__()
@@ -59,6 +61,7 @@ class WOSStream(Stream):
         self.current_seq_lengths = None
         self.transform = transform
         self.test_split = test_split
+        self.shuffle = shuffle
         if test_split:
             self.test_samples = None
             self.test_sequence_lengths = None
@@ -98,7 +101,7 @@ class WOSStream(Stream):
     def restart(self):
         """Restarts the stream.
         """
-        if self.test_split:
+        if self.test_split and self.shuffle:
             self.X, self.X_test, self.y, self.y_test = train_test_split(
                 self.X, self.y, test_size=0.2
             )
