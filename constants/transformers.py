@@ -20,7 +20,7 @@ class TransformerModel(Enum):
 
 
 class Transformer:
-    def __init__(self, model: TransformerModel = TransformerModel.BERT, device='cpu'):
+    def __init__(self, model: TransformerModel = TransformerModel.BERT, device="cpu"):
         self.device = device
         # Unpack the tuple
         model_class, tokenizer_class, pretrained_weights = model.value

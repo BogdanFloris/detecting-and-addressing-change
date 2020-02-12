@@ -19,10 +19,18 @@ MODELS = [
 
 
 def drift_detection_gradual_noise(
-    model_idx=0, batch_size=1, max_std=0.1, warm_start=30, transform=True, print_every=10, device="cpu"
+    model_idx=0,
+    batch_size=1,
+    max_std=0.1,
+    warm_start=30,
+    transform=True,
+    print_every=10,
+    device="cpu",
 ):
     # Initialize the stream
-    stream = WOSStream(transformer_model=TransformerModel.BERT, transform=transform, device=device)
+    stream = WOSStream(
+        transformer_model=TransformerModel.BERT, transform=transform, device=device
+    )
     stream.prepare_for_use()
 
     # Load the LSTM model
@@ -63,7 +71,9 @@ def drift_detection_gradual_noise(
 
         # Get predictions and accuracy
         predictions, _ = model((x, seq_lens))
-        metrics = get_metrics(labels=y, predictions=predictions, no_labels=stream.n_classes)
+        metrics = get_metrics(
+            labels=y, predictions=predictions, no_labels=stream.n_classes
+        )
 
         # Print if necessary
         running_acc += metrics["accuracy"]
@@ -83,10 +93,14 @@ def drift_detection_different_embeddings(
     model_idx=0, batch_size=1, transform=True, print_every=10, device="cpu"
 ):
     # Initialize the stream that the model was trained on
-    stream_trained = WOSStream(transformer_model=TransformerModel.BERT, transform=transform, device=device)
+    stream_trained = WOSStream(
+        transformer_model=TransformerModel.BERT, transform=transform, device=device
+    )
     stream_trained.prepare_for_use()
     # Initialize the stream with other embeddings, to add drift
-    stream_untrained = WOSStream(transformer_model=TransformerModel.SCIBERT, transform=transform, device=device)
+    stream_untrained = WOSStream(
+        transformer_model=TransformerModel.SCIBERT, transform=transform, device=device
+    )
     stream_trained.prepare_for_use()
 
     # Load the LSTM model
@@ -142,7 +156,9 @@ def run_stream(
 
         # Get predictions and accuracy
         predictions, _ = model((x, seq_lens))
-        metrics = get_metrics(labels=y, predictions=predictions, no_labels=stream.n_classes)
+        metrics = get_metrics(
+            labels=y, predictions=predictions, no_labels=stream.n_classes
+        )
 
         # Print if necessary
         running_acc += metrics["accuracy"]

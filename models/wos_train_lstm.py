@@ -116,7 +116,9 @@ def train_lstm_wos_holdout(
                 with torch.no_grad():
                     test_pred, _ = model((x_test, seq_len_test))
                     test_metrics = get_metrics(
-                        labels=y_test.cpu(), predictions=test_pred.cpu(), no_labels=stream.n_classes
+                        labels=y_test.cpu(),
+                        predictions=test_pred.cpu(),
+                        no_labels=stream.n_classes,
                     )
 
                 denominator = (
