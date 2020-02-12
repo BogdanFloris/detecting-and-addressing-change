@@ -63,10 +63,10 @@ def train_nb_wos_holdout(
         i = 0
         while stream.has_more_samples():
             # Get the batch from the stream
-            if stream.n_remaining_samples() < batch_size:
-                x_, y = stream.next_sample(stream.n_remaining_samples())
-            else:
+            if stream.n_remaining_samples() >= batch_size:
                 x_, y = stream.next_sample(batch_size)
+            else:
+                continue
 
             # Unpack x_ (we do not need the sequence lengths for NB)
             x = x_[0].numpy()
@@ -82,7 +82,7 @@ def train_nb_wos_holdout(
             running_accuracy += accuracy_score(y, model.predict(x))
 
             # Print statistics
-            if i % print_every == print_every - 1 or not stream.has_more_samples():
+            if i % print_every == print_every - 1:
                 # Evaluate the model on the test set
                 x_test_, y_test = stream.get_test_set()
                 x_test = x_test_[0].numpy()
@@ -92,13 +92,7 @@ def train_nb_wos_holdout(
                 y_pred = model.predict(x_test)
                 test_metrics = get_metrics(y_pred, y_test, no_labels=stream.n_classes)
 
-                denominator = (
-                    print_every
-                    if stream.has_more_samples()
-                    else (stream.n_samples // batch_size + 1) % print_every
-                )
-                accuracy = running_accuracy / denominator
-
+                accuracy = running_accuracy / print_every
                 # Print every 10 batches
                 print(
                     "[{}/{} epochs, {}/{} batches] train accuracy: {:.4f}, "
