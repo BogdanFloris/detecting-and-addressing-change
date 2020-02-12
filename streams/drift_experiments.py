@@ -9,7 +9,7 @@ from skmultiflow.drift_detection import DDM, EDDM
 from streams.stream_data import WOSStream
 from models.wos_classifier import LSTM
 from constants.transformers import TransformerModel
-from utils.metrics import accuracy
+from utils.metrics import get_metrics
 
 
 PATH = os.path.join(Path(__file__).parents[1], "assets/models")
@@ -63,16 +63,16 @@ def drift_detection_gradual_noise(
 
         # Get predictions and accuracy
         predictions, _ = model((x, seq_lens))
-        acc = accuracy(labels=y, predictions=predictions).item()
+        metrics = get_metrics(labels=y, predictions=predictions, no_labels=stream.n_classes)
 
         # Print if necessary
-        running_acc += acc
+        running_acc += metrics["accuracy"]
         if i % print_every == print_every - 1:
             print("Accuracy: {}".format(running_acc / print_every))
             running_acc = 0.0
 
         # Add to drift detector
-        eddm.add_element(1 - acc)
+        eddm.add_element(1 - metrics["accuracy"])
         if eddm.detected_warning_zone():
             print("Warning zone")
         if eddm.detected_change():
@@ -142,16 +142,16 @@ def run_stream(
 
         # Get predictions and accuracy
         predictions, _ = model((x, seq_lens))
-        acc = accuracy(labels=y, predictions=predictions).item()
+        metrics = get_metrics(labels=y, predictions=predictions, no_labels=stream.n_classes)
 
         # Print if necessary
-        running_acc += acc
+        running_acc += metrics["accuracy"]
         if i % print_every == print_every - 1:
             print("Accuracy: {}".format(running_acc / print_every))
             running_acc = 0.0
 
         # Add to drift detector
-        drift_detector.add_element(1 - acc)
+        drift_detector.add_element(1 - metrics["accuracy"])
         if drift_detector.detected_warning_zone():
             print("Warning zone")
         if drift_detector.detected_change():
