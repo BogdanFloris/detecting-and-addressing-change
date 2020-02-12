@@ -1,14 +1,15 @@
-""" Training methods for different models.
+""" Training methods for the LSTM model on the Web of Science dataset.
 """
 import os
 import torch
 import utils
 from pathlib import Path
 from torch import nn, optim
+from sklearn.metrics import accuracy_score
 from streams.stream_data import WOSStream
 from models.wos_classifier import LSTM
 from constants.transformers import TransformerModel
-from utils.metrics import accuracy
+from utils.metrics import get_metrics
 
 
 PATH = os.path.join(Path(__file__).parents[1], "assets/models")
@@ -16,7 +17,7 @@ if not os.path.isdir(PATH):
     os.makedirs(PATH)
 
 
-def train_wos_holdout(
+def train_lstm_wos_holdout(
     epochs=1,
     lr=0.001,
     batch_size=utils.BATCH_SIZE,
@@ -26,7 +27,7 @@ def train_wos_holdout(
     load_checkpoint=False,
     device="cpu",
 ):
-    """ Trains a model using batches of data.
+    """ Trains the LSTM model on the Web of Science dataset.
 
     Args:
         epochs (int): number of epochs to go over the dataset
@@ -37,6 +38,7 @@ def train_wos_holdout(
         print_every (int): print stats parameter
         load_checkpoint (bool): load a checkpoint or not
         device (string): the device to run the training on (cpu or gpu)
+
     """
     # Prepare stream
     stream = WOSStream(
@@ -68,7 +70,7 @@ def train_wos_holdout(
         print("Starting training from scratch...")
 
     criterion = nn.NLLLoss()
-    losses, train_accuracies, test_accuracies = [], [], []
+    losses, train_accuracies, test_metrics_list = [], [], []
 
     for epoch in range(epoch, epochs):
         # Initialize the loss
@@ -102,7 +104,7 @@ def train_wos_holdout(
 
             # Print statistics
             running_loss += loss.item()
-            running_accuracy += accuracy(labels=y, predictions=predictions).item()
+            running_accuracy += accuracy_score(y.cpu(), predictions.argmax(dim=1).cpu())
             if i % print_every == print_every - 1 or not stream.has_more_samples():
                 # Evaluate the model on the test set
                 x_test_, y_test = stream.get_test_set()
@@ -113,7 +115,9 @@ def train_wos_holdout(
 
                 with torch.no_grad():
                     test_pred, _ = model((x_test, seq_len_test))
-                    test_acc = accuracy(labels=y_test, predictions=test_pred).item()
+                    test_metrics = get_metrics(
+                        labels=y_test.cpu(), predictions=test_pred.cpu(), no_labels=stream.n_classes
+                    )
 
                 denominator = (
                     print_every
@@ -125,19 +129,24 @@ def train_wos_holdout(
 
                 # Print every 10 batches
                 print(
-                    "[{}/{} epochs, {}/{} batches] train loss: {}, train accuracy: {}, test accuracy: {}".format(
+                    "[{}/{} epochs, {}/{} batches] train loss: {:.4f}, "
+                    "train accuracy: {:.4f}, test (accuracy: {:.4f}, precision: {:.4f}, "
+                    "recall: {:.4f}, f1: {:.4f})".format(
                         epoch + 1,
                         epochs,
                         i + 1,
                         stream.n_samples // batch_size + 1,
                         train_loss,
                         train_acc,
-                        test_acc,
+                        test_metrics["accuracy"],
+                        test_metrics["precision"],
+                        test_metrics["recall"],
+                        test_metrics["macro_f1"],
                     )
                 )
                 losses.append(train_loss)
                 train_accuracies.append(train_acc)
-                test_accuracies.append(test_acc)
+                test_metrics_list.append(test_metrics)
                 running_loss = 0
                 running_accuracy = 0
 
@@ -162,8 +171,8 @@ def train_wos_holdout(
     torch.save(model.state_dict(), os.path.join(model_path, "model.pt"))
     print("Done!")
 
-    return losses, train_accuracies, test_accuracies
+    return losses, train_accuracies, test_metrics_list
 
 
 if __name__ == "__main__":
-    _ = train_wos_holdout(epochs=1, transform=False, print_every=1, device="cpu")
+    _ = train_lstm_wos_holdout(epochs=1, transform=False, print_every=1, device="cpu")
