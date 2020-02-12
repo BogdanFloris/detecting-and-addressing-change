@@ -52,7 +52,7 @@ def train_lstm_wos_holdout(
     ).to(device)
     optimizer = optim.Adam(model.parameters(), lr=lr)
 
-    model_name = "lstm-wos-{}-ver-{}-batch".format(
+    model_name = "lstm-wos-{}-ver-{}-holdout".format(
         transformer_model.name, stream.version
     )
     model_path = os.path.join(PATH, model_name)
@@ -73,7 +73,7 @@ def train_lstm_wos_holdout(
     losses, train_accuracies, test_metrics_list = [], [], []
 
     for epoch in range(epoch, epochs):
-        # Initialize the loss
+        # Initialize the running_loss and accuracy
         running_loss = 0
         running_accuracy = 0
         # Start iterating over the dataset

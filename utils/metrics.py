@@ -14,7 +14,8 @@ def get_metrics(predictions, labels, no_labels=11) -> Dict[str, float]:
     Returns:
         dictionary from the name of the metrics to the value of the metric
     """
-    predictions = predictions.argmax(dim=1)
+    if len(predictions.shape) > 1:
+        predictions = predictions.argmax(dim=1)
     all_labels = np.arange(no_labels)
     metrics = {
         "accuracy": accuracy_score(labels, predictions),
