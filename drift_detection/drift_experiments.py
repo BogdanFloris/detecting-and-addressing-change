@@ -97,7 +97,7 @@ def drift_detection_different_embeddings(
         stream_runner = run_stream_nb
 
     # Initialize drift detector
-    drift_detector = DDM()
+    drift_detector = DDM(warning_level=2.5, out_control_level=4)
 
     # Run streams
     print("Running trained stream...")
