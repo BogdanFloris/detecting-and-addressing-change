@@ -25,10 +25,8 @@ def run_stream_lstm(
     """
     i = 0
     running_acc = 0.0
-    # Accuracies list
+    # Accuracies list (tuples of accuracy, and drift level)
     accuracies = []
-    # Warnings and drifts lists (contain the indices when the warnings or drifts occurred)
-    warnings, drifts = [], []
     while stream.has_more_samples():
         # Get the batch from the stream
         if stream.n_remaining_samples() < batch_size:
@@ -47,27 +45,28 @@ def run_stream_lstm(
         metrics = get_metrics(
             labels=y, predictions=predictions, no_labels=stream.n_classes
         )
+        accuracy = metrics["accuracy"]
 
         # Print if necessary
-        running_acc += metrics["accuracy"]
+        running_acc += accuracy
         if i % print_every == print_every - 1:
             print("Accuracy: {}".format(running_acc / print_every))
             running_acc = 0.0
-            # Add to accuracies list
-            accuracies.append(metrics["accuracy"])
 
             # Add to drift detector
-            drift_detector.add_element(1 - metrics["accuracy"])
+            drift_detector.add_element(1 - accuracy)
             if drift_detector.detected_warning_zone():
-                warnings.append(i)
+                accuracies.append((accuracy, "W"))
                 print("Warning zone")
-            if drift_detector.detected_change():
-                drifts.append(i)
+            elif drift_detector.detected_change():
+                accuracies.append((accuracy, "D"))
                 print("Drift detected")
+            else:
+                accuracies.append((accuracy, "N"))
 
         i += 1
 
-    return accuracies, warnings, drifts
+    return accuracies
 
 
 def run_stream_nb(
@@ -89,10 +88,8 @@ def run_stream_nb(
     """
     i = 0
     running_acc = 0.0
-    # Accuracies list
+    # Accuracies list (tuples of accuracy, and drift level)
     accuracies = []
-    # Warnings and drifts lists (contain the indices when the warnings or drifts occurred)
-    warnings, drifts = [], []
     while stream.has_more_samples():
         # Get the batch from the stream
         if stream.n_remaining_samples() >= batch_size:
@@ -108,24 +105,25 @@ def run_stream_nb(
         # Get the predictions and metrics
         y_pred = model.predict(x)
         metrics = get_metrics(labels=y, predictions=y_pred, no_labels=stream.n_classes)
+        accuracy = metrics["accuracy"]
 
         # Print if necessary
-        running_acc += metrics["accuracy"]
+        running_acc += accuracy
         if i % print_every == print_every - 1:
             print("Accuracy: {}".format(running_acc / print_every))
             running_acc = 0.0
-            # Add to drift detector
-            drift_detector.add_element(1 - metrics["accuracy"])
 
             # Add to drift detector
-            drift_detector.add_element(1 - metrics["accuracy"])
+            drift_detector.add_element(1 - accuracy)
             if drift_detector.detected_warning_zone():
-                warnings.append(i)
+                accuracies.append((accuracy, "W"))
                 print("Warning zone")
-            if drift_detector.detected_change():
-                drifts.append(i)
+            elif drift_detector.detected_change():
+                accuracies.append((accuracy, "D"))
                 print("Drift detected")
+            else:
+                accuracies.append((accuracy, "N"))
 
         i += 1
 
-    return accuracies, warnings, drifts
+    return accuracies

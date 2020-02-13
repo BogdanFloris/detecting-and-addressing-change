@@ -101,7 +101,7 @@ def drift_detection_different_embeddings(
 
     # Run streams
     print("Running trained stream...")
-    trained_accuracies, trained_warnings, trained_drifts = stream_runner(
+    trained_accuracies = stream_runner(
         stream_trained,
         model,
         drift_detector,
@@ -110,7 +110,7 @@ def drift_detection_different_embeddings(
         device=device,
     )
     print("Running untrained stream...")
-    untrained_accuracies, untrained_warnings, untrained_drifts = stream_runner(
+    untrained_accuracies = stream_runner(
         stream_untrained,
         model,
         drift_detector,
@@ -122,11 +122,7 @@ def drift_detection_different_embeddings(
     # Save the results
     to_save = {
         "trained_accuracies": trained_accuracies,
-        "trained_warnings": trained_warnings,
-        "trained_drifts": trained_drifts,
         "untrained_accuracies": untrained_accuracies,
-        "untrained_warnings": untrained_warnings,
-        "untrained_drifts": untrained_drifts,
     }
 
     with open(os.path.join(PATH_RESULTS, save_name + ".pkl"), "wb") as f:
@@ -144,6 +140,7 @@ def drift_detection_gradual_noise(
     print_every=1,
     device="cpu",
 ):
+    # TODO: update function
     # Initialize the stream
     stream = WOSStream(
         transformer_model=TransformerModel.BERT, transform=transform, device=device
