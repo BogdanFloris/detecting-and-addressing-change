@@ -4,6 +4,7 @@ Experiments with drift detection
 import os
 import torch
 import utils
+import pickle
 from pathlib import Path
 from joblib import load
 from skmultiflow.drift_detection import DDM, EDDM
@@ -14,23 +15,25 @@ from constants.transformers import TransformerModel
 from utils.metrics import get_metrics
 
 
-PATH = os.path.join(Path(__file__).parents[1], "assets/models")
+PATH_MODELS = os.path.join(Path(__file__).parents[1], "assets/models")
+PATH_RESULTS = os.path.join(Path(__file__).parents[1], "assets/results")
 LSTM_MODELS = [
-    os.path.join(PATH, "lstm-wos-BERT-ver-1-holdout/model.pt"),
+    os.path.join(PATH_MODELS, "lstm-wos-BERT-ver-1-holdout/model.pt"),
 ]
 NB_MODELS = [
-    os.path.join(PATH, "naive-bayes-wos-BERT-ver-1-holdout/model.joblib"),
+    os.path.join(PATH_MODELS, "naive-bayes-wos-BERT-ver-1-holdout/model.joblib"),
 ]
 
 
 def drift_detection_different_embeddings(
+    save_name,
     lstm_model_idx=None,
     nb_model_idx=None,
     transformer_model_trained=None,
     transformer_model_untrained=None,
     batch_size=1,
     transform=True,
-    print_every=10,
+    print_every=1,
     device="cpu",
 ):
     """
@@ -43,6 +46,7 @@ def drift_detection_different_embeddings(
     used and drift will be detected.
 
     Args:
+        save_name (str): name of the file where the function saves the result
         lstm_model_idx (int): the index of the LSTM model (from the available ones)
         nb_model_idx (int): the index of the Naive Bayes model (from the available ones)
         transformer_model_trained (TransformerModel): the embeddings on which the model was trained
@@ -53,7 +57,7 @@ def drift_detection_different_embeddings(
         device (str): cpu or cuda
 
     Returns:
-
+        a dictionary with the results
     """
     # Initialize the stream that the model was trained on
     stream_trained = WOSStream(
@@ -74,9 +78,10 @@ def drift_detection_different_embeddings(
 
     # Load the model
     model = None
-    if not lstm_model_idx or nb_model_idx:
+    stream_runner = None
+    if lstm_model_idx is None and nb_model_idx is None:
         raise ValueError("No index provided for either the LSTM or the NB model.")
-    if lstm_model_idx:
+    if lstm_model_idx is not None:
         # Load the LSTM model
         model = LSTM(
             embedding_dim=utils.EMBEDDING_DIM, no_classes=stream_trained.n_classes
@@ -85,17 +90,16 @@ def drift_detection_different_embeddings(
             torch.load(LSTM_MODELS[lstm_model_idx], map_location=device), strict=False
         )
         model.eval()
-    elif nb_model_idx:
+        stream_runner = run_stream_lstm
+    elif nb_model_idx is not None:
         # Load the Naive Bayes model
         model = load(NB_MODELS[nb_model_idx])
+        stream_runner = run_stream_nb
 
     # Initialize drift detector
     drift_detector = DDM()
 
-    # Get stream runner
-    stream_runner = run_stream_lstm if lstm_model_idx else run_stream_nb
-
-    # Run stream
+    # Run streams
     print("Running trained stream...")
     trained_accuracies, trained_warnings, trained_drifts = stream_runner(
         stream_trained,
@@ -115,6 +119,21 @@ def drift_detection_different_embeddings(
         device=device,
     )
 
+    # Save the results
+    to_save = {
+        "trained_accuracies": trained_accuracies,
+        "trained_warnings": trained_warnings,
+        "trained_drifts": trained_drifts,
+        "untrained_accuracies": untrained_accuracies,
+        "untrained_warnings": untrained_warnings,
+        "untrained_drifts": untrained_drifts,
+    }
+
+    with open(os.path.join(PATH_RESULTS, save_name + ".pkl"), "wb") as f:
+        pickle.dump(to_save, f)
+
+    return to_save
+
 
 def drift_detection_gradual_noise(
     model_idx=0,
@@ -122,7 +141,7 @@ def drift_detection_gradual_noise(
     max_std=0.1,
     warm_start=30,
     transform=True,
-    print_every=10,
+    print_every=1,
     device="cpu",
 ):
     # Initialize the stream
@@ -179,13 +198,22 @@ def drift_detection_gradual_noise(
             print("Accuracy: {}".format(running_acc / print_every))
             running_acc = 0.0
 
-        # Add to drift detector
-        eddm.add_element(1 - metrics["accuracy"])
-        if eddm.detected_warning_zone():
-            print("Warning zone")
-        if eddm.detected_change():
-            print("Drift detected")
+            # Add to drift detector
+            eddm.add_element(1 - metrics["accuracy"])
+            if eddm.detected_warning_zone():
+                print("Warning zone")
+            if eddm.detected_change():
+                print("Drift detected")
 
 
 if __name__ == "__main__":
-    drift_detection_different_embeddings(batch_size=32, print_every=1, transform=False)
+    drift_detection_different_embeddings(
+        "diff_embed_lstm_wos_1_BERT_DISTILBERT",
+        lstm_model_idx=0,
+        batch_size=32,
+        transformer_model_trained=TransformerModel.BERT,
+        transformer_model_untrained=TransformerModel.DISTILBERT,
+        print_every=1,
+        transform=False,
+        device='cpu',
+    )

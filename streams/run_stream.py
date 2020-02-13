@@ -95,7 +95,7 @@ def run_stream_nb(
     warnings, drifts = [], []
     while stream.has_more_samples():
         # Get the batch from the stream
-        if stream.n_remaining_samples >= batch_size:
+        if stream.n_remaining_samples() >= batch_size:
             x_, y = stream.next_sample(batch_size)
         else:
             break
