@@ -66,14 +66,12 @@ def train_nb_wos_holdout(
             if stream.n_remaining_samples() >= batch_size:
                 x_, y = stream.next_sample(batch_size)
             else:
-                continue
+                break
 
             # Unpack x_ (we do not need the sequence lengths for NB)
             x = x_[0].numpy()
-            # Pad and reshape
-            x = np.pad(
-                x, ((0, 0), (0, utils.MAX_SEQ_LEN - x.shape[1]), (0, 0))
-            ).reshape(batch_size, -1)
+            # Take the maximum over the axis 1
+            x = np.amax(x, axis=1)
 
             # Partial fit the model
             model.partial_fit(x, y, classes=all_labels)
@@ -86,9 +84,7 @@ def train_nb_wos_holdout(
                 # Evaluate the model on the test set
                 x_test_, y_test = stream.get_test_set()
                 x_test = x_test_[0].numpy()
-                x_test = np.pad(
-                    x_test, ((0, 0), (0, utils.MAX_SEQ_LEN - x_test.shape[1]), (0, 0))
-                ).reshape(x_test.shape[0], -1)
+                x_test = np.amax(x_test, axis=1)
                 y_pred = model.predict(x_test)
                 test_metrics = get_metrics(y_pred, y_test, no_labels=stream.n_classes)
 
@@ -127,4 +123,4 @@ def train_nb_wos_holdout(
 
 
 if __name__ == "__main__":
-    _ = train_nb_wos_holdout(epochs=0, transform=False, print_every=1, device="cpu")
+    _ = train_nb_wos_holdout(epochs=1, transform=False, print_every=1, device="cpu")
