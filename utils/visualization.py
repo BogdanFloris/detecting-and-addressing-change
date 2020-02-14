@@ -8,7 +8,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from seaborn import FacetGrid
 
 PATH_RESULTS = os.path.join(Path(__file__).parents[1], "assets/results")
 PATH_FIGURES = os.path.join(Path(__file__).parents[1], "assets/figures")
