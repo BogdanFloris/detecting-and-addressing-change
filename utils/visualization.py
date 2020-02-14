@@ -21,7 +21,6 @@ def visualize_drift(drift_idx, title, filename_path):
     with open(DRIFT_RESULT[drift_idx], "rb") as f:
         results: dict = pickle.load(f)
 
-    type_colors = ["amber", "pale red"]
     accuracies = results["trained_accuracies"] + results["untrained_accuracies"]
     trained_accuracies = [acc for acc, _ in results["trained_accuracies"]]
     untrained_accuracies = [acc for acc, _ in results["untrained_accuracies"]]
