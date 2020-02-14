@@ -43,11 +43,7 @@ def visualize_drift(drift_idx, title, filename_path):
         )
     )
     df_scatter = pd.DataFrame(
-        dict(
-            time=time_idx,
-            accuracy=filtered_acc,
-            detection=detections,
-        )
+        dict(time=time_idx, accuracy=filtered_acc, detection=detections,)
     )
     sns.set(style="darkgrid")
 
@@ -69,7 +65,7 @@ def visualize_drift(drift_idx, title, filename_path):
         hue="detection",
         size="detection",
         sizes=[50.0, 100.0],
-        marker='X',
+        marker="X",
         palette=sns.xkcd_palette(colors=["amber", "pale red"]),
         data=df_scatter,
         ax=ax,

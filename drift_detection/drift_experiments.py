@@ -212,5 +212,5 @@ if __name__ == "__main__":
         transformer_model_untrained=TransformerModel.DISTILBERT,
         print_every=1,
         transform=False,
-        device='cpu',
+        device="cpu",
     )
