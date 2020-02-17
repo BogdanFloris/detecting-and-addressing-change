@@ -180,9 +180,9 @@ def drift_detection_gradual_noise(
         raise ValueError("No index provided for either the LSTM or the NB model.")
     if lstm_model_idx is not None:
         # Load the LSTM model
-        model = LSTM(
-            embedding_dim=utils.EMBEDDING_DIM, no_classes=stream.n_classes
-        ).to(device)
+        model = LSTM(embedding_dim=utils.EMBEDDING_DIM, no_classes=stream.n_classes).to(
+            device
+        )
         model.load_state_dict(
             torch.load(LSTM_MODELS[lstm_model_idx], map_location=device), strict=False
         )
@@ -223,23 +223,24 @@ def drift_detection_gradual_noise(
 
 
 if __name__ == "__main__":
-    # drift_detection_different_embeddings(
-    #     "diff_embed_lstm_wos_1_BERT_DISTILBERT",
-    #     lstm_model_idx=0,
-    #     batch_size=32,
-    #     transformer_model_trained=TransformerModel.BERT,
-    #     transformer_model_untrained=TransformerModel.DISTILBERT,
-    #     print_every=1,
-    #     transform=False,
-    #     device="cpu",
-    # )
-    drift_detection_gradual_noise(
-        "gradual_noise_random_std_1_lstm_wos_1_BERT",
-        lstm_model_idx=0,
+    drift_detection_different_embeddings(
+        "diff_embed_nb_wos_1_BERT_SCIBERT",
+        lstm_model_idx=None,
+        nb_model_idx=0,
         batch_size=32,
-        transformer_model=TransformerModel.BERT,
-        max_std=1,
-        transform=False,
+        transformer_model_trained=TransformerModel.BERT,
+        transformer_model_untrained=TransformerModel.SCIBERT,
         print_every=1,
+        transform=False,
         device="cpu",
     )
+    # drift_detection_gradual_noise(
+    #     "gradual_noise_random_std_1_lstm_wos_1_BERT",
+    #     lstm_model_idx=0,
+    #     batch_size=32,
+    #     transformer_model=TransformerModel.BERT,
+    #     max_std=1,
+    #     transform=False,
+    #     print_every=1,
+    #     device="cpu",
+    # )

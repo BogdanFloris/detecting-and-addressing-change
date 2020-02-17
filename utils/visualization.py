@@ -14,6 +14,8 @@ PATH_FIGURES = os.path.join(Path(__file__).parents[1], "assets/figures")
 ABRUPT_DRIFT_RESULT = [
     os.path.join(PATH_RESULTS, "diff_embed_lstm_wos_1_BERT_SCIBERT.pkl"),
     os.path.join(PATH_RESULTS, "diff_embed_lstm_wos_1_BERT_DISTILBERT.pkl"),
+    os.path.join(PATH_RESULTS, "diff_embed_nb_wos_1_BERT_SCIBERT.pkl"),
+    os.path.join(PATH_RESULTS, "diff_embed_nb_wos_1_BERT_DISTILBERT.pkl"),
 ]
 GRADUAL_DRIFT_RESULT = [
     os.path.join(PATH_RESULTS, "gradual_noise_random_std_3_lstm_wos_1_BERT.pkl"),
@@ -97,26 +99,16 @@ def visualize_gradual_drift(drift_idx, title, filename_path):
             else:
                 detections.append("Drift")
 
-    df_line = pd.DataFrame(
-        dict(
-            time=np.arange(len(accuracies)),
-            accuracy=accuracies,
-        )
-    )
+    df_line = pd.DataFrame(dict(time=np.arange(len(accuracies)), accuracy=accuracies,))
     df_scatter = pd.DataFrame(
-        dict(time=time_idx, accuracy=filtered_acc, detection=detections, )
+        dict(time=time_idx, accuracy=filtered_acc, detection=detections,)
     )
     sns.set(style="darkgrid")
 
     fig, ax = plt.subplots()
 
     sns.lineplot(
-        x="time",
-        y="accuracy",
-        data=df_line,
-        alpha=0.6,
-        linewidth=0.8,
-        ax=ax,
+        x="time", y="accuracy", data=df_line, alpha=0.6, linewidth=0.8, ax=ax,
     )
     sns.scatterplot(
         x="time",
@@ -137,13 +129,13 @@ def visualize_gradual_drift(drift_idx, title, filename_path):
 
 
 if __name__ == "__main__":
-    # visualize_abrupt_drift(
-    #     0,
-    #     "Concept drift over time (BERT-SCIBERT streams on LSTM model)",
-    #     os.path.join(PATH_FIGURES, "diff_embed_lstm_wos_1_BERT_SCIBERT.png"),
-    # )
-    visualize_gradual_drift(
-        2,
-        "Gradual drift over time (random noise max std 1.0, BERT, LSTM)",
-        os.path.join(PATH_FIGURES, "gradual_noise_random_std_1_lstm_wos_1_BERT.png"),
+    visualize_abrupt_drift(
+        3,
+        "Concept drift over time (BERT-DISTILBERT streams on Naive Bayes model)",
+        os.path.join(PATH_FIGURES, "diff_embed_nb_wos_1_BERT_DISTILBERT.png"),
     )
+    # visualize_gradual_drift(
+    #     2,
+    #     "Gradual drift over time (random noise max std 1.0, BERT, LSTM)",
+    #     os.path.join(PATH_FIGURES, "gradual_noise_random_std_1_lstm_wos_1_BERT.png"),
+    # )
