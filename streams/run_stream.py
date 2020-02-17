@@ -7,7 +7,14 @@ from utils.metrics import get_metrics
 
 
 def run_stream_lstm(
-    stream, model, drift_detector, batch_size=1, print_every=1, device="cpu"
+    stream,
+    model,
+    drift_detector,
+    batch_size=1,
+    print_every=1,
+    noise_stds=None,
+    warm_start=None,
+    device="cpu",
 ):
     """
     Runs a stream on the LSTM model using the given drift detector.
@@ -18,6 +25,9 @@ def run_stream_lstm(
         drift_detector: the drift detector used to detect concept drift
         batch_size (int): number of batches
         print_every (int): how often we print
+        noise_stds (list): a list of standard deviations for the gradual noise.
+            If none, no noise is added
+        warm_start (int): after which batch we start adding noise.
         device (str): cpu or cuda
 
     Returns:
@@ -29,13 +39,20 @@ def run_stream_lstm(
     accuracies = []
     while stream.has_more_samples():
         # Get the batch from the stream
-        if stream.n_remaining_samples() < batch_size:
-            x_, y = stream.next_sample(stream.n_remaining_samples())
-        else:
+        if stream.n_remaining_samples() >= batch_size:
             x_, y = stream.next_sample(batch_size)
+        else:
+            break
+
+        x, seq_lens = x_
+        # Add noise if we have standard deviations
+        if i >= warm_start and noise_stds is not None:
+            print("Adding noise")
+            std = torch.zeros_like(x) + noise_stds[i - warm_start]
+            noise = torch.normal(0, std)
+            x = x + noise
 
         # Move the batch to device
-        x, seq_lens = x_
         x = x.to(device)
         y = torch.from_numpy(y).to(device)
         seq_lens = torch.tensor(seq_lens).to(device)
@@ -70,7 +87,14 @@ def run_stream_lstm(
 
 
 def run_stream_nb(
-    stream, model, drift_detector, batch_size=1, print_every=1, device="cpu"
+    stream,
+    model,
+    drift_detector,
+    batch_size=1,
+    print_every=1,
+    noise_stds=None,
+    warm_start=None,
+    device="cpu",
 ):
     """
     Runs a stream on the LSTM model using the given drift detector.
@@ -81,6 +105,9 @@ def run_stream_nb(
         drift_detector: the drift detector used to detect concept drift
         batch_size (int): number of batches
         print_every (int): how often we print
+        noise_stds (list): a list of standard deviations for the gradual noise.
+            If none, no noise is added
+        warm_start (int): after which batch we start adding noise.
         device (str): cpu or cuda
 
     Returns:
@@ -101,6 +128,11 @@ def run_stream_nb(
         x = x_[0].numpy()
         # Take the maximum over the axis 1
         x = np.amax(x, axis=1)
+        # Add noise if we have standard deviations
+        if i >= warm_start and noise_stds is not None:
+            std = torch.zeros_like(x) + noise_stds[i - warm_start]
+            noise = torch.normal(0, std)
+            x = x + noise
 
         # Get the predictions and metrics
         y_pred = model.predict(x)
