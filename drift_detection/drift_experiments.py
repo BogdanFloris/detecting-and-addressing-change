@@ -223,24 +223,25 @@ def drift_detection_gradual_noise(
 
 
 if __name__ == "__main__":
-    drift_detection_different_embeddings(
-        "diff_embed_nb_wos_1_BERT_SCIBERT",
+    # drift_detection_different_embeddings(
+    #     "diff_embed_nb_wos_1_BERT_SCIBERT",
+    #     lstm_model_idx=None,
+    #     nb_model_idx=0,
+    #     batch_size=32,
+    #     transformer_model_trained=TransformerModel.BERT,
+    #     transformer_model_untrained=TransformerModel.SCIBERT,
+    #     print_every=1,
+    #     transform=False,
+    #     device="cpu",
+    # )
+    drift_detection_gradual_noise(
+        "gradual_noise_random_std_3_nb_wos_1_BERT",
         lstm_model_idx=None,
         nb_model_idx=0,
         batch_size=32,
-        transformer_model_trained=TransformerModel.BERT,
-        transformer_model_untrained=TransformerModel.SCIBERT,
-        print_every=1,
+        transformer_model=TransformerModel.BERT,
+        max_std=3,
         transform=False,
+        print_every=1,
         device="cpu",
     )
-    # drift_detection_gradual_noise(
-    #     "gradual_noise_random_std_1_lstm_wos_1_BERT",
-    #     lstm_model_idx=0,
-    #     batch_size=32,
-    #     transformer_model=TransformerModel.BERT,
-    #     max_std=1,
-    #     transform=False,
-    #     print_every=1,
-    #     device="cpu",
-    # )

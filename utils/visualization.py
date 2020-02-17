@@ -18,9 +18,12 @@ ABRUPT_DRIFT_RESULT = [
     os.path.join(PATH_RESULTS, "diff_embed_nb_wos_1_BERT_DISTILBERT.pkl"),
 ]
 GRADUAL_DRIFT_RESULT = [
-    os.path.join(PATH_RESULTS, "gradual_noise_random_std_3_lstm_wos_1_BERT.pkl"),
-    os.path.join(PATH_RESULTS, "gradual_noise_random_std_2_lstm_wos_1_BERT.pkl"),
     os.path.join(PATH_RESULTS, "gradual_noise_random_std_1_lstm_wos_1_BERT.pkl"),
+    os.path.join(PATH_RESULTS, "gradual_noise_random_std_2_lstm_wos_1_BERT.pkl"),
+    os.path.join(PATH_RESULTS, "gradual_noise_random_std_3_lstm_wos_1_BERT.pkl"),
+    os.path.join(PATH_RESULTS, "gradual_noise_random_std_1_nb_wos_1_BERT.pkl"),
+    os.path.join(PATH_RESULTS, "gradual_noise_random_std_2_nb_wos_1_BERT.pkl"),
+    os.path.join(PATH_RESULTS, "gradual_noise_random_std_3_nb_wos_1_BERT.pkl"),
 ]
 
 
@@ -129,13 +132,13 @@ def visualize_gradual_drift(drift_idx, title, filename_path):
 
 
 if __name__ == "__main__":
-    visualize_abrupt_drift(
-        3,
-        "Concept drift over time (BERT-DISTILBERT streams on Naive Bayes model)",
-        os.path.join(PATH_FIGURES, "diff_embed_nb_wos_1_BERT_DISTILBERT.png"),
-    )
-    # visualize_gradual_drift(
-    #     2,
-    #     "Gradual drift over time (random noise max std 1.0, BERT, LSTM)",
-    #     os.path.join(PATH_FIGURES, "gradual_noise_random_std_1_lstm_wos_1_BERT.png"),
+    # visualize_abrupt_drift(
+    #     3,
+    #     "Concept drift over time (BERT-DISTILBERT streams on Naive Bayes model)",
+    #     os.path.join(PATH_FIGURES, "diff_embed_nb_wos_1_BERT_DISTILBERT.png"),
     # )
+    visualize_gradual_drift(
+        5,
+        "Gradual drift over time (random noise max std 3.0, BERT, Naive Bayes)",
+        os.path.join(PATH_FIGURES, "gradual_noise_random_std_3_nb_wos_1_BERT.png"),
+    )

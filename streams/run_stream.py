@@ -130,8 +130,8 @@ def run_stream_nb(
         x = np.amax(x, axis=1)
         # Add noise if we have standard deviations
         if i >= warm_start and noise_stds is not None:
-            std = torch.zeros_like(x) + noise_stds[i - warm_start]
-            noise = torch.normal(0, std)
+            print("Adding noise")
+            noise = np.random.normal(0, noise_stds[i - warm_start], x.shape)
             x = x + noise
 
         # Get the predictions and metrics
