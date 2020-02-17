@@ -1,5 +1,5 @@
 """
-Experiments with drift detection
+Experiments with drift detection (supervised).
 """
 import os
 import sys
@@ -11,7 +11,7 @@ from pathlib import Path
 from joblib import load
 from skmultiflow.drift_detection import DDM
 from streams.stream_data import WOSStream
-from streams.run_stream import run_stream_lstm, run_stream_nb
+from streams.run_stream_supervised import run_stream_lstm, run_stream_nb
 from models.wos_classifier import LSTM
 from constants.transformers import TransformerModel
 
@@ -147,7 +147,9 @@ def drift_detection_gradual_noise(
     device="cpu",
 ):
     """
-
+    Performs an experiment with a stream on a model.
+    The stream is gradually perturbed with noise such that
+    it simulates gradual concept drift.
 
     Args:
         save_name (str): name of the file where the function saves the result

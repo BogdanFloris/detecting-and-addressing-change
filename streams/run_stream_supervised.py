@@ -1,5 +1,6 @@
 """
 Methods that run a stream against a model and drift detector.
+It gets the labels from the stream (supervised).
 """
 import torch
 import numpy as np
