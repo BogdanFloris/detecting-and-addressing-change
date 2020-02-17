@@ -4,6 +4,7 @@ The trained stream acts as a baseline model from where we get the labels,
 and the untrained stream is the one which is compared against the baseline.
 """
 import torch
+import numpy as np
 from utils.metrics import get_metrics
 
 
@@ -14,7 +15,7 @@ def run_lstm_streams(
     drift_detector,
     batch_size=32,
     print_every=1,
-    device="cpu"
+    device="cpu",
 ):
     """
     Runs the trained stream to collect the labels, and then runs the untrained stream
@@ -36,6 +37,7 @@ def run_lstm_streams(
     # Accuracies list (tuples of accuracy, and drift level)
     trained_accuracies = []
     labels = []
+    print("Running trained stream...")
     while stream_trained.has_more_samples():
         # Get the batch from the stream
         if stream_trained.n_remaining_samples() >= batch_size:
@@ -50,16 +52,14 @@ def run_lstm_streams(
 
         # Get predictions and add them to labels
         predictions, _ = model((x, seq_lens))
-        labels.append(predictions)
-        # Add 1.0 to the accuracies
-        trained_accuracies.append(1.0)
+        labels.append(predictions.argmax(dim=1))
 
         # Print if necessary
         if i % print_every == print_every - 1:
             print("Accuracy: {}".format(1.0))
 
             # Add to drift detector
-            drift_detector.add_element(0.0)
+            drift_detector.add_element(1 - np.random.uniform(low=0.9, high=1.0))
             if drift_detector.detected_warning_zone():
                 trained_accuracies.append((1.0, "W"))
                 print("Warning zone")
@@ -75,6 +75,7 @@ def run_lstm_streams(
     running_acc = 0.0
     # Accuracies list (tuples of accuracy, and drift level)
     untrained_accuracies = []
+    print("Running untrained stream...")
     while stream_untrained.has_more_samples():
         # Get the batch from the stream
         if stream_untrained.n_remaining_samples() >= batch_size:
@@ -86,13 +87,14 @@ def run_lstm_streams(
         x, seq_lens = x_
         # Move the batch to device
         x = x.to(device)
-        y = torch.from_numpy(y).to(device)
         seq_lens = torch.tensor(seq_lens).to(device)
 
         # Get predictions and accuracy
         predictions, _ = model((x, seq_lens))
         metrics = get_metrics(
-            labels=y, predictions=predictions, no_labels=stream_untrained.n_classes
+            labels=y.detach().numpy(),
+            predictions=predictions,
+            no_labels=stream_untrained.n_classes,
         )
         accuracy = metrics["accuracy"]
 

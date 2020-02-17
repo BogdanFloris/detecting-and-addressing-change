@@ -14,6 +14,10 @@ PATH_FIGURES = os.path.join(Path(__file__).parents[1], "assets/figures")
 ABRUPT_DRIFT_RESULT = [
     os.path.join(PATH_RESULTS, "diff_embed_lstm_wos_1_BERT_SCIBERT.pkl"),
     os.path.join(PATH_RESULTS, "diff_embed_lstm_wos_1_BERT_DISTILBERT.pkl"),
+    os.path.join(PATH_RESULTS, "diff_embed_lstm_wos_1_BERT_SCIBERT_unsupervised.pkl"),
+    os.path.join(
+        PATH_RESULTS, "diff_embed_lstm_wos_1_BERT_DISTILBERT_unsupervised.pkl"
+    ),
     os.path.join(PATH_RESULTS, "diff_embed_nb_wos_1_BERT_SCIBERT.pkl"),
     os.path.join(PATH_RESULTS, "diff_embed_nb_wos_1_BERT_DISTILBERT.pkl"),
 ]
@@ -35,13 +39,16 @@ def visualize_abrupt_drift(drift_idx, title, filename_path):
     trained_accuracies = [acc for acc, _ in results["trained_accuracies"]]
     untrained_accuracies = [acc for acc, _ in results["untrained_accuracies"]]
     time_idx, filtered_acc, detections = [], [], []
+    has_w, has_d = False, False
     for i, (acc, det) in enumerate(accuracies):
         if det != "N":
             time_idx.append(i)
             filtered_acc.append(acc)
             if det == "W":
+                has_w = True
                 detections.append("Warning")
             else:
+                has_d = True
                 detections.append("Drift")
 
     df_line = pd.DataFrame(
@@ -64,19 +71,27 @@ def visualize_abrupt_drift(drift_idx, title, filename_path):
         y="accuracy",
         hue="stream",
         data=df_line,
-        alpha=0.4,
+        alpha=0.5,
         palette=sns.xkcd_palette(colors=["denim blue", "medium green"]),
         linewidth=0.8,
         ax=ax,
     )
+    scatter_palette = []
+    sizes = []
+    if has_w:
+        scatter_palette.append("amber")
+        sizes.append(50.0)
+    if has_d:
+        scatter_palette.append("pale red")
+        sizes.append(100.0)
     sns.scatterplot(
         x="time",
         y="accuracy",
         hue="detection",
         size="detection",
-        sizes=[50.0, 100.0],
+        sizes=sizes,
         marker="X",
-        palette=sns.xkcd_palette(colors=["amber", "pale red"]),
+        palette=sns.xkcd_palette(colors=scatter_palette),
         data=df_scatter,
         ax=ax,
     )
@@ -132,13 +147,15 @@ def visualize_gradual_drift(drift_idx, title, filename_path):
 
 
 if __name__ == "__main__":
-    # visualize_abrupt_drift(
-    #     3,
-    #     "Concept drift over time (BERT-DISTILBERT streams on Naive Bayes model)",
-    #     os.path.join(PATH_FIGURES, "diff_embed_nb_wos_1_BERT_DISTILBERT.png"),
-    # )
-    visualize_gradual_drift(
-        5,
-        "Gradual drift over time (random noise max std 3.0, BERT, Naive Bayes)",
-        os.path.join(PATH_FIGURES, "gradual_noise_random_std_3_nb_wos_1_BERT.png"),
+    visualize_abrupt_drift(
+        2,
+        "Concept drift over time unsupervised (BERT-SCIBERT streams on LSTM model)",
+        os.path.join(
+            PATH_FIGURES, "diff_embed_lstm_wos_1_BERT_SCIBERT_unsupervised.png"
+        ),
     )
+    # visualize_gradual_drift(
+    #     5,
+    #     "Gradual drift over time (random noise max std 3.0, BERT, Naive Bayes)",
+    #     os.path.join(PATH_FIGURES, "gradual_noise_random_std_3_nb_wos_1_BERT.png"),
+    # )
