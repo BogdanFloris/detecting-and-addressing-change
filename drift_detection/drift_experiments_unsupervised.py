@@ -8,7 +8,7 @@ import pickle
 from joblib import load
 from skmultiflow.drift_detection import DDM
 from streams.stream_data import WOSStream
-from streams.run_stream_unsupervised import run_lstm_streams
+from streams.run_stream_unsupervised import run_lstm_streams, run_nb_streams
 from models.wos_classifier import LSTM
 from constants.transformers import TransformerModel
 from drift_detection.drift_experiments_supervised import (
@@ -89,7 +89,7 @@ def drift_detection_different_embeddings(
     elif nb_model_idx is not None:
         # Load the Naive Bayes model
         model = load(NB_MODELS[nb_model_idx])
-        stream_runner = None
+        stream_runner = run_nb_streams
 
     # Initialize drift detector
     drift_detector = DDM()
@@ -119,12 +119,12 @@ def drift_detection_different_embeddings(
 
 if __name__ == "__main__":
     drift_detection_different_embeddings(
-        "diff_embed_lstm_wos_1_BERT_SCIBERT_unsupervised",
-        lstm_model_idx=0,
-        nb_model_idx=None,
+        "diff_embed_nb_wos_1_BERT_DISTILBERT_unsupervised",
+        lstm_model_idx=None,
+        nb_model_idx=0,
         batch_size=32,
         transformer_model_trained=TransformerModel.BERT,
-        transformer_model_untrained=TransformerModel.SCIBERT,
+        transformer_model_untrained=TransformerModel.DISTILBERT,
         print_every=1,
         transform=False,
         device="cpu",

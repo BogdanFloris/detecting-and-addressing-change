@@ -20,6 +20,8 @@ ABRUPT_DRIFT_RESULT = [
     ),
     os.path.join(PATH_RESULTS, "diff_embed_nb_wos_1_BERT_SCIBERT.pkl"),
     os.path.join(PATH_RESULTS, "diff_embed_nb_wos_1_BERT_DISTILBERT.pkl"),
+    os.path.join(PATH_RESULTS, "diff_embed_nb_wos_1_BERT_SCIBERT_unsupervised.pkl"),
+    os.path.join(PATH_RESULTS, "diff_embed_nb_wos_1_BERT_DISTILBERT_unsupervised.pkl"),
 ]
 GRADUAL_DRIFT_RESULT = [
     os.path.join(PATH_RESULTS, "gradual_noise_random_std_1_lstm_wos_1_BERT.pkl"),
@@ -148,10 +150,10 @@ def visualize_gradual_drift(drift_idx, title, filename_path):
 
 if __name__ == "__main__":
     visualize_abrupt_drift(
-        2,
-        "Concept drift over time unsupervised (BERT-SCIBERT streams on LSTM model)",
+        7,
+        "Concept drift over time unsupervised (BERT-DISTILBERT streams on LSTM model)",
         os.path.join(
-            PATH_FIGURES, "diff_embed_lstm_wos_1_BERT_SCIBERT_unsupervised.png"
+            PATH_FIGURES, "diff_embed_nb_wos_1_BERT_DISTILBERT_unsupervised.png"
         ),
     )
     # visualize_gradual_drift(
