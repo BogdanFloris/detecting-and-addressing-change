@@ -31,6 +31,9 @@ GRADUAL_DRIFT_RESULT = [
     os.path.join(PATH_RESULTS, "gradual_noise_random_std_2_nb_wos_1_BERT.pkl"),
     os.path.join(PATH_RESULTS, "gradual_noise_random_std_3_nb_wos_1_BERT.pkl"),
 ]
+FINE_TUNING_RESULT = [
+    os.path.join(PATH_RESULTS, "fine_tuning_lstm_wos_1_BERT_DISTILBERT.pkl"),
+]
 
 
 def visualize_abrupt_drift(drift_idx, title, filename_path):
@@ -149,15 +152,16 @@ def visualize_gradual_drift(drift_idx, title, filename_path):
 
 
 if __name__ == "__main__":
-    visualize_abrupt_drift(
-        7,
-        "Concept drift over time unsupervised (BERT-DISTILBERT streams on LSTM model)",
-        os.path.join(
-            PATH_FIGURES, "diff_embed_nb_wos_1_BERT_DISTILBERT_unsupervised.png"
-        ),
-    )
+    # visualize_abrupt_drift(
+    #     7,
+    #     "Concept drift over time unsupervised (BERT-DISTILBERT streams on LSTM model)",
+    #     os.path.join(
+    #         PATH_FIGURES, "diff_embed_nb_wos_1_BERT_DISTILBERT_unsupervised.png"
+    #     ),
+    # )
     # visualize_gradual_drift(
     #     5,
     #     "Gradual drift over time (random noise max std 3.0, BERT, Naive Bayes)",
     #     os.path.join(PATH_FIGURES, "gradual_noise_random_std_3_nb_wos_1_BERT.png"),
     # )
+    pass

@@ -37,13 +37,12 @@ def drift_detection_different_embeddings(
     print_every=1,
     device="cpu",
 ):
-    """
-    Performs an experiment with two different streams on the same model.
+    """ Performs an experiment with two different streams on the same model.
     The first stream is the one with embeddings on which the model was trained on.
-    The second stream is one with embeddings that are different from the ones
+    The second stream is the one with embeddings that are different from the ones
     on which the model was trained on.
     The goal of the experiment is to find if the new embeddings can be substituted
-    for the old ones, which case no drift should occur, or otherwise they cannot be
+    for the old ones, in which case no drift should occur, or otherwise they cannot be
     used and drift will be detected.
 
     Args:
