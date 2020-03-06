@@ -33,6 +33,7 @@ def fine_tuning_different_embeddings(
     transformer_model_trained=None,
     transformer_model_untrained=None,
     batch_size=1,
+    no_batches=50,
     transform=False,
     print_every=1,
     device="cpu",
@@ -53,6 +54,7 @@ def fine_tuning_different_embeddings(
         transformer_model_trained (TransformerModel): the embeddings on which the model was trained
         transformer_model_untrained (TransformerModel): the embeddings against which the model is compared
         batch_size (int): the batch size for the stream
+        no_batches (int): the number of batches to fine tune on
         transform (bool): whether to transform the text or used pre transformed one
         print_every (int): how often to print
         device (str): cpu or cuda
@@ -125,7 +127,7 @@ def fine_tuning_different_embeddings(
     print("Fine-tuning...")
     stream_untrained.restart()
     fine_tuned_accuracies = fine_tune(
-        model, stream_untrained, no_batches=50, device=device,
+        model, stream_untrained, no_batches=no_batches, device=device,
     )
 
     # Save the results
@@ -143,10 +145,11 @@ def fine_tuning_different_embeddings(
 
 if __name__ == "__main__":
     fine_tuning_different_embeddings(
-        "fine_tuning_lstm_wos_1_BERT_DISTILBERT",
+        "fine_tuning_lstm_wos_1_BERT_DISTILBERT_100_batches",
         lstm_model_idx=0,
         nb_model_idx=None,
         batch_size=32,
+        no_batches=100,
         transformer_model_trained=TransformerModel.BERT,
         transformer_model_untrained=TransformerModel.DISTILBERT,
         print_every=1,

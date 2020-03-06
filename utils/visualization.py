@@ -33,6 +33,7 @@ GRADUAL_DRIFT_RESULT = [
 ]
 FINE_TUNING_RESULT = [
     os.path.join(PATH_RESULTS, "fine_tuning_lstm_wos_1_BERT_DISTILBERT_50_batches.pkl"),
+    os.path.join(PATH_RESULTS, "fine_tuning_lstm_wos_1_BERT_DISTILBERT_100_batches.pkl"),
 ]
 
 
@@ -250,7 +251,7 @@ if __name__ == "__main__":
     #     os.path.join(PATH_FIGURES, "gradual_noise_random_std_3_nb_wos_1_BERT.png"),
     # )
     visualize_fine_tuning(
-        0,
-        "Fine tuning (50 batches) accuracy after small abrupt drift (BERT-DISTILBERT-LSTM)",
-        os.path.join(PATH_FIGURES, "fine_tuning_lstm_wos_1_BERT_DISTILBERT_50_batches.png")
+        1,
+        "Fine tuning (100 batches) accuracy after small abrupt drift (BERT-DISTILBERT-LSTM)",
+        os.path.join(PATH_FIGURES, "fine_tuning_lstm_wos_1_BERT_DISTILBERT_100_batches.png")
     )
