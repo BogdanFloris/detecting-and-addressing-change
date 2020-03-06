@@ -32,8 +32,93 @@ GRADUAL_DRIFT_RESULT = [
     os.path.join(PATH_RESULTS, "gradual_noise_random_std_3_nb_wos_1_BERT.pkl"),
 ]
 FINE_TUNING_RESULT = [
-    os.path.join(PATH_RESULTS, "fine_tuning_lstm_wos_1_BERT_DISTILBERT.pkl"),
+    os.path.join(PATH_RESULTS, "fine_tuning_lstm_wos_1_BERT_DISTILBERT_50_batches.pkl"),
 ]
+
+
+def visualize_fine_tuning(fine_tuning_idx, title, filename_path):
+    with open(FINE_TUNING_RESULT[fine_tuning_idx], "rb") as f:
+        results: dict = pickle.load(f)
+
+    accuracies = (
+        results["trained_accuracies"]
+        + results["untrained_accuracies"]
+        + results["fine_tuned_accuracies"]
+    )
+    trained_accuracies = [acc for acc, _ in results["trained_accuracies"]]
+    untrained_accuracies = [acc for acc, _ in results["untrained_accuracies"]]
+    fine_tuned_accuracies = results["fine_tuned_accuracies"]
+    fine_tuned_start_index = len(trained_accuracies) + len(untrained_accuracies)
+
+    time_idx, filtered_acc, detections = [], [], []
+    has_w, has_d = False, False
+    for i in range(len(accuracies)):
+        if i >= fine_tuned_start_index:
+            acc, det = accuracies[i], "N"
+        else:
+            acc, det = accuracies[i]
+        if det != "N":
+            time_idx.append(i)
+            filtered_acc.append(acc)
+            if det == "W":
+                has_w = True
+                detections.append("Warning")
+            else:
+                has_d = True
+                detections.append("Drift")
+
+    df_line = pd.DataFrame(
+        dict(
+            time=np.arange(len(accuracies)),
+            accuracy=trained_accuracies + untrained_accuracies + fine_tuned_accuracies,
+            stream=["trained"] * len(trained_accuracies)
+            + ["untrained"] * len(untrained_accuracies)
+            + ["fine tuned"] * len(fine_tuned_accuracies),
+        )
+    )
+    df_scatter = pd.DataFrame(
+        dict(time=time_idx, accuracy=filtered_acc, detection=detections,)
+    )
+    sns.set(style="darkgrid")
+
+    fig, ax = plt.subplots()
+
+    sns.lineplot(
+        x="time",
+        y="accuracy",
+        hue="stream",
+        data=df_line,
+        alpha=0.5,
+        palette=sns.xkcd_palette(colors=["denim blue", "medium green", "medium purple"]),
+        linewidth=0.8,
+        ax=ax,
+    )
+
+    scatter_palette = []
+    sizes = []
+    if has_w:
+        scatter_palette.append("amber")
+        sizes.append(50.0)
+    if has_d:
+        scatter_palette.append("pale red")
+        sizes.append(100.0)
+    sns.scatterplot(
+        x="time",
+        y="accuracy",
+        hue="detection",
+        size="detection",
+        sizes=sizes,
+        marker="X",
+        palette=sns.xkcd_palette(colors=scatter_palette),
+        data=df_scatter,
+        ax=ax,
+    )
+
+    plt.title(title)
+    plt.ylim((-0.05, 1.05))
+    plt.tight_layout()
+    plt.savefig(filename_path)
+    plt.show()
 
 
 def visualize_abrupt_drift(drift_idx, title, filename_path):
@@ -164,4 +249,8 @@ if __name__ == "__main__":
     #     "Gradual drift over time (random noise max std 3.0, BERT, Naive Bayes)",
     #     os.path.join(PATH_FIGURES, "gradual_noise_random_std_3_nb_wos_1_BERT.png"),
     # )
-    pass
+    visualize_fine_tuning(
+        0,
+        "Fine tuning (50 batches) accuracy after small abrupt drift (BERT-DISTILBERT-LSTM)",
+        os.path.join(PATH_FIGURES, "fine_tuning_lstm_wos_1_BERT_DISTILBERT_50_batches.png")
+    )
