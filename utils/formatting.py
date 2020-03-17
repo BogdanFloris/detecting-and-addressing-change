@@ -4,12 +4,13 @@ Utilities
 import re
 
 
-def clean_text(text: str) -> str:
+def clean_text(text: str, remove_punctuation=False) -> str:
     """Cleans the inputted text based on the rules given in the comments.
     Code taken from: https://github.com/kk7nc/Text_Classification/
 
     Args:
         text (str): the text to be cleaned
+        remove_punctuation (bool): whether to remove punctuation or not
 
     Returns:
         the cleaned text
@@ -25,6 +26,8 @@ def clean_text(text: str) -> str:
         {r"[ \t]*<[^<]*?/?>": u""},  # remove remaining tags
         {r"^\s+": u""},  # remove spaces at the beginning
     ]
+    if remove_punctuation:
+        rules.append({r"[.,\/#!$%\^&\*;:{}=\-_`~()]": u""})
     for rule in rules:
         for (k, v) in rule.items():
             regex = re.compile(k)
