@@ -29,6 +29,7 @@ class AdaptationDataset:
             the source and the target embeddings. Can pick two options
              - first: picks the first token embedding
              - average: averages all the token embeddings
+             - max: picks the maximum over the token axis
         device (str): cuda or cpu
 
     """
@@ -51,10 +52,10 @@ class AdaptationDataset:
             method,
         )
         # Initialize method
-        if method in ["first", "average"]:
+        if method in ["first", "average", "max"]:
             self.method = method
         else:
-            raise ValueError("Must pick method first or average.")
+            raise ValueError("Must pick method first, average, or max.")
 
         if os.path.isfile(os.path.join(PATH, self.name)):
             # Save already exists, so load
@@ -137,10 +138,13 @@ class AdaptationDataset:
             if self.method == "first":
                 self.source[i] = source_embeddings[0]
                 self.target[i] = target_embeddings[0]
-            else:
+            elif self.method == "average":
                 self.source[i] = np.mean(source_embeddings, axis=0)
                 self.target[i] = np.mean(target_embeddings, axis=0)
+            elif self.method == "max":
+                self.source[i] = np.max(source_embeddings, axis=0)
+                self.target[i] = np.max(target_embeddings, axis=0)
 
 
 if __name__ == "__main__":
-    ad = AdaptationDataset()
+    ad = AdaptationDataset(method="max")
