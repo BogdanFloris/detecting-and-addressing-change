@@ -9,6 +9,7 @@ joblib==0.14.1
 pandas==1.0.0
 matplotlib==3.1.2
 seaborn==0.10.0
+scipy==1.4.1
 
 # testing requirements
 pytest==5.3.4
