@@ -38,8 +38,8 @@ class AdaptationDataset:
         self,
         version=1,
         x_most_common=5000,
-        transformer_model_source=TransformerModel.BERT,
-        transformer_model_target=TransformerModel.SCIBERT,
+        transformer_model_source=TransformerModel.SCIBERT,
+        transformer_model_target=TransformerModel.BERT,
         method="first",
         device="cpu",
     ):
@@ -147,4 +147,4 @@ class AdaptationDataset:
 
 
 if __name__ == "__main__":
-    ad = AdaptationDataset(method="max")
+    ad = AdaptationDataset(method="average")

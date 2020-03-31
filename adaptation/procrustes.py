@@ -17,10 +17,10 @@ class Procrustes:
         self.source, self.target = dataset.source, dataset.target
         self.mapping = None
         print("Creating the Procrustes mapping...")
-        self.procrustes()
+        self.create_mapping()
         del dataset
 
-    def procrustes(self):
+    def create_mapping(self):
         """ Applies the procrustes method:
         https://en.wikipedia.org/wiki/Orthogonal_Procrustes_problem
         on the source and target embeddings then saves the result
