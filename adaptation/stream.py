@@ -57,6 +57,7 @@ def run_stream_with_mapping(
         running_acc += accuracy
         if i % print_every == print_every - 1:
             print("Accuracy: {}".format(running_acc / print_every))
+            accuracies.append(running_acc / print_every)
             running_acc = 0.0
 
         i += 1

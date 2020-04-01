@@ -106,6 +106,8 @@ def procrustes_experiment(
     )
 
     # Run the stream with a mapping
+    stream_untrained.restart()
+    print("Running mapping stream...")
     mapping_accuracies = run_stream_with_mapping(
         stream_untrained,
         model,
@@ -130,7 +132,7 @@ def procrustes_experiment(
 if __name__ == "__main__":
     procrustes_experiment(
         "procrustes_lstm_wos_1_BERT_SCIBERT_5000_words",
-        method="max",
+        method="average",
         batch_size=32,
         transform=False,
     )
