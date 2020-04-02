@@ -30,7 +30,7 @@ def run_stream_with_mapping(
     i = 0
     running_acc = 0.0
     accuracies = []
-    mapping = torch.tensor(mapping.mapping)
+    mapping = torch.tensor(mapping.mapping, dtype=torch.float)
 
     # Run stream
     while stream.has_more_samples():
@@ -42,7 +42,7 @@ def run_stream_with_mapping(
 
         x, seq_lens = x_
         # Put in the mapping to transform to the other embedding space
-        x = x.matmul(mapping.type(torch.FloatTensor)).to(device)
+        x = x.matmul(mapping.T).to(device)
         y = torch.from_numpy(y).to(device)
         seq_lens = torch.tensor(seq_lens).to(device)
 

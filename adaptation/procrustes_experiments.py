@@ -132,7 +132,7 @@ def procrustes_experiment(
 if __name__ == "__main__":
     procrustes_experiment(
         "procrustes_lstm_wos_1_BERT_SCIBERT_5000_words",
-        method="average",
+        method="first",
         batch_size=32,
         transform=False,
     )
