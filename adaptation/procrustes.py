@@ -57,10 +57,10 @@ class Procrustes:
         df = pd.DataFrame(
             np.vstack([self.source, self.target, mapping]), columns=feat_cols
         )
-        df["label"] = None
-        df.loc[: self.source.shape[0], "label"] = "SCIBERT"
-        df.loc[self.source.shape[0] : 2 * self.source.shape[0], "label"] = "BERT"
-        df.loc[2 * self.source.shape[0] :, "label"] = "Mapping SCIBERT to BERT"
+        df["embedding"] = None
+        df.loc[: self.source.shape[0], "embedding"] = "SCIBERT"
+        df.loc[self.source.shape[0] : 2 * self.source.shape[0], "embedding"] = "BERT"
+        df.loc[2 * self.source.shape[0] :, "embedding"] = "Mapping SCIBERT to BERT"
 
         if method == "pca":
             print("Running PCA")
@@ -78,7 +78,7 @@ class Procrustes:
         sns.scatterplot(
             x="dim-one",
             y="dim-two",
-            hue="label",
+            hue="embedding",
             palette=sns.color_palette("hls", 3),
             data=df,
             legend="full",
@@ -94,7 +94,7 @@ if __name__ == "__main__":
     proc = Procrustes()
     proc.visualize_mapping(
         save_name=os.path.join(
-            PATH_FIGURES, "mapping_vis_tsne_SCIBERT_BERT_average.png"
+            PATH_FIGURES, "mapping_vis_pca_SCIBERT_BERT_average.png"
         ),
-        method="tsne",
+        method="pca",
     )
