@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from abc import ABC, abstractmethod
 from pathlib import Path
 from scipy.linalg import svd
 from sklearn.decomposition import PCA
@@ -17,29 +18,21 @@ from adaptation.dataset import AdaptationDataset, AdaptationDatasetFullAbstracts
 PATH_FIGURES = os.path.join(Path(__file__).parents[1], "assets/figures")
 
 
-class Procrustes:
-    def __init__(self, abstracts=False, method="average"):
+class Mapping(ABC):
+    def __init__(self, abstracts=False, method="average", x_most_common=5000):
         if abstracts:
             dataset = AdaptationDatasetFullAbstracts(method=method)
         else:
-            dataset = AdaptationDataset(method=method)
+            dataset = AdaptationDataset(method=method, x_most_common=x_most_common)
         self.source, self.target = dataset.source, dataset.target
         self.mapping = None
-        print("Creating the Procrustes mapping...")
+        print("Creating mapping...")
         self.create_mapping()
         del dataset
 
+    @abstractmethod
     def create_mapping(self):
-        """ Applies the procrustes method:
-        https://en.wikipedia.org/wiki/Orthogonal_Procrustes_problem
-        on the source and target embeddings then saves the result
-        to self.mapping.
-        """
-        to_decompose = self.target.transpose().dot(self.source)
-        # noinspection PyTupleAssignmentBalance
-        u, s, v_t = svd(to_decompose, full_matrices=True)
-        self.mapping = u.dot(v_t)
-        assert self.mapping.shape == (constants.EMBEDDING_DIM, constants.EMBEDDING_DIM)
+        raise NotImplementedError()
 
     def visualize_mapping(self, save_name, method="pca"):
         """ Visualizes the source, target and mapped embeddings using
@@ -88,6 +81,23 @@ class Procrustes:
         plt.tight_layout()
         plt.savefig(save_name)
         plt.show()
+
+
+class Procrustes(Mapping):
+    def __init__(self, abstracts=False, method="average", x_most_common=5000):
+        super().__init__(abstracts, method, x_most_common)
+
+    def create_mapping(self):
+        """ Applies the procrustes method:
+        https://en.wikipedia.org/wiki/Orthogonal_Procrustes_problem
+        on the source and target embeddings then saves the result
+        to self.mapping.
+        """
+        to_decompose = self.target.transpose().dot(self.source)
+        # noinspection PyTupleAssignmentBalance
+        u, s, v_t = svd(to_decompose, full_matrices=True)
+        self.mapping = u.dot(v_t)
+        assert self.mapping.shape == (constants.EMBEDDING_DIM, constants.EMBEDDING_DIM)
 
 
 if __name__ == "__main__":

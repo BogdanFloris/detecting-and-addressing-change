@@ -7,7 +7,7 @@ from pathlib import Path
 import torch
 import utils
 from skmultiflow.drift_detection import DDM
-from adaptation.procrustes import Procrustes
+from adaptation.mapping import Procrustes
 from adaptation.stream import run_stream_with_mapping
 from models.wos_classifier import LSTM
 from streams.stream_data import WOSStream
@@ -70,7 +70,7 @@ def procrustes_experiment(
     )
     stream_untrained.prepare_for_use()
     # Initialize the adaptation dataset
-    linear_mapping = Procrustes(method=method)
+    linear_mapping = Procrustes(method=method, x_most_common=10000)
     # Load the LSTM model
     model = LSTM(
         embedding_dim=utils.EMBEDDING_DIM, no_classes=stream_trained.n_classes
@@ -131,8 +131,8 @@ def procrustes_experiment(
 
 if __name__ == "__main__":
     procrustes_experiment(
-        "procrustes_lstm_wos_1_BERT_SCIBERT_5000_words",
-        method="first",
+        "procrustes_lstm_wos_1_BERT_SCIBERT_10000_words",
+        method="average",
         batch_size=32,
         transform=False,
     )

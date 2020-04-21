@@ -124,7 +124,7 @@ class AdaptationDataset:
         x_most_common=5000,
         transformer_model_source=TransformerModel.SCIBERT,
         transformer_model_target=TransformerModel.BERT,
-        method="first",
+        method="average",
         device="cpu",
     ):
         # Initialize the name of the dataset
@@ -231,4 +231,4 @@ class AdaptationDataset:
 
 
 if __name__ == "__main__":
-    ad = AdaptationDatasetFullAbstracts()
+    ad = AdaptationDataset(x_most_common=10000)

@@ -3,7 +3,7 @@
 import torch
 from streams.stream_data import WOSStream
 from models.wos_classifier import LSTM
-from adaptation.procrustes import Procrustes
+from adaptation.mapping import Procrustes
 from utils.metrics import get_metrics
 
 
