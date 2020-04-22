@@ -2,20 +2,25 @@
 source and target embeddings.
 """
 import os
+import torch
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from abc import ABC, abstractmethod
 from pathlib import Path
+from torch import nn, optim
+from torch.utils import data
 from scipy.linalg import svd
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 from utils import constants
+from models.adaptation_models import MLP
 from adaptation.dataset import AdaptationDataset, AdaptationDatasetFullAbstracts
 
 
 PATH_FIGURES = os.path.join(Path(__file__).parents[1], "assets/figures")
+PATH_MODELS = os.path.join(Path(__file__).parents[1], "assets/models")
 
 
 class Mapping(ABC):
@@ -26,13 +31,14 @@ class Mapping(ABC):
             dataset = AdaptationDataset(method=method, x_most_common=x_most_common)
         self.source, self.target = dataset.source, dataset.target
         self.mapping = None
-        print("Creating mapping...")
-        self.create_mapping()
-        del dataset
 
     @abstractmethod
     def create_mapping(self):
         raise NotImplementedError()
+
+    @staticmethod
+    def mse_loss(source, target):
+        return (np.square(source - target)).mean()
 
     def visualize_mapping(self, save_name, method="pca"):
         """ Visualizes the source, target and mapped embeddings using
@@ -43,7 +49,10 @@ class Mapping(ABC):
             raise ValueError("Method should be either pca or tsne.")
 
         # Construct the mapping dataset
-        mapping = np.matmul(self.source, self.mapping.T)
+        if type(self.mapping) == np.ndarray:
+            mapping = np.matmul(self.source, self.mapping.T)
+        else:
+            mapping = self.mapping(self.source).detach().numpy()
 
         # Construct the Data Frame
         feat_cols = ["feat" + str(i) for i in range(self.source.shape[1])]
@@ -86,25 +95,94 @@ class Mapping(ABC):
 class Procrustes(Mapping):
     def __init__(self, abstracts=False, method="average", x_most_common=5000):
         super().__init__(abstracts, method, x_most_common)
+        print("Creating Procrustes mapping")
+        self.create_mapping()
 
-    def create_mapping(self):
+    def create_mapping(self, iterations=10):
         """ Applies the procrustes method:
         https://en.wikipedia.org/wiki/Orthogonal_Procrustes_problem
         on the source and target embeddings then saves the result
         to self.mapping.
         """
+        print(
+            "MSE loss before mapping: {}".format(
+                self.mse_loss(self.source, self.target)
+            )
+        )
         to_decompose = self.target.transpose().dot(self.source)
         # noinspection PyTupleAssignmentBalance
         u, s, v_t = svd(to_decompose, full_matrices=True)
         self.mapping = u.dot(v_t)
         assert self.mapping.shape == (constants.EMBEDDING_DIM, constants.EMBEDDING_DIM)
+        print(
+            "MSE loss after mapping: {}".format(
+                self.mse_loss(self.map(self.source), self.target)
+            )
+        )
+
+    def map(self, inputs):
+        return inputs.dot(self.mapping.T)
+
+
+class MLPMapping(Mapping):
+    def __init__(self, abstracts=False, method="average", x_most_common=10000):
+        super().__init__(abstracts, method, x_most_common)
+        self.name = "mlp_mapping_{}_{}".format(method, x_most_common)
+        if not os.path.isdir(os.path.join(PATH_MODELS, self.name)):
+            os.makedirs(os.path.join(PATH_MODELS, self.name))
+        self.model_path = os.path.join(os.path.join(PATH_MODELS, self.name), "model.pt")
+        self.mapping = MLP(embedding_dim=self.source.shape[1])
+        if not os.path.exists(self.model_path):
+            print("Training MLP mapping")
+            self.create_mapping()
+        else:
+            print("Loading MLP mapping")
+            self.mapping.load_state_dict(torch.load(self.model_path))
+
+    def create_mapping(self, epochs=10, lr=0.001, batch_size=50):
+        criterion = nn.MSELoss()
+        optimizer = optim.Adam(self.mapping.parameters(), lr=lr)
+        dataset = data.TensorDataset(
+            torch.tensor(self.source, dtype=torch.float),
+            torch.tensor(self.target, dtype=torch.float),
+        )
+        data_loader = data.DataLoader(dataset, batch_size=batch_size, shuffle=True)
+        print(
+            "MSE loss before mapping: {}".format(
+                self.mse_loss(self.source, self.target)
+            )
+        )
+        for epoch in range(epochs):
+            for i, (x, y) in enumerate(data_loader):
+                optimizer.zero_grad()
+                predictions = self.mapping(x)
+                loss = criterion(predictions, y)
+                loss.backward()
+                optimizer.step()
+                if i % 10 == 0:
+                    with torch.no_grad():
+                        train_loss = self.mse_loss(
+                            self.mapping(self.source).detach().numpy(), self.target
+                        )
+                    print(
+                        "[Epoch {}/{}, Iter {}/{}] train loss: {}, test loss: {}".format(
+                            epoch + 1,
+                            epochs,
+                            i + 1,
+                            len(data_loader),
+                            loss.item(),
+                            train_loss,
+                        )
+                    )
+
+        torch.save(self.mapping.state_dict(), self.model_path)
 
 
 if __name__ == "__main__":
-    proc = Procrustes()
-    proc.visualize_mapping(
+    m = MLPMapping()
+    m.visualize_mapping(
         save_name=os.path.join(
-            PATH_FIGURES, "mapping_vis_pca_SCIBERT_BERT_average.png"
+            PATH_FIGURES, "mlp_mapping_vis_tsne_SCIBERT_BERT_average.png"
         ),
-        method="pca",
+        method="tsne",
     )

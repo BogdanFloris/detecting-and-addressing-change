@@ -48,6 +48,9 @@ PROCRUSTES_RESULT = [
     os.path.join(
         PATH_RESULTS, "procrustes_lstm_wos_1_BERT_SCIBERT_10000_words_average.pkl"
     ),
+    os.path.join(
+        PATH_RESULTS, "mlp_mapping_lstm_wos_1_BERT_SCIBERT_10000_words_average.pkl"
+    ),
 ]
 
 
@@ -361,9 +364,9 @@ if __name__ == "__main__":
     #     ),
     # )
     visualize_mapping(
-        3,
-        "Adaptation using Procrustes mapping after abrupt drift (BERT-SCIBERT-LSTM)",
+        4,
+        "Adaptation using MLP mapping after abrupt drift (BERT-SCIBERT-LSTM)",
         os.path.join(
-            PATH_FIGURES, "procrustes_lstm_wos_1_BERT_SCIBERT_10000_words_average.png"
+            PATH_FIGURES, "mlp_mapping_lstm_wos_1_BERT_SCIBERT_10000_words_average.png"
         ),
     )

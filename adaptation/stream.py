@@ -1,9 +1,10 @@
 """ Method to run a stream with a mapping.
 """
 import torch
+import numpy as np
 from streams.stream_data import WOSStream
 from models.wos_classifier import LSTM
-from adaptation.mapping import Procrustes
+from adaptation.mapping import Mapping
 from utils.metrics import get_metrics
 
 
@@ -17,7 +18,7 @@ def run_stream_with_mapping(
     Args:
         stream (WOSStream): the Web of Science stream to be run
         model (LSTM): the LSTM model to evaluate
-        mapping (Procrustes): the mapping used to change embedding spaces
+        mapping (Mapping): the mapping used to change embedding spaces
         batch_size (int): number of batches
         print_every (int): how often we print
         device (str): cpu or cuda
@@ -30,7 +31,11 @@ def run_stream_with_mapping(
     i = 0
     running_acc = 0.0
     accuracies = []
-    mapping = torch.tensor(mapping.mapping, dtype=torch.float)
+    if type(mapping) == np.ndarray:
+        mapping = torch.tensor(mapping.mapping, dtype=torch.float)
+    else:
+        mapping = mapping.mapping
+        mapping.eval()
 
     # Run stream
     while stream.has_more_samples():
@@ -42,7 +47,12 @@ def run_stream_with_mapping(
 
         x, seq_lens = x_
         # Put in the mapping to transform to the other embedding space
-        x = x.matmul(mapping.T).to(device)
+        if type(mapping) == torch.tensor:
+            x = x.matmul(mapping.T).to(device)
+        else:
+            with torch.no_grad():
+                x = mapping(x)
+
         y = torch.from_numpy(y).to(device)
         seq_lens = torch.tensor(seq_lens).to(device)
 

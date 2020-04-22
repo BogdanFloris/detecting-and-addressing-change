@@ -7,7 +7,7 @@ from pathlib import Path
 import torch
 import utils
 from skmultiflow.drift_detection import DDM
-from adaptation.mapping import Procrustes
+from adaptation.mapping import Procrustes, MLPMapping
 from adaptation.stream import run_stream_with_mapping
 from models.wos_classifier import LSTM
 from streams.stream_data import WOSStream
@@ -27,6 +27,7 @@ def procrustes_experiment(
     lstm_model_idx=0,
     transformer_model_trained=TransformerModel.BERT,
     transformer_model_untrained=TransformerModel.SCIBERT,
+    linear=False,
     method="average",
     batch_size=1,
     transform=True,
@@ -41,6 +42,7 @@ def procrustes_experiment(
         lstm_model_idx (int): the index of the LSTM model (from the available ones)
         transformer_model_trained (TransformerModel): the embeddings on which the model was trained
         transformer_model_untrained (TransformerModel): the embeddings against which the model is compared
+        linear (bool): False
         method (str): method parameter used for picking the adaptation dataset
         batch_size (int): the batch size for the stream
         transform (bool): whether to transform the text or used pre transformed one
@@ -70,7 +72,10 @@ def procrustes_experiment(
     )
     stream_untrained.prepare_for_use()
     # Initialize the adaptation dataset
-    linear_mapping = Procrustes(method=method, x_most_common=10000)
+    if linear:
+        mapping = Procrustes(method=method, x_most_common=10000)
+    else:
+        mapping = MLPMapping(method=method, x_most_common=10000)
     # Load the LSTM model
     model = LSTM(
         embedding_dim=utils.EMBEDDING_DIM, no_classes=stream_trained.n_classes
@@ -111,7 +116,7 @@ def procrustes_experiment(
     mapping_accuracies = run_stream_with_mapping(
         stream_untrained,
         model,
-        linear_mapping,
+        mapping,
         batch_size=batch_size,
         print_every=print_every,
     )
@@ -131,7 +136,7 @@ def procrustes_experiment(
 
 if __name__ == "__main__":
     procrustes_experiment(
-        "procrustes_lstm_wos_1_BERT_SCIBERT_10000_words",
+        "mlp_mapping_lstm_wos_1_BERT_SCIBERT_10000_words",
         method="average",
         batch_size=32,
         transform=False,
