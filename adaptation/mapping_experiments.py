@@ -22,7 +22,7 @@ LSTM_MODELS = [
 ]
 
 
-def procrustes_experiment(
+def mapping_experiment(
     save_name,
     lstm_model_idx=0,
     transformer_model_trained=TransformerModel.BERT,
@@ -135,7 +135,7 @@ def procrustes_experiment(
 
 
 if __name__ == "__main__":
-    procrustes_experiment(
+    mapping_experiment(
         "mlp_mapping_lstm_wos_1_BERT_SCIBERT_10000_words",
         method="average",
         batch_size=32,

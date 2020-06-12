@@ -125,13 +125,16 @@ class Procrustes(Mapping):
 
 
 class MLPMapping(Mapping):
-    def __init__(self, abstracts=False, method="average", x_most_common=10000):
+    def __init__(self, abstracts=False, method="average", x_most_common=10000, dropout=None):
         super().__init__(abstracts, method, x_most_common)
-        self.name = "mlp_mapping_{}_{}".format(method, x_most_common)
+        if dropout:
+            self.name = "mlp_mapping_{}_{}_{}".format(method, x_most_common, dropout)
+        else:
+            self.name = "mlp_mapping_{}_{}".format(method, x_most_common)
         if not os.path.isdir(os.path.join(PATH_MODELS, self.name)):
             os.makedirs(os.path.join(PATH_MODELS, self.name))
         self.model_path = os.path.join(os.path.join(PATH_MODELS, self.name), "model.pt")
-        self.mapping = MLP(embedding_dim=self.source.shape[1])
+        self.mapping = MLP(embedding_dim=self.source.shape[1], dropout=dropout)
         if not os.path.exists(self.model_path):
             print("Training MLP mapping")
             self.create_mapping()
@@ -179,10 +182,10 @@ class MLPMapping(Mapping):
 
 
 if __name__ == "__main__":
-    m = MLPMapping()
+    m = MLPMapping(dropout=0.4)
     m.visualize_mapping(
         save_name=os.path.join(
-            PATH_FIGURES, "mlp_mapping_vis_tsne_SCIBERT_BERT_average.png"
+            PATH_FIGURES, "mlp_mapping_vis_pca_SCIBERT_BERT_average_dropout.png"
         ),
-        method="tsne",
+        method="pca",
     )

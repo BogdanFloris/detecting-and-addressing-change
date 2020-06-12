@@ -7,11 +7,15 @@ from utils import constants
 
 
 class MLP(nn.Module):
-    def __init__(self, embedding_dim=constants.EMBEDDING_DIM):
+    def __init__(self, embedding_dim=constants.EMBEDDING_DIM, dropout=None):
         super().__init__()
         self.embedding_dim = embedding_dim
         self.fc1 = nn.Linear(in_features=embedding_dim, out_features=embedding_dim)
         self.relu = nn.ReLU()
+        if dropout:
+            self.dropout = nn.Dropout(dropout)
+        else:
+            self.dropout = None
         self.fc2 = nn.Linear(in_features=embedding_dim, out_features=embedding_dim)
 
     def forward(self, inputs):
@@ -27,13 +31,16 @@ class MLP(nn.Module):
         if type(inputs) == np.ndarray:
             inputs = torch.tensor(inputs, dtype=torch.float)
         assert inputs.shape[-1] == self.embedding_dim
-        out = self.fc2(self.relu(self.fc1(inputs)))
+        out = self.relu(self.fc1(inputs))
+        if self.dropout:
+            out = self.dropout(out)
+        out = self.fc2(out)
         assert out.shape == inputs.shape
         return out
 
 
 if __name__ == "__main__":
-    model = MLP()
+    model = MLP(dropout=0.5)
     model.eval()
     x1 = np.random.random((32, 500, 768))
     x2 = np.random.random((5000, 768))
