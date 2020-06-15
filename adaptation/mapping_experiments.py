@@ -137,7 +137,7 @@ def mapping_experiment(
 if __name__ == "__main__":
     mapping_experiment(
         "mlp_mapping_lstm_wos_1_BERT_SCIBERT_10000_words",
-        method="average",
+        method="max",
         batch_size=32,
         transform=False,
     )

@@ -182,10 +182,10 @@ class MLPMapping(Mapping):
 
 
 if __name__ == "__main__":
-    m = MLPMapping(dropout=0.4)
-    m.visualize_mapping(
-        save_name=os.path.join(
-            PATH_FIGURES, "mlp_mapping_vis_pca_SCIBERT_BERT_average_dropout.png"
-        ),
-        method="pca",
-    )
+    m = MLPMapping(method="max")
+    # m.visualize_mapping(
+    #     save_name=os.path.join(
+    #         PATH_FIGURES, "mlp_mapping_vis_pca_SCIBERT_BERT_average_dropout.png"
+    #     ),
+    #     method="pca",
+    # )

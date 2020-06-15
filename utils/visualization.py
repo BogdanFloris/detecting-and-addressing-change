@@ -54,6 +54,9 @@ PROCRUSTES_RESULT = [
     os.path.join(
         PATH_RESULTS, "mlp_mapping_lstm_wos_1_BERT_SCIBERT_10000_words_average.pkl"
     ),
+    os.path.join(
+        PATH_RESULTS, "mlp_mapping_lstm_wos_1_BERT_SCIBERT_10000_words_max.pkl"
+    ),
 ]
 
 
@@ -359,17 +362,17 @@ if __name__ == "__main__":
     #     "Gradual drift over time (random noise max std 3.0, BERT, Naive Bayes)",
     #     os.path.join(PATH_FIGURES, "gradual_noise_random_std_3_nb_wos_1_BERT.png"),
     # )
-    visualize_fine_tuning(
-        2,
-        "Fine tuning (200 batches) accuracy after small abrupt drift (BERT-DISTILBERT-LSTM)",
-        os.path.join(
-            PATH_FIGURES, "fine_tuning_lstm_wos_1_BERT_DISTILBERT_200_batches.png"
-        ),
-    )
-    # visualize_mapping(
-    #     4,
-    #     "Adaptation using MLP mapping after abrupt drift (BERT-SCIBERT-LSTM)",
+    # visualize_fine_tuning(
+    #     2,
+    #     "Fine tuning (200 batches) accuracy after small abrupt drift (BERT-DISTILBERT-LSTM)",
     #     os.path.join(
-    #         PATH_FIGURES, "mlp_mapping_lstm_wos_1_BERT_SCIBERT_10000_words_average.png"
+    #         PATH_FIGURES, "fine_tuning_lstm_wos_1_BERT_DISTILBERT_200_batches.png"
     #     ),
     # )
+    visualize_mapping(
+        5,
+        "Adaptation using MLP mapping after abrupt drift (BERT-SCIBERT-LSTM)",
+        os.path.join(
+            PATH_FIGURES, "mlp_mapping_lstm_wos_1_BERT_SCIBERT_10000_words_max.png"
+        ),
+    )
