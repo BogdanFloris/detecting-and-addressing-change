@@ -145,11 +145,11 @@ def fine_tuning_different_embeddings(
 
 if __name__ == "__main__":
     fine_tuning_different_embeddings(
-        "fine_tuning_lstm_wos_1_BERT_DISTILBERT_100_batches",
+        "fine_tuning_lstm_wos_1_BERT_DISTILBERT_200_batches",
         lstm_model_idx=0,
         nb_model_idx=None,
         batch_size=32,
-        no_batches=100,
+        no_batches=200,
         transformer_model_trained=TransformerModel.BERT,
         transformer_model_untrained=TransformerModel.DISTILBERT,
         print_every=1,
