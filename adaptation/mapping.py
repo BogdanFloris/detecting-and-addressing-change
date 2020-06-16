@@ -142,6 +142,9 @@ class MLPMapping(Mapping):
             print("Loading MLP mapping")
             self.mapping.load_state_dict(torch.load(self.model_path))
 
+    def map(self, inputs):
+        return self.mapping(inputs)
+
     def create_mapping(self, epochs=10, lr=0.001, batch_size=50):
         criterion = nn.MSELoss()
         optimizer = optim.Adam(self.mapping.parameters(), lr=lr)
@@ -182,7 +185,10 @@ class MLPMapping(Mapping):
 
 
 if __name__ == "__main__":
-    m = MLPMapping(method="max")
+    m1 = Procrustes()
+    m2 = MLPMapping(method="average")
+    print(m2.mse_loss(m2.source, m2.target))
+    print(m2.mse_loss(m2.map(m2.source).var().detach().numpy(), m2.target))
     # m.visualize_mapping(
     #     save_name=os.path.join(
     #         PATH_FIGURES, "mlp_mapping_vis_pca_SCIBERT_BERT_average_dropout.png"
