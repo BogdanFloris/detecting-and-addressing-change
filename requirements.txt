@@ -1,7 +1,7 @@
 # package requirements
 torch==1.4.0
 transformers==2.3.0
-numpy==1.18.1
+numpy==1.22.0
 scikit-multiflow==0.4.1
 tqdm==4.41.1
 scikit-learn==0.22.1
