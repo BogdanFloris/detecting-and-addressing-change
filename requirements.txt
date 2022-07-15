@@ -14,5 +14,5 @@ scipy==1.4.1
 # testing requirements
 pytest==5.3.4
 flake8==3.7.9
-codecov==2.0.15
+codecov==2.0.16
 pytest-cov==2.8.1
